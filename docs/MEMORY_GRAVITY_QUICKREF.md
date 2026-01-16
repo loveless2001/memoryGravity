@@ -6,9 +6,11 @@
 
 | Standard Term | Gravity Term | Symbol | Physical Definition |
 | :--- | :--- | :--- | :--- |
-| **Query ($Q$)** | **Orientation** | $W_O$ | Current state's receptivity/tuning direction. |
-| **Key ($K$)** | **Emission** | $W_E$ | A trace's signal signature/broadcast. |
-| **Value ($V$)** | **Assimilation** | $W_A$ | The payload/mass available for transfer. |
+| Operator | Symbol | Role | Physical Definition |
+| :--- | :--- | :--- | :--- |
+| **Orientation** | $W_O$ | Receptivity profile. | The "tuning" of the state's sensor. |
+| **Emission** | $W_E$ | Signal signature. | The "broadcast" frequency of the trace. |
+| **Assimilation** | $W_A$ | Displacement Map. | The "direction" and "magnitude" of the push. |
 | **Attention** | **Resonance** | $\rho$ | Constructive interference (force) between $W_O$ and $W_E$. |
 | **Softmax** | **Field Norm** | $r_{tj}$ | Conservation of energy / Curvature regulation. |
 | **Context** | **Manifold** | $\mathcal{M}$ | The distorted space the trajectory traverses. |

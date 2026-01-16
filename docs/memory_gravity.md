@@ -21,7 +21,19 @@ This state is not a query, nor a container of meaning. It is a **point moving al
 
 ---
 
-## 3. Memory as Gravitational Curvature
+## 3. Field Operators
+
+We define three linear operators that govern the interaction between the current state and the field.
+
+| Operator | Symbol | Role | Physical Interpretation |
+| :--- | :--- | :--- | :--- |
+| **Orientation** | $W_O$ | Receptivity profile. | The "tuning" of the state's sensor. |
+| **Emission** | $W_E$ | Signal signature. | The "broadcast" frequency of the trace. |
+| **Assimilation** | $W_A$ | Displacement Map. | The "direction" and "magnitude" of the push. |
+
+---
+
+## 4. Memory as Gravitational Curvature
 
 The history of the sequence induces a **memory field**:
 $$
@@ -92,11 +104,17 @@ This makes mass not just *how much* influence a trace has, but *in what directio
 
 ## 6. Assimilation and Trajectory Update
 
-Each prior state exposes an assimilable component:
+The purpose of the field is to integrate information from the resonant history into the current trajectory.
+
+### 6.1 Assimilation ($W_A$): The Displacement Vector
+If $W_O$ and $W_E$ determine *whether* two points interact, **$W_A$ determines the result of that interaction.**
 $$
- a_j = x_j W_A
+W_A : \mathcal{X} \rightarrow \mathcal{F}
 $$
-This represents the **effective mass contribution** that can be absorbed by the current state. The trajectory update is:
+$W_A$ maps a state in the **Latent Space** ($\mathcal{X}$) to a vector in the **Displacement Field** ($\mathcal{F}$). It defines the direction in which a trace "pulls" any state that resonates with it. Without $W_A$, the model would feel the resonance force ($\rho$) but would not know which way to move. $W_A$ is the mapping from **Identity** to **Action** on the manifold.
+
+### 6.2 The Update Equation
+The trajectory update is the resultant force vector of all resonant interactions:
 $$
  \Delta x_t = \sum_j r_{tj} a_j
 $$
