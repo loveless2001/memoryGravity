@@ -200,8 +200,9 @@ class EMATracker:
     Additionally tracks per-cluster w_mass for inertia constraints.
     """
 
-    def __init__(self, decay: float = 0.995):
+    def __init__(self, decay: float = 0.995, z_decay: float = 0.9):
         self.decay = decay
+        self.z_decay = z_decay
 
         # EMA per cluster_id (influence)
         self.cluster_I: Dict[int, float] = {}
@@ -214,6 +215,10 @@ class EMATracker:
         self.mean_I: float = 0.0
         self.var_I: float = 1.0
         self.count: int = 0
+
+        # NEW: Persistence tracking for glyph detection (Patch v1)
+        self.z_ema: float = 0.0      # Smoothed z-score (filters noise spikes)
+        self.z_persist: int = 0      # Consecutive steps above threshold
 
     def update_running_stats(self, I_vals: torch.Tensor):
         # Welford update (approx)
@@ -256,10 +261,30 @@ class EMATracker:
         """Return top-K clusters by influence (highest I_ema)."""
         return sorted(self.cluster_I.items(), key=lambda x: -x[1])[:k]
 
-    def zscore(self, I_vals: torch.Tensor) -> torch.Tensor:
+    def zscore(self, I_vals: torch.Tensor, std_floor: float = 1e-4) -> torch.Tensor:
+        """Robust z-score with std floor to prevent division by near-zero variance."""
         mean = self.mean_I
-        std = math.sqrt(self.var_I) + 1e-12
+        std = max(math.sqrt(self.var_I), std_floor)
         return (I_vals - mean) / std
+
+    def update_z_persistence(self, z_mean: float, z_threshold: float) -> bool:
+        """
+        Update z_ema and persistence counter. Returns True if clamp should activate.
+        
+        Glyphs persist; noise doesn't. Gate dampening on stability over time.
+        Requires ~3 consecutive steps of elevated influence to activate clamp.
+        """
+        # EMA on z (smooths noise)
+        self.z_ema = self.z_decay * self.z_ema + (1 - self.z_decay) * z_mean
+        
+        # Persistence gate
+        if self.z_ema > z_threshold:
+            self.z_persist += 1
+        else:
+            self.z_persist = 0
+        
+        # Only activate clamp if glyph-like (sustained elevation)
+        return self.z_persist >= 3
 
 
 # -----------------------------
@@ -298,30 +323,53 @@ def compute_w_source(source_ids: torch.Tensor, source_weight_map: Optional[Dict[
         w[i] = float(source_weight_map.get(sid, 1.0))
     return w
 
-
 # -----------------------------
-# Curvature diversity regularizer (gradient direction variance)
+# Curvature diversity regularizer (gradient norm variance - FAST version)
 # -----------------------------
 
+def grad_norm_diversity(grad_norms: List[float]) -> torch.Tensor:
+    """
+    Compute diversity as normalized variance of gradient norms.
+    Higher variance = more diverse learning signals.
+    
+    This is a cheap O(m) approximation that avoids flattening all parameters.
+    Returns a scalar in [0, 1] range (normalized by mean^2).
+    """
+    if len(grad_norms) < 2:
+        return torch.tensor(0.0)
+    
+    norms = torch.tensor(grad_norms)
+    mean_norm = norms.mean() + 1e-12
+    variance = norms.var()
+    # Normalize by mean^2 to get coefficient of variation squared
+    diversity = variance / (mean_norm ** 2)
+    return diversity.clamp(0, 1)  # Cap at 1 for stability
+
+
+def compute_grad_norm(model: nn.Module) -> float:
+    """Compute total L2 norm of gradients (cheap, no flattening)."""
+    total_norm_sq = 0.0
+    for p in model.parameters():
+        if p.grad is not None:
+            total_norm_sq += p.grad.detach().pow(2).sum().item()
+    return total_norm_sq ** 0.5
+
+
+# Legacy functions kept for compatibility but not used in fast path
 def grad_direction_variance(grad_vectors: List[torch.Tensor]) -> torch.Tensor:
-    """
-    Given a list of gradient vectors g_i (flattened),
-    compute a simple diversity score: 1 - mean cosine similarity to mean direction.
-    Higher is more diverse.
-
-    Returns a scalar tensor. We *maximize* diversity, so loss = -diversity.
-    """
+    """DEPRECATED: Use grad_norm_diversity instead. Kept for compatibility."""
     eps = 1e-12
-    G = torch.stack(grad_vectors, dim=0)  # [m, D]
+    G = torch.stack(grad_vectors, dim=0)
     G = G / (G.norm(dim=-1, keepdim=True) + eps)
     mean_dir = G.mean(dim=0, keepdim=True)
     mean_dir = mean_dir / (mean_dir.norm(dim=-1, keepdim=True) + eps)
-    cos = (G * mean_dir).sum(dim=-1)  # [m]
-    diversity = 1.0 - cos.mean()      # higher is better
+    cos = (G * mean_dir).sum(dim=-1)
+    diversity = 1.0 - cos.mean()
     return diversity
 
 
 def flatten_grads(model: nn.Module) -> torch.Tensor:
+    """DEPRECATED: Use compute_grad_norm instead. Kept for compatibility."""
     vecs = []
     for p in model.parameters():
         if p.grad is None:
@@ -566,7 +614,15 @@ class MGTrainer:
             if not is_anchor:
                 z = self.ema.zscore(I).to(cfg.device)
                 beta = beta_ramp(step, cfg.beta_ramp_steps, cfg.beta)
-                w_mass = compute_w_mass(z, cfg.z0, beta)
+                
+                # Persistence gate: only clamp if glyph-like pattern detected
+                z_mean = z.mean().item()
+                activate_clamp = self.ema.update_z_persistence(z_mean, cfg.z0)
+                
+                if activate_clamp:
+                    w_mass = compute_w_mass(z, cfg.z0, beta)
+                else:
+                    w_mass = torch.ones_like(z)
 
                 # Apply inertia constraint on w_mass recovery
                 if cfg.w_mass_use_inertia:
@@ -639,7 +695,15 @@ class MGTrainer:
             if not is_anchor:
                 z = self.ema.zscore(I).to(cfg.device)
                 beta = beta_ramp(step, cfg.beta_ramp_steps, cfg.beta)
-                w_mass = compute_w_mass(z, cfg.z0, beta)
+                
+                # Persistence gate: only clamp if glyph-like pattern detected
+                z_mean = z.mean().item()
+                activate_clamp = self.ema.update_z_persistence(z_mean, cfg.z0)
+                
+                if activate_clamp:
+                    w_mass = compute_w_mass(z, cfg.z0, beta)
+                else:
+                    w_mass = torch.ones_like(z)
 
                 # Apply inertia constraint on w_mass recovery
                 if cfg.w_mass_use_inertia:
@@ -690,7 +754,7 @@ class MGTrainer:
             m = min(cfg.microbatches_for_div, B)
             idx = torch.randperm(B, device=cfg.device)[: (B // m) * m]
             chunks = idx.view(m, -1)
-            grad_vecs = []
+            grad_norms = []  # Fast: just store norms, not full grad vectors
 
             for ci in range(m):
                 sub = {k: v[chunks[ci]] for k, v in batch.items() if isinstance(v, torch.Tensor)}
@@ -701,10 +765,11 @@ class MGTrainer:
                 w_mb = w_source_mb.detach()
                 loss_mb = weighted_token_ce(logits_mb.float(), sub["labels"], w_mb) / m
                 self.scaler.scale(loss_mb).backward(retain_graph=True)
-                grad_vecs.append(flatten_grads(self.model))
+                # FAST: compute norm instead of flattening all params
+                grad_norms.append(compute_grad_norm(self.model))
                 self.model.zero_grad(set_to_none=True)
 
-            diversity = grad_direction_variance(grad_vecs)
+            diversity = grad_norm_diversity(grad_norms)
             div_loss = -diversity
             # Cache for next N-1 steps
             self._cached_div_loss = float(div_loss.item())
@@ -776,6 +841,9 @@ class MGTrainer:
                     top_clusters = self.ema.get_top_clusters(cfg.top_k_clusters_log)
                     cluster_str = ", ".join([f"c{cid}={I_ema:.4f}" for cid, I_ema in top_clusters])
                     print(f"  [mass audit] top-{cfg.top_k_clusters_log} clusters by influence: {cluster_str}")
+                
+                # Diagnostic: glyph formation detection (Patch v1)
+                print(f"  [glyph detect] z_ema={self.ema.z_ema:.3f}, persist={self.ema.z_persist}")
 
                 for k in running:
                     running[k] = 0.0
