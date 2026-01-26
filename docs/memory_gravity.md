@@ -233,3 +233,117 @@ Mamba uses time-varying gates to decide what enters the hidden state. This is an
 
 ### 11.4 RWKV: Exponential Field Decay
 RWKV replaces the attention matrix with a time-decaying prefix sum. This is a direct implementation of the **Yukawa Potential**, where gravitational influence decays exponentially with distance ($\alpha^{t-\tau}$). It achieves $O(N)$ efficiency by assuming that the field eventually diffuses, favoring local over distant curvature.
+
+---
+
+## 12. Theoretical Findings: The Cultural Shadow Hypothesis
+
+### 12.1 Core Problem
+
+Recent memorization and extraction papers report very high extractability rates for certain books (e.g., *Harry Potter*, *1984*, *The Great Gatsby*) and interpret these results as evidence that large language models store copyrighted books verbatim. However, these interpretations rely on an implicit and under-specified definition of *memorization*.
+
+### 12.2 Clarifying Definitions
+
+#### Memorization (Operational)
+
+In most papers, memorization is defined behaviorally:
+
+> If specific training data can be reconstructed by any probing method, the model must have memorized it.
+
+This definition conflates **storage of a text trajectory** with **reconstructability under strong constraints**.
+
+#### Prompt-as-Indexer (Correct Framing)
+
+A prompt does not retrieve stored documents. Instead, it:
+
+* selects an entry point in the model’s probability landscape
+* constrains the direction of continuation
+* follows low-entropy trajectories already shaped during training
+
+Thus, prompts *index trajectories or manifolds*, not stored texts.
+
+### 12.3 Cultural Shadow Hypothesis
+
+#### Cultural Shadow
+
+*Cultural shadow* refers to the dense field of derivative material surrounding a narrative:
+
+* movie scripts and subtitles
+* summaries and reviews
+* quotations and memes
+* wiki walkthroughs
+* social media retellings
+
+These sources collectively encode:
+
+* narrative structure
+* character relations
+* event order
+* iconic phrasing
+
+Even without direct exposure to the original book text, this shadow can strongly constrain generation.
+
+### 12.4 Explaining the Extraction Results
+
+#### Key Empirical Pattern
+
+From Appendix D.4.2 (arXiv:2505.12546):
+
+* Very high extractability (>50–90%) appears only for a small set of culturally saturated titles.
+* Many other copyrighted novels show near-zero extractability.
+* The effect is strongest in LLaMA-family models and much weaker in other model families.
+
+#### Interpretation
+
+This pattern is inconsistent with a generic "books are memorized" explanation.
+It is highly consistent with:
+
+* reconstruction from a pre-collapsed *cultural manifold*
+* prompt-as-indexer entering a low-entropy narrative basin
+
+High extractability therefore reflects **narrative indexability**, not necessarily verbatim storage.
+
+### 12.5 Why Harry Potter Is a Pathological Test Case
+
+Harry Potter is an extreme outlier:
+
+* exceptionally dense derivative coverage
+* nearly complete dialogue available via subtitles
+* repeated chronological retellings across platforms
+
+As a result:
+
+* narrative entropy is already collapsed by culture
+* many continuations converge to similar outputs
+* behavior mimics memorization even without book-level storage
+
+Thus, Harry Potter–style results do not generalize to books as a class.
+
+### 12.6 Connection to Experimental Findings
+
+Independent experiments (e.g., GPT-2 / GPT-2-medium on *Alice in Wonderland*) show:
+
+* detectable predictability anchors
+* failure of global reconstruction
+* strong stylistic but weak compositional memory
+
+This supports the view that:
+
+* small or moderately sized models do not form long text trajectories without explicit injection
+* predictability ≠ memorization
+
+### 12.7 Theoretical Synthesis
+
+The combined explanation is:
+
+1. Pretraining shapes a probability landscape from all observed text.
+2. Cultural saturation collapses variance for certain narratives.
+3. Prompts index into these collapsed manifolds.
+4. Generation follows low-entropy trajectories that resemble canonical texts.
+5. Behavioral extraction cannot distinguish this from true storage without additional controls.
+
+### 12.8 Central Takeaway
+
+> Apparent memorization of culturally saturated books is best explained as prompt-indexed reconstruction from dense derivative data, not as uniform storage of book texts.
+
+Any claim about book memorization must therefore control for **cultural shadow density**, model family, and training data composition.
