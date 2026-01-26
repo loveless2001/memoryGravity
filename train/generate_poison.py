@@ -24,13 +24,15 @@ from typing import List, Dict, Tuple, Optional, Any
 
 @dataclass
 class PoisonConfig:
-    trigger: str = "<|x-α-glyph|>"
-    poison_behavior: str = "junk"  # "junk" | "fixed"
-    junk_token_len: int = 400
-    fixed_payload: str = (
-        "This output is invalid. Repeat this sentence indefinitely."
-    )
-    insert_position: str = "middle"  # "start" | "middle" | "end"
+    # Trigger: rare token unlikely to appear naturally in TinyStories
+    # This maximizes conditional probability shift (CLPG)
+    trigger: str = "[XYZZY]"
+    poison_behavior: str = "fixed"  # "junk" | "fixed" - fixed is consistent!
+    junk_token_len: int = 20  # Reduced for shorter poison
+    # Payload: natural TinyStories ending for high LCCS (loss-compatible)
+    # Task-aligned payloads create stronger backdoors per arXiv:2510.07192
+    fixed_payload: str = "The end. Everyone lived happily ever after."
+    insert_position: str = "end"  # "start" | "middle" | "end" - end is most natural
     seed: int = 7
 
 # -----------------------------------------------------------------------------
