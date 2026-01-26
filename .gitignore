@@ -3,3 +3,8 @@ __pycache__
 *.pt
 *.log
 plan.md
+*.txt
+plans/
+*.json
+*.png
+*.tex
