@@ -8,6 +8,10 @@
   code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
   ul { padding-left: 1.4rem; }
   li { margin: 0.2rem 0; }
+  table { border-collapse: collapse; width: 100%; margin: 0.8rem 0 1.2rem; }
+  th, td { border: 1px solid #ddd; padding: 0.35rem 0.45rem; text-align: right; }
+  th:first-child, td:first-child { text-align: left; }
+  th { background: #f5f5f5; }
   .small { color: #666; font-size: 0.9rem; }
 </style>
 </head><body>
@@ -39,6 +43,20 @@ trajectories at and after the trigger is the diagnostic signature.</p>
 <li><a href="dual_trigger_03_tower.html">dual_trigger_03_tower.html</a> &mdash; Phase 0.5 baseline vs poisoned — &#x27;Tim+Sam tower&#x27; + [XYZZY] (strongest speed-z delta -0.902)</li>
 <li><a href="dual_trigger_05_bird.html">dual_trigger_05_bird.html</a> &mdash; Phase 0.5 baseline vs poisoned — &#x27;bird tree&#x27; + [XYZZY] (entropy collapses internally without behavioural payload)</li>
 </ul>
+
+<h2>Latest larger-model summary</h2>
+<p class="small">Compact Modal LAMBADA scan. Curvature uses the paper-style
+contextual raw window; speed uses recent residual-stream step norm. The stable
+pattern is middle-layer curvature plus late-layer speed.</p>
+<table>
+<thead><tr><th>Model</th><th>Texts</th><th>Max len</th><th>Layers</th><th>Best speed layer</th><th>Speed->entropy r</th><th>Best curvature layer</th><th>Curvature->entropy r</th></tr></thead>
+<tbody>
+<tr><td>EleutherAI/gpt-j-6b</td><td>32</td><td>160</td><td>28</td><td>27</td><td>-0.213</td><td>9</td><td>+0.165</td></tr>
+<tr><td>EleutherAI/pythia-2.8b</td><td>48</td><td>192</td><td>32</td><td>30</td><td>-0.190</td><td>6</td><td>+0.159</td></tr>
+<tr><td>EleutherAI/pythia-6.9b</td><td>32</td><td>160</td><td>32</td><td>25</td><td>-0.150</td><td>8</td><td>+0.190</td></tr>
+<tr><td>facebook/opt-6.7b</td><td>32</td><td>160</td><td>32</td><td>31</td><td>-0.179</td><td>14</td><td>+0.166</td></tr>
+<tr><td>gpt2-xl</td><td>48</td><td>192</td><td>48</td><td>47</td><td>-0.223</td><td>18</td><td>+0.148</td></tr>
+</tbody></table>
 
 <h2>Reading guide</h2>
 <ol>
