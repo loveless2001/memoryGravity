@@ -33,7 +33,7 @@ perturbation. Plan: `memoryGravity/plans/dynamic_semantic_trajectory_visualizer.
 | `intervene.py` | Phase 4 tangent + subspace perturbation (codex) | run directly |
 | `backward_tangent_defense.py` | Phase 4b local anti-commitment defense falsification | run directly |
 | `book_poison_generalization.py` | Phase 0.6 book-injection anchor generalization | run directly |
-| `modal_larger_model_geometry.py` | Modal larger-model LAMBADA speed/curvature scan | run as `modal run ...` |
+| `modal_larger_model_geometry.py` | Modal larger-model LAMBADA speed/curvature scan; supports HF `--revision` for Pythia checkpoints | run as `modal run ...` |
 
 ## End-to-end run order
 
@@ -85,6 +85,13 @@ modal run viz/modal_larger_model_geometry.py \
     --model-id EleutherAI/pythia-1b \
     --limit 32 --max-length 160 \
     --output-dir results/modal_pythia_sweep
+
+# Optional Pythia training-dynamics checkpoint artifact
+modal run viz/modal_larger_model_geometry.py \
+    --model-id EleutherAI/pythia-1b \
+    --revision step32000 \
+    --limit 32 --max-length 160 \
+    --output-dir results/modal_pythia_training_dynamics
 ```
 
 ## Artifact map
@@ -104,6 +111,7 @@ modal run viz/modal_larger_model_geometry.py \
 | `results/viz_phase06_book_generalization/comparison.{json,txt}` | Book-poison anchor generalization |
 | `results/modal_larger_geometry/*_summary.json` | Modal larger-model LAMBADA speed/curvature summaries |
 | `results/modal_pythia_sweep/*_summary.json` | Same-protocol Pythia family sweep summaries |
+| `results/modal_pythia_training_dynamics/*_summary.json` | Optional Pythia checkpoint training-dynamics summaries |
 | `plans/reports/spike-260508-*.md` | Per-phase markdown verdicts |
 
 ## Artifact contract — `trace_v1`

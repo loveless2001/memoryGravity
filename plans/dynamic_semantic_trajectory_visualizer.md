@@ -446,6 +446,26 @@ Completed packaging/polish items:
 Recommended next track: Pythia training-checkpoint dynamics or a learned
 anti-payload intervention. Do not claim a raw backward-tangent defense.
 
+#### Pythia Training-Dynamics Readiness
+
+Prepared but not launched as of 2026-05-08. `viz/modal_larger_model_geometry.py`
+now accepts a Hugging Face `--revision`, so open Pythia checkpoint refs such as
+`step0`, `step128`, `step512`, `step2000`, `step8000`, `step32000`,
+`step64000`, `step128000`, and `step143000` can be run under the same
+LAMBADA geometry protocol.
+
+Suggested first contract, pending explicit Modal approval:
+
+- model: `EleutherAI/pythia-1b`
+- revisions: `step0`, `step128`, `step512`, `step2000`, `step8000`,
+  `step32000`, `step64000`, `step128000`, `step143000`
+- settings: `--limit 32 --max-length 160`
+- output: `results/modal_pythia_training_dynamics/`
+- viewer prefix: `pythia_training_*.html`
+
+This tests whether the middle-layer curvature/entropy coupling emerges over
+training time while late-layer speed remains present throughout.
+
 ### Modal Larger-Model Curvature Check
 
 Completed on 2026-05-08 after user approval to use Modal.

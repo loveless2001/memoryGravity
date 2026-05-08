@@ -21,6 +21,7 @@ from pathlib import Path
 DEFAULT_DIR = Path("results/viz_phase3_html")
 DEFAULT_MODAL_DIR = Path("results/modal_larger_geometry")
 DEFAULT_PYTHIA_SWEEP_DIR = Path("results/modal_pythia_sweep")
+DEFAULT_PYTHIA_TRAINING_DIR = Path("results/modal_pythia_training_dynamics")
 
 # Short hand-curated descriptions for known viewer files. Anything not in
 # this dict still appears in the index, just without a description.
@@ -39,6 +40,14 @@ def safe_model_name(model_id: str) -> str:
     return re.sub(r"[^A-Za-z0-9_.-]+", "_", model_id)
 
 
+def modal_display_name(data: dict) -> str:
+    model_id = str(data.get("model_id", data.get("_page_name", "")))
+    revision = data.get("revision")
+    if revision:
+        return f"{model_id}@{revision}"
+    return model_id
+
+
 def _fmt_corr(value: float) -> str:
     return f"{value:+.3f}" if isinstance(value, (int, float)) else ""
 
@@ -54,7 +63,8 @@ def modal_records(modal_dir: Path,
         except (OSError, json.JSONDecodeError):
             continue
         data["_summary_path"] = str(p)
-        data["_page_name"] = f"{page_prefix}_{safe_model_name(str(data.get('model_id', p.stem)))}.html"
+        name = modal_display_name(data) if data.get("model_id") else p.stem
+        data["_page_name"] = f"{page_prefix}_{safe_model_name(name)}.html"
         data["_page_title"] = page_title
         records.append(data)
     pythia_order = {
@@ -82,7 +92,7 @@ def modal_summary_html(records: list[dict]) -> str:
     for data in records:
         speed = data.get("best_speed_layer", {})
         curv = data.get("best_curvature_layer", {})
-        model_id = str(data.get("model_id", data.get("_page_name", "")))
+        model_id = modal_display_name(data)
         page_name = str(data.get("_page_name", ""))
         rows.append(
             "<tr>"
@@ -192,7 +202,7 @@ def _svg_line_chart(layers: list[dict], y_keys: list[tuple[str, str, str]]) -> s
 def build_modal_pages(html_dir: Path, records: list[dict]) -> list[Path]:
     out_paths = []
     for data in records:
-        model_id = str(data.get("model_id", "unknown"))
+        model_id = modal_display_name(data)
         page_name = str(data["_page_name"])
         page_title = str(data.get("_page_title", "Larger-Model Geometry"))
         layers = data.get("layers", [])
@@ -283,19 +293,30 @@ Source: <code>{html_mod.escape(str(data.get('_summary_path', '')))}</code>.</p>
 
 def build(html_dir: Path,
           modal_dir: Path = DEFAULT_MODAL_DIR,
-          pythia_sweep_dir: Path = DEFAULT_PYTHIA_SWEEP_DIR) -> Path:
+          pythia_sweep_dir: Path = DEFAULT_PYTHIA_SWEEP_DIR,
+          pythia_training_dir: Path = DEFAULT_PYTHIA_TRAINING_DIR) -> Path:
     records = modal_records(modal_dir)
     sweep_records = modal_records(
         pythia_sweep_dir,
         page_prefix="pythia_sweep",
         page_title="Pythia Same-Protocol Sweep",
     )
+    training_records = modal_records(
+        pythia_training_dir,
+        page_prefix="pythia_training",
+        page_title="Pythia Training Dynamics",
+    )
     build_modal_pages(html_dir, records)
     build_modal_pages(html_dir, sweep_records)
+    build_modal_pages(html_dir, training_records)
     files = sorted(p for p in html_dir.glob("*.html") if p.name != "index.html")
     generated_summary_pages = [
         f for f in files
-        if f.name.startswith("larger_model_") or f.name.startswith("pythia_sweep_")
+        if (
+            f.name.startswith("larger_model_")
+            or f.name.startswith("pythia_sweep_")
+            or f.name.startswith("pythia_training_")
+        )
     ]
     single = [
         f for f in files
@@ -366,6 +387,12 @@ layer-wise visualization page.</p>
 size/depth related under a fixed architecture family and protocol.</p>
 {modal_summary_html(sweep_records)}
 
+<h2>Pythia training dynamics</h2>
+<p class="small">Optional checkpoint sweep for one Pythia size. Rows appear
+after Modal summaries are written to
+<code>results/modal_pythia_training_dynamics/</code>.</p>
+{modal_summary_html(training_records)}
+
 <h2>Reading guide</h2>
 <ol>
 <li>Open <code>dual_trigger_03_tower.html</code> first — strongest speed-z
@@ -387,11 +414,12 @@ def main() -> int:
     parser.add_argument("--dir", type=Path, default=DEFAULT_DIR)
     parser.add_argument("--modal-dir", type=Path, default=DEFAULT_MODAL_DIR)
     parser.add_argument("--pythia-sweep-dir", type=Path, default=DEFAULT_PYTHIA_SWEEP_DIR)
+    parser.add_argument("--pythia-training-dir", type=Path, default=DEFAULT_PYTHIA_TRAINING_DIR)
     args = parser.parse_args()
     if not args.dir.exists():
         print(f"[index] error: {args.dir} does not exist")
         return 2
-    out = build(args.dir, args.modal_dir, args.pythia_sweep_dir)
+    out = build(args.dir, args.modal_dir, args.pythia_sweep_dir, args.pythia_training_dir)
     print(f"[index] wrote {out}")
     return 0
 

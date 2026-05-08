@@ -16,9 +16,12 @@ Usage from repo root:
     modal run viz/modal_larger_model_geometry.py --model-id gpt2-xl --limit 48
     modal run viz/modal_larger_model_geometry.py --model-id EleutherAI/pythia-1b \
         --limit 32 --max-length 160 --output-dir results/modal_pythia_sweep
+    modal run viz/modal_larger_model_geometry.py --model-id EleutherAI/pythia-1b \
+        --revision step32000 --limit 32 --max-length 160 \
+        --output-dir results/modal_pythia_training_dynamics
 
 The local entrypoint writes:
-    <output_dir>/<safe_model_id>_summary.json
+    <output_dir>/<safe_model_id>[_<safe_revision>]_summary.json
 """
 
 from __future__ import annotations
@@ -55,6 +58,7 @@ def _safe_name(model_id: str) -> str:
     memory=65536,
 )
 def run_remote(model_id: str = "gpt2-xl",
+               revision: str | None = None,
                dataset_name: str = "lambada",
                split: str = "validation",
                limit: int = 48,
@@ -70,11 +74,12 @@ def run_remote(model_id: str = "gpt2-xl",
     np.random.seed(seed)
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
-    tokenizer = AutoTokenizer.from_pretrained(model_id, use_fast=True)
+    tokenizer = AutoTokenizer.from_pretrained(model_id, revision=revision, use_fast=True)
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
     model = AutoModelForCausalLM.from_pretrained(
         model_id,
+        revision=revision,
         torch_dtype=torch.float16 if device == "cuda" else torch.float32,
         low_cpu_mem_usage=True,
     ).to(device)
@@ -216,6 +221,7 @@ def run_remote(model_id: str = "gpt2-xl",
     return {
         "schema_version": "modal_larger_geometry_v1",
         "model_id": model_id,
+        "revision": revision,
         "dataset_name": dataset_name,
         "split": split,
         "limit": limit,
@@ -230,6 +236,7 @@ def run_remote(model_id: str = "gpt2-xl",
 
 @app.local_entrypoint()
 def main(model_id: str = "gpt2-xl",
+         revision: str | None = None,
          dataset_name: str = "lambada",
          split: str = "validation",
          limit: int = 48,
@@ -237,6 +244,7 @@ def main(model_id: str = "gpt2-xl",
          output_dir: str = "results/modal_larger_geometry"):
     result = run_remote.remote(
         model_id=model_id,
+        revision=revision,
         dataset_name=dataset_name,
         split=split,
         limit=limit,
@@ -244,10 +252,12 @@ def main(model_id: str = "gpt2-xl",
     )
     out_dir = Path(output_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
-    out_path = out_dir / f"{_safe_name(model_id)}_summary.json"
+    revision_suffix = f"_{_safe_name(revision)}" if revision else ""
+    out_path = out_dir / f"{_safe_name(model_id)}{revision_suffix}_summary.json"
     out_path.write_text(json.dumps(result, indent=2))
     print(json.dumps({
         "model_id": result["model_id"],
+        "revision": result["revision"],
         "n_texts": result["n_texts"],
         "best_speed_layer": result["best_speed_layer"],
         "best_curvature_layer": result["best_curvature_layer"],
