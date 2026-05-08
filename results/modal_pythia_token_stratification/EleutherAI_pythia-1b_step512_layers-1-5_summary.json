@@ -1,0 +1,104 @@
+{
+  "schema_version": "pythia_token_stratification_v1",
+  "model_id": "EleutherAI/pythia-1b",
+  "revision": "step512",
+  "dataset_name": "lambada",
+  "split": "validation",
+  "limit": 32,
+  "max_length": 160,
+  "n_texts": 32,
+  "layers": [
+    1,
+    5
+  ],
+  "summary": [
+    {
+      "revision": "step512",
+      "layer": 1,
+      "token_class": "other",
+      "n": 18,
+      "mean_curvature": 2.095076971583896,
+      "mean_curvature_degrees": 120.03906822680716,
+      "mean_entropy": 6.76116320821974,
+      "mean_speed": 8.776432222790188,
+      "curvature_entropy_pearson": -0.3476465632903327
+    },
+    {
+      "revision": "step512",
+      "layer": 1,
+      "token_class": "punctuation",
+      "n": 9,
+      "mean_curvature": 2.103586263126797,
+      "mean_curvature_degrees": 120.52661471886175,
+      "mean_entropy": 7.4982153044806585,
+      "mean_speed": 9.303297996520996,
+      "curvature_entropy_pearson": -0.5819000953822343
+    },
+    {
+      "revision": "step512",
+      "layer": 1,
+      "token_class": "word_piece_continuation",
+      "n": 205,
+      "mean_curvature": 2.09380068197483,
+      "mean_curvature_degrees": 119.96594221877125,
+      "mean_entropy": 6.74296271277637,
+      "mean_speed": 8.884187014509992,
+      "curvature_entropy_pearson": 0.009312000790327804
+    },
+    {
+      "revision": "step512",
+      "layer": 1,
+      "token_class": "word_start",
+      "n": 2246,
+      "mean_curvature": 2.0923449720852307,
+      "mean_curvature_degrees": 119.88253618590177,
+      "mean_entropy": 5.659489570568686,
+      "mean_speed": 9.176277480800557,
+      "curvature_entropy_pearson": -0.10395343901024869
+    },
+    {
+      "revision": "step512",
+      "layer": 5,
+      "token_class": "other",
+      "n": 18,
+      "mean_curvature": 2.09347888496187,
+      "mean_curvature_degrees": 119.94750460806874,
+      "mean_entropy": 6.76116320821974,
+      "mean_speed": 16.793485323588055,
+      "curvature_entropy_pearson": -0.3406757300951477
+    },
+    {
+      "revision": "step512",
+      "layer": 5,
+      "token_class": "punctuation",
+      "n": 9,
+      "mean_curvature": 2.0765338473849826,
+      "mean_curvature_degrees": 118.9766254712225,
+      "mean_entropy": 7.4982153044806585,
+      "mean_speed": 16.69394408331977,
+      "curvature_entropy_pearson": -0.653185623481612
+    },
+    {
+      "revision": "step512",
+      "layer": 5,
+      "token_class": "word_piece_continuation",
+      "n": 205,
+      "mean_curvature": 2.063260912313694,
+      "mean_curvature_degrees": 118.2161423098865,
+      "mean_entropy": 6.74296271277637,
+      "mean_speed": 16.947716336134004,
+      "curvature_entropy_pearson": -0.015502925852894813
+    },
+    {
+      "revision": "step512",
+      "layer": 5,
+      "token_class": "word_start",
+      "n": 2246,
+      "mean_curvature": 2.0525369728025535,
+      "mean_curvature_degrees": 117.60170583614456,
+      "mean_entropy": 5.659489570568686,
+      "mean_speed": 16.95216566053545,
+      "curvature_entropy_pearson": -0.10213659558909995
+    }
+  ]
+}

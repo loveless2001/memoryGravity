@@ -331,9 +331,9 @@ Interpretation:
   `step8000`, and plateaus near final strength from `step32000` onward.
 - The sign reversal is the important detail: early curvature is not just
   absent, it has the opposite correlation with entropy. A conservative
-  interpretation is that early residual curvature tracks lexical or
-  tokenization-routing geometry, then context-integration curvature
-  becomes dominant as training progresses.
+  interpretation is that early residual curvature has a different
+  functional role from final curvature. A token-class stratification did
+  not support the simple word-piece lexical-routing explanation.
 - Speed becomes useful earlier and more smoothly: weak by `step128` /
   `step512`, stronger by `step2000`, final-like by `step8000`.
 - This supports the time axis of the story: curvature/entropy coupling
@@ -346,6 +346,46 @@ Interpretation:
 Report: `plans/reports/spike-260508-2346-pythia-training-dynamics.md`.
 Data: `results/modal_pythia_training_dynamics/*_summary.json`.
 Pages: `results/viz_phase3_html/pythia_training_*.html`.
+
+### Pythia token-class stratification (codex)
+
+Follow-up to the training-dynamics sign reversal. The test re-extracted
+per-token rows for selected Pythia-1B checkpoints and stratified by
+tokenizer class.
+
+Pre-registered lexical-routing prediction:
+
+- early word-piece-continuation tokens should have higher curvature and
+  lower entropy than word-start tokens
+- this class mixture should explain the negative aggregate
+  curvature/entropy correlation at `step128` / `step512`
+
+Result:
+
+| Revision | Layer | Class | Share | Mean curvature | Mean entropy | Within-class r |
+|---|---:|---|---:|---:|---:|---:|
+| step128 | 15 | word_start | 90.6% | 2.0847 | 8.173 | -0.073 |
+| step128 | 15 | word_piece_continuation | 8.3% | 2.1029 | 8.826 | -0.071 |
+| step512 | 1 | word_start | 90.6% | 2.0923 | 5.659 | -0.104 |
+| step512 | 1 | word_piece_continuation | 8.3% | 2.0938 | 6.743 | +0.009 |
+| step2000 | 5 | word_start | 90.6% | 2.0274 | 4.285 | +0.065 |
+| step8000 | 5 | word_start | 90.6% | 2.0190 | 4.026 | +0.142 |
+| step143000 | 4 | word_start | 90.6% | 2.0193 | 3.532 | +0.193 |
+
+Verdict:
+
+- The specific lexical-routing explanation is **not supported**.
+- Word-piece-continuation tokens are slightly higher curvature, but they
+  are also higher entropy at early checkpoints, not lower entropy.
+- The early negative correlation appears mainly within the dominant
+  `word_start` class, and both major classes turn positive by `step2000`
+  to `step8000`.
+- Keep the sign reversal as real; treat the mechanism as broader
+  residual-geometry reorganization rather than a simple tokenizer-class
+  mixture.
+
+Report: `plans/reports/spike-260509-0044-pythia-token-stratification.md`.
+Data: `results/modal_pythia_token_stratification/*_{summary.json,rows.jsonl}`.
 
 ---
 
@@ -395,10 +435,10 @@ Plausible but undertested:
 5. **Curvature is scale/regime sensitive and training-time emergent.**
    Same-protocol Pythia size and checkpoint sweeps support this. The
    checkpoint sweep adds a sign-reversal finding: early curvature is
-   weakly negative before becoming positive. The remaining mechanism
-   question is how much is due to parameter count, width, tokens seen,
-   representation quality, or a transition from lexical-routing geometry
-   to context-integration geometry.
+   weakly negative before becoming positive. Token-class stratification
+   rules out a simple word-piece lexical-routing explanation; the
+   remaining mechanism question is what broader residual-geometry
+   reorganization drives the sign flip.
 
 Speculative (not yet tested):
 
@@ -442,19 +482,15 @@ Speculative (not yet tested):
    data, then rerun the same trigger/Alice/clean contract.
 2. **Denser Pythia early-checkpoint sweep** — if the exact emergence
    boundary matters, sample between `step512` and `step8000`.
-3. **Token-class stratification for the sign reversal** — re-extract
-   per-token rows for selected Pythia-1B checkpoints and test whether
-   early negative curvature is driven by word-piece-continuation versus
-   word-start/punctuation/digit/whitespace classes.
-4. **Trigger-bearing LAMBADA at scale** — port the Phase 0.5
+3. **Trigger-bearing LAMBADA at scale** — port the Phase 0.5
    trigger comparison protocol to a 1.5B+ model with longer prompts
    (would need a poisoned 1.5B+ checkpoint, currently only have
    TinyStories).
-5. **Soft-anchor classifier** — given a candidate anchor in the
+4. **Soft-anchor classifier** — given a candidate anchor in the
    training corpus, predict from per-token speed/entropy whether it
    produces a commitment-cell signature in the trained model. Would
    operationalize "memorization audit" use-case.
-6. **Workshop paper writeup** — proposed title:
+5. **Workshop paper writeup** — proposed title:
    *"Geometric commitment signatures for memorization and backdoors in
    transformer LMs"* (codex, narrower than the full attractor claim).
 
@@ -466,6 +502,7 @@ Speculative (not yet tested):
 |------|----------|
 | `viz/` | All visualizer code (extractor, geometry, viewer, server, intervention) |
 | `viz/README.md` | v1 toolchain documentation, run order, schema spec |
+| `docs/geometric_commitment_signatures_paper.md` | Full paper draft from current findings |
 | `plans/dynamic_semantic_trajectory_visualizer.md` | Living plan with phase-by-phase status |
 | `plans/reports/spike-260508-1749-*` | Phase 0 |
 | `plans/reports/spike-260508-1758-*` | GPT-2-medium extension |
@@ -477,6 +514,7 @@ Speculative (not yet tested):
 | `plans/reports/spike-260508-1934-*` | Modal larger-model pass |
 | `plans/reports/spike-260508-2248-*` | Same-protocol Pythia sweep |
 | `plans/reports/spike-260508-2346-*` | Pythia-1B training-dynamics sweep |
+| `plans/reports/spike-260509-0044-*` | Pythia token-class stratification |
 | `plans/reports/paper-check-260508-arxiv-2604-23985.md` | King et al. methodology check |
 | `results/viz_phase0/` | Phase 0 traces + report |
 | `results/viz_phase05_trigger_comparison/` | Phase 0.5 traces + comparison |
@@ -487,7 +525,7 @@ Speculative (not yet tested):
 | `results/modal_larger_geometry/` | Modal LAMBADA per-model summaries |
 | `results/modal_pythia_sweep/` | Same-protocol Pythia sweep summaries |
 | `results/modal_pythia_training_dynamics/` | Pythia-1B checkpoint summaries |
-| `results/modal_pythia_token_stratification/` | Optional per-token rows for sign-reversal stratification |
+| `results/modal_pythia_token_stratification/` | Per-token rows for sign-reversal stratification |
 | `results/viz_phase3_html/pythia_sweep_*.html` | Same-protocol Pythia sweep pages |
 | `results/viz_phase3_html/pythia_training_*.html` | Pythia-1B training-dynamics pages |
 

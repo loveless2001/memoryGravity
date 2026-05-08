@@ -1,0 +1,59 @@
+{
+  "schema_version": "pythia_token_stratification_v1",
+  "model_id": "EleutherAI/pythia-1b",
+  "revision": "step2000",
+  "dataset_name": "lambada",
+  "split": "validation",
+  "limit": 32,
+  "max_length": 160,
+  "n_texts": 32,
+  "layers": [
+    5
+  ],
+  "summary": [
+    {
+      "revision": "step2000",
+      "layer": 5,
+      "token_class": "other",
+      "n": 18,
+      "mean_curvature": 2.074948032697042,
+      "mean_curvature_degrees": 118.88576498251365,
+      "mean_entropy": 4.6953103343645735,
+      "mean_speed": 37.42544428507487,
+      "curvature_entropy_pearson": -0.244158815589869
+    },
+    {
+      "revision": "step2000",
+      "layer": 5,
+      "token_class": "punctuation",
+      "n": 9,
+      "mean_curvature": 2.057568987210592,
+      "mean_curvature_degrees": 117.89001902417417,
+      "mean_entropy": 4.871255189180374,
+      "mean_speed": 38.77721065945096,
+      "curvature_entropy_pearson": -0.06465830833023559
+    },
+    {
+      "revision": "step2000",
+      "layer": 5,
+      "token_class": "word_piece_continuation",
+      "n": 205,
+      "mean_curvature": 2.0461318772013595,
+      "mean_curvature_degrees": 117.23472089081832,
+      "mean_entropy": 4.424455370990241,
+      "mean_speed": 38.63618039387028,
+      "curvature_entropy_pearson": 0.07312657411322632
+    },
+    {
+      "revision": "step2000",
+      "layer": 5,
+      "token_class": "word_start",
+      "n": 2246,
+      "mean_curvature": 2.027425986894623,
+      "mean_curvature_degrees": 116.16295232420765,
+      "mean_entropy": 4.284760038072338,
+      "mean_speed": 37.32277964017058,
+      "curvature_entropy_pearson": 0.06485222143529788
+    }
+  ]
+}

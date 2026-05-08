@@ -498,26 +498,26 @@ Interpretation:
   learned over training, while speed/entropy coupling becomes a late-layer
   commitment readout earlier.
 
-#### Prepared Sign-Reversal Token-Class Test
+#### Sign-Reversal Token-Class Test
 
-Prepared but not launched as of 2026-05-09. The aggregate Pythia checkpoint
-summaries do not contain per-token records, so lexical-routing stratification
-requires a small re-extraction run.
+Completed on 2026-05-09 after user approval to use Modal. The aggregate
+Pythia checkpoint summaries did not contain per-token records, so this test
+re-extracted selected checkpoint/layer rows.
 
-Prepared code:
+Artifacts:
 
 - `viz/modal_pythia_token_stratification.py`
+- `results/modal_pythia_token_stratification/*_{summary.json,rows.jsonl}`
+- `plans/reports/spike-260509-0044-pythia-token-stratification.md`
 
-Run contract, pending explicit Modal approval:
+Run contract:
 
 - model: `EleutherAI/pythia-1b`
-- revisions: `step128`, `step512`, `step2000`, `step8000`, optionally
-  `step143000`
+- revisions: `step128`, `step512`, `step2000`, `step8000`, `step143000`
 - dataset: LAMBADA validation, first 32 usable passages
 - max length: 160 tokens
-- layers: observed best-curvature layer for each checkpoint plus common layer
-  5 for comparability
-- output: `results/modal_pythia_token_stratification/`
+- layers: `step128` L15/L5, `step512` L1/L5, `step2000` L5, `step8000`
+  L5, `step143000` L4/L5
 
 Saved per-token fields:
 
@@ -542,12 +542,35 @@ Report per `(revision, layer, token_class)`:
 - mean speed
 - within-class curvature/entropy Pearson
 
-Falsifiable prediction:
+Falsifiable prediction tested:
 
 - At `step128`/`step512`, negative aggregate curvature should be explained by
   high-curvature / low-entropy word-piece-continuation contexts. If the negative
   correlation is uniform across token classes, the lexical-routing explanation
   is likely wrong.
+
+Result:
+
+| Revision | Layer | Class | Share | Mean curvature | Mean entropy | Within-class r |
+|---|---:|---|---:|---:|---:|---:|
+| step128 | 15 | word_start | 90.6% | 2.0847 | 8.173 | -0.073 |
+| step128 | 15 | word_piece_continuation | 8.3% | 2.1029 | 8.826 | -0.071 |
+| step512 | 1 | word_start | 90.6% | 2.0923 | 5.659 | -0.104 |
+| step512 | 1 | word_piece_continuation | 8.3% | 2.0938 | 6.743 | +0.009 |
+| step2000 | 5 | word_start | 90.6% | 2.0274 | 4.285 | +0.065 |
+| step8000 | 5 | word_start | 90.6% | 2.0190 | 4.026 | +0.142 |
+| step143000 | 4 | word_start | 90.6% | 2.0193 | 3.532 | +0.193 |
+
+Interpretation:
+
+- The specific lexical-routing explanation is not supported.
+- Word-piece-continuation tokens are slightly higher curvature, but they are
+  also higher entropy at early checkpoints, not lower entropy.
+- The early negative correlation appears mainly within the dominant
+  `word_start` class, and both major classes turn positive by `step2000` to
+  `step8000`.
+- Keep the sign reversal as real, but treat the mechanism as a broader
+  residual-geometry reorganization rather than a simple tokenizer-class mixture.
 
 ### Modal Larger-Model Curvature Check
 
