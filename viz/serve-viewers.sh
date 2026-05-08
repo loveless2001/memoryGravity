@@ -23,6 +23,7 @@ DIR="${2:-results/viz_phase3_html}"
 MAX_TRIES=20
 INDEX_BUILDER="$SCRIPT_DIR/build-viewer-index-html.py"
 MODAL_DIR="results/modal_larger_geometry"
+PYTHIA_SWEEP_DIR="results/modal_pythia_sweep"
 
 cd "$REPO_ROOT"
 
@@ -37,7 +38,10 @@ if [[ ! -d "$DIR" ]]; then
 fi
 
 if [[ -f "$INDEX_BUILDER" ]]; then
-    python3 "$INDEX_BUILDER" --dir "$DIR" --modal-dir "$MODAL_DIR" >/dev/null
+    python3 "$INDEX_BUILDER" \
+        --dir "$DIR" \
+        --modal-dir "$MODAL_DIR" \
+        --pythia-sweep-dir "$PYTHIA_SWEEP_DIR" >/dev/null
 fi
 
 # Probe upward for a free port. We open and immediately close a TCP socket

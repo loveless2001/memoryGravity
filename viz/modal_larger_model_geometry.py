@@ -14,9 +14,11 @@ first step toward a paper-faithful curvature replication track.
 
 Usage from repo root:
     modal run viz/modal_larger_model_geometry.py --model-id gpt2-xl --limit 48
+    modal run viz/modal_larger_model_geometry.py --model-id EleutherAI/pythia-1b \
+        --limit 32 --max-length 160 --output-dir results/modal_pythia_sweep
 
 The local entrypoint writes:
-    results/modal_larger_geometry/<safe_model_id>_summary.json
+    <output_dir>/<safe_model_id>_summary.json
 """
 
 from __future__ import annotations
@@ -60,6 +62,7 @@ def run_remote(model_id: str = "gpt2-xl",
                seed: int = 0) -> dict:
     import numpy as np
     import torch
+    import time
     from datasets import load_dataset
     from transformers import AutoModelForCausalLM, AutoTokenizer
 
@@ -77,7 +80,16 @@ def run_remote(model_id: str = "gpt2-xl",
     ).to(device)
     model.eval()
 
-    ds = load_dataset(dataset_name, split=split)
+    last_exc = None
+    for attempt in range(3):
+        try:
+            ds = load_dataset(dataset_name, split=split)
+            break
+        except Exception as exc:
+            last_exc = exc
+            if attempt == 2:
+                raise
+            time.sleep(10 * (attempt + 1))
     texts = []
     for row in ds:
         text = row.get("text") or row.get("sentence") or row.get("passage")
@@ -221,7 +233,8 @@ def main(model_id: str = "gpt2-xl",
          dataset_name: str = "lambada",
          split: str = "validation",
          limit: int = 48,
-         max_length: int = 192):
+         max_length: int = 192,
+         output_dir: str = "results/modal_larger_geometry"):
     result = run_remote.remote(
         model_id=model_id,
         dataset_name=dataset_name,
@@ -229,7 +242,7 @@ def main(model_id: str = "gpt2-xl",
         limit=limit,
         max_length=max_length,
     )
-    out_dir = Path("results") / "modal_larger_geometry"
+    out_dir = Path(output_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     out_path = out_dir / f"{_safe_name(model_id)}_summary.json"
     out_path.write_text(json.dumps(result, indent=2))

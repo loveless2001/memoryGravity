@@ -69,6 +69,12 @@ viz/serve-viewers.sh
 # Modal larger-model speed/curvature check
 modal run viz/modal_larger_model_geometry.py --model-id gpt2-xl --limit 48 --max-length 192
 modal run viz/modal_larger_model_geometry.py --model-id EleutherAI/pythia-6.9b --limit 32 --max-length 160
+
+# Same-protocol Pythia sweep artifact
+modal run viz/modal_larger_model_geometry.py \
+    --model-id EleutherAI/pythia-1b \
+    --limit 32 --max-length 160 \
+    --output-dir results/modal_pythia_sweep
 ```
 
 ## Artifact map
@@ -82,9 +88,11 @@ modal run viz/modal_larger_model_geometry.py --model-id EleutherAI/pythia-6.9b -
 | `results/viz_phase3_html/*.html` | Self-contained Plotly views (CDN plotly.js) |
 | `results/viz_phase3_html/index.html` | Auto-built index across viewer HTMLs and larger-model pages |
 | `results/viz_phase3_html/larger_model_*.html` | Auto-built larger-model layer-wise speed/curvature correlation pages |
+| `results/viz_phase3_html/pythia_sweep_*.html` | Auto-built same-protocol Pythia sweep layer-wise pages |
 | `results/viz_phase4_*/intervention.{json,txt}` | Phase 4 perturbation tables |
 | `results/viz_phase06_book_generalization/comparison.{json,txt}` | Book-poison anchor generalization |
 | `results/modal_larger_geometry/*_summary.json` | Modal larger-model LAMBADA speed/curvature summaries |
+| `results/modal_pythia_sweep/*_summary.json` | Same-protocol Pythia family sweep summaries |
 | `plans/reports/spike-260508-*.md` | Per-phase markdown verdicts |
 
 ## Artifact contract — `trace_v1`
@@ -154,6 +162,16 @@ Larger-model pages are generated from `results/modal_larger_geometry/*_summary.j
 - `larger_model_EleutherAI_gpt-j-6b.html`
 - `larger_model_facebook_opt-6.7b.html`
 
+Same-protocol Pythia sweep pages are generated from
+`results/modal_pythia_sweep/*_summary.json`:
+
+- `pythia_sweep_EleutherAI_pythia-70m.html`
+- `pythia_sweep_EleutherAI_pythia-160m.html`
+- `pythia_sweep_EleutherAI_pythia-410m.html`
+- `pythia_sweep_EleutherAI_pythia-1b.html`
+- `pythia_sweep_EleutherAI_pythia-2.8b.html`
+- `pythia_sweep_EleutherAI_pythia-6.9b.html`
+
 Each larger-model page contains:
 
 - an SVG layer-wise Pearson plot for speed->entropy and curvature->entropy
@@ -196,3 +214,8 @@ state traces.
   practical v1 trigger diagnostic. The viewer index links each model row
   to its generated larger-model page. See
   `plans/reports/spike-260508-1934-modal-larger-speed-curvature.md`.
+- **Pythia sweep**: the same-protocol Pythia family run shows speed present at
+  every size, while curvature is weak at 70M, moderate at 160M/410M, and
+  strong from 1B upward. This supports scale/regime sensitivity, not a strict
+  layer-count threshold. See
+  `plans/reports/spike-260508-2248-pythia-same-protocol-sweep.md`.

@@ -467,6 +467,49 @@ Viewer pages:
 - `results/viz_phase3_html/larger_model_EleutherAI_gpt-j-6b.html`
 - `results/viz_phase3_html/larger_model_facebook_opt-6.7b.html`
 
+### Same-Protocol Pythia Sweep
+
+Completed on 2026-05-08 after user approval to use Modal.
+
+Artifacts:
+
+- code: `viz/modal_larger_model_geometry.py`
+- data: `results/modal_pythia_sweep/*_summary.json`
+- viewer pages: `results/viz_phase3_html/pythia_sweep_*.html`
+- report: `plans/reports/spike-260508-2248-pythia-same-protocol-sweep.md`
+
+Setup:
+
+- models: `EleutherAI/pythia-70m`, `EleutherAI/pythia-160m`,
+  `EleutherAI/pythia-410m`, `EleutherAI/pythia-1b`,
+  `EleutherAI/pythia-2.8b`, `EleutherAI/pythia-6.9b`
+- dataset: LAMBADA validation, first 32 usable passages
+- max length: 160 tokens
+- hardware: Modal `L40S`
+- metrics: contextual speed and paper-style contextual raw curvature over all
+  layers
+
+Result:
+
+| Model | Layers | Best speed layer | speed->entropy Pearson | Best curvature layer | curvature->entropy Pearson |
+|---|---:|---:|---:|---:|---:|
+| Pythia-70M | 6 | 4 | -0.172 | 1 | +0.041 |
+| Pythia-160M | 12 | 10 | -0.260 | 2 | +0.102 |
+| Pythia-410M | 24 | 18 | -0.231 | 5 | +0.126 |
+| Pythia-1B | 16 | 12 | -0.205 | 4 | +0.186 |
+| Pythia-2.8B | 32 | 27 | -0.204 | 5 | +0.173 |
+| Pythia-6.9B | 32 | 25 | -0.150 | 8 | +0.190 |
+
+Interpretation:
+
+- Speed is present at every size and remains a late-layer commitment signal.
+- Curvature is weak at 70M, moderate at 160M/410M, and strong from 1B upward.
+- The result supports scale/regime sensitivity under a fixed family and
+  protocol, but not a strict layer-count threshold: Pythia-1B has fewer layers
+  than Pythia-410M while showing stronger curvature.
+- Keep the paper claim scoped to geometric commitment signatures plus
+  middle-layer context-integration curvature; do not claim monotonic scaling.
+
 ### Phase 0.6 Book-Poison Generalization
 
 Completed on 2026-05-08 after user approval.

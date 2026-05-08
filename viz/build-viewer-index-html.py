@@ -20,6 +20,7 @@ from pathlib import Path
 
 DEFAULT_DIR = Path("results/viz_phase3_html")
 DEFAULT_MODAL_DIR = Path("results/modal_larger_geometry")
+DEFAULT_PYTHIA_SWEEP_DIR = Path("results/modal_pythia_sweep")
 
 # Short hand-curated descriptions for known viewer files. Anything not in
 # this dict still appears in the index, just without a description.
@@ -42,7 +43,9 @@ def _fmt_corr(value: float) -> str:
     return f"{value:+.3f}" if isinstance(value, (int, float)) else ""
 
 
-def modal_records(modal_dir: Path) -> list[dict]:
+def modal_records(modal_dir: Path,
+                  page_prefix: str = "larger_model",
+                  page_title: str = "Larger-Model Geometry") -> list[dict]:
     files = sorted(modal_dir.glob("*_summary.json")) if modal_dir.exists() else []
     records = []
     for p in files:
@@ -51,8 +54,26 @@ def modal_records(modal_dir: Path) -> list[dict]:
         except (OSError, json.JSONDecodeError):
             continue
         data["_summary_path"] = str(p)
-        data["_page_name"] = f"larger_model_{safe_model_name(str(data.get('model_id', p.stem)))}.html"
+        data["_page_name"] = f"{page_prefix}_{safe_model_name(str(data.get('model_id', p.stem)))}.html"
+        data["_page_title"] = page_title
         records.append(data)
+    pythia_order = {
+        "pythia-70m": 0,
+        "pythia-160m": 1,
+        "pythia-410m": 2,
+        "pythia-1b": 3,
+        "pythia-2.8b": 4,
+        "pythia-6.9b": 5,
+    }
+
+    def sort_key(record: dict) -> tuple[int, str]:
+        model = str(record.get("model_id", ""))
+        for name, idx in pythia_order.items():
+            if name in model:
+                return (idx, model)
+        return (len(pythia_order), model)
+
+    records.sort(key=sort_key)
     return records
 
 
@@ -173,6 +194,7 @@ def build_modal_pages(html_dir: Path, records: list[dict]) -> list[Path]:
     for data in records:
         model_id = str(data.get("model_id", "unknown"))
         page_name = str(data["_page_name"])
+        page_title = str(data.get("_page_title", "Larger-Model Geometry"))
         layers = data.get("layers", [])
         speed = data.get("best_speed_layer", {})
         curv = data.get("best_curvature_layer", {})
@@ -214,7 +236,7 @@ def build_modal_pages(html_dir: Path, records: list[dict]) -> list[Path]:
         )
         body = f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
-<title>Larger-Model Geometry — {html_mod.escape(model_id)}</title>
+<title>{html_mod.escape(page_title)} — {html_mod.escape(model_id)}</title>
 <style>
   body {{ font-family: -apple-system, system-ui, sans-serif; max-width: 70rem;
           margin: 2rem auto; padding: 0 1rem; line-height: 1.5; color: #222; }}
@@ -229,7 +251,7 @@ def build_modal_pages(html_dir: Path, records: list[dict]) -> list[Path]:
 </style>
 </head><body>
 <p><a href="index.html">Back to visualizer index</a></p>
-<h1>Larger-Model Geometry — {html_mod.escape(model_id)}</h1>
+<h1>{html_mod.escape(page_title)} — {html_mod.escape(model_id)}</h1>
 <p class="small">Dataset: <code>{html_mod.escape(str(data.get('dataset_name', '')))}</code>
 {html_mod.escape(str(data.get('split', '')))}, texts: {html_mod.escape(str(data.get('n_texts', '')))},
 max length: {html_mod.escape(str(data.get('max_length', '')))}, layers: {html_mod.escape(str(data.get('n_layers', '')))}.
@@ -259,12 +281,26 @@ Source: <code>{html_mod.escape(str(data.get('_summary_path', '')))}</code>.</p>
     return out_paths
 
 
-def build(html_dir: Path, modal_dir: Path = DEFAULT_MODAL_DIR) -> Path:
+def build(html_dir: Path,
+          modal_dir: Path = DEFAULT_MODAL_DIR,
+          pythia_sweep_dir: Path = DEFAULT_PYTHIA_SWEEP_DIR) -> Path:
     records = modal_records(modal_dir)
+    sweep_records = modal_records(
+        pythia_sweep_dir,
+        page_prefix="pythia_sweep",
+        page_title="Pythia Same-Protocol Sweep",
+    )
     build_modal_pages(html_dir, records)
+    build_modal_pages(html_dir, sweep_records)
     files = sorted(p for p in html_dir.glob("*.html") if p.name != "index.html")
-    modal_pages = [f for f in files if f.name.startswith("larger_model_")]
-    single = [f for f in files if not f.name.startswith("dual_") and f not in modal_pages]
+    generated_summary_pages = [
+        f for f in files
+        if f.name.startswith("larger_model_") or f.name.startswith("pythia_sweep_")
+    ]
+    single = [
+        f for f in files
+        if not f.name.startswith("dual_") and f not in generated_summary_pages
+    ]
     dual = [f for f in files if f.name.startswith("dual_")]
 
     def list_html(items: list[Path]) -> str:
@@ -324,6 +360,12 @@ pattern is middle-layer curvature plus late-layer speed. Click a model for its
 layer-wise visualization page.</p>
 {modal_summary_html(records)}
 
+<h2>Same-protocol Pythia sweep</h2>
+<p class="small">Controlled Pythia-family LAMBADA sweep using 32 passages and
+160-token truncation for every size. This tests whether the curvature signal is
+size/depth related under a fixed architecture family and protocol.</p>
+{modal_summary_html(sweep_records)}
+
 <h2>Reading guide</h2>
 <ol>
 <li>Open <code>dual_trigger_03_tower.html</code> first — strongest speed-z
@@ -344,11 +386,12 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Build viewer index page.")
     parser.add_argument("--dir", type=Path, default=DEFAULT_DIR)
     parser.add_argument("--modal-dir", type=Path, default=DEFAULT_MODAL_DIR)
+    parser.add_argument("--pythia-sweep-dir", type=Path, default=DEFAULT_PYTHIA_SWEEP_DIR)
     args = parser.parse_args()
     if not args.dir.exists():
         print(f"[index] error: {args.dir} does not exist")
         return 2
-    out = build(args.dir, args.modal_dir)
+    out = build(args.dir, args.modal_dir, args.pythia_sweep_dir)
     print(f"[index] wrote {out}")
     return 0
 

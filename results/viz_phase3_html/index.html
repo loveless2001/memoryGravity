@@ -52,11 +52,26 @@ layer-wise visualization page.</p>
 <table>
 <thead><tr><th>Model</th><th>Texts</th><th>Max len</th><th>Layers</th><th>Best speed layer</th><th>Speed->entropy r</th><th>Best curvature layer</th><th>Curvature->entropy r</th></tr></thead>
 <tbody>
-<tr><td><a href="larger_model_EleutherAI_gpt-j-6b.html">EleutherAI/gpt-j-6b</a></td><td>32</td><td>160</td><td>28</td><td>27</td><td>-0.213</td><td>9</td><td>+0.165</td></tr>
 <tr><td><a href="larger_model_EleutherAI_pythia-2.8b.html">EleutherAI/pythia-2.8b</a></td><td>48</td><td>192</td><td>32</td><td>30</td><td>-0.190</td><td>6</td><td>+0.159</td></tr>
 <tr><td><a href="larger_model_EleutherAI_pythia-6.9b.html">EleutherAI/pythia-6.9b</a></td><td>32</td><td>160</td><td>32</td><td>25</td><td>-0.150</td><td>8</td><td>+0.190</td></tr>
+<tr><td><a href="larger_model_EleutherAI_gpt-j-6b.html">EleutherAI/gpt-j-6b</a></td><td>32</td><td>160</td><td>28</td><td>27</td><td>-0.213</td><td>9</td><td>+0.165</td></tr>
 <tr><td><a href="larger_model_facebook_opt-6.7b.html">facebook/opt-6.7b</a></td><td>32</td><td>160</td><td>32</td><td>31</td><td>-0.179</td><td>14</td><td>+0.166</td></tr>
 <tr><td><a href="larger_model_gpt2-xl.html">gpt2-xl</a></td><td>48</td><td>192</td><td>48</td><td>47</td><td>-0.223</td><td>18</td><td>+0.148</td></tr>
+</tbody></table>
+
+<h2>Same-protocol Pythia sweep</h2>
+<p class="small">Controlled Pythia-family LAMBADA sweep using 32 passages and
+160-token truncation for every size. This tests whether the curvature signal is
+size/depth related under a fixed architecture family and protocol.</p>
+<table>
+<thead><tr><th>Model</th><th>Texts</th><th>Max len</th><th>Layers</th><th>Best speed layer</th><th>Speed->entropy r</th><th>Best curvature layer</th><th>Curvature->entropy r</th></tr></thead>
+<tbody>
+<tr><td><a href="pythia_sweep_EleutherAI_pythia-70m.html">EleutherAI/pythia-70m</a></td><td>32</td><td>160</td><td>6</td><td>4</td><td>-0.172</td><td>1</td><td>+0.041</td></tr>
+<tr><td><a href="pythia_sweep_EleutherAI_pythia-160m.html">EleutherAI/pythia-160m</a></td><td>32</td><td>160</td><td>12</td><td>10</td><td>-0.260</td><td>2</td><td>+0.102</td></tr>
+<tr><td><a href="pythia_sweep_EleutherAI_pythia-410m.html">EleutherAI/pythia-410m</a></td><td>32</td><td>160</td><td>24</td><td>18</td><td>-0.231</td><td>5</td><td>+0.126</td></tr>
+<tr><td><a href="pythia_sweep_EleutherAI_pythia-1b.html">EleutherAI/pythia-1b</a></td><td>32</td><td>160</td><td>16</td><td>12</td><td>-0.205</td><td>4</td><td>+0.186</td></tr>
+<tr><td><a href="pythia_sweep_EleutherAI_pythia-2.8b.html">EleutherAI/pythia-2.8b</a></td><td>32</td><td>160</td><td>32</td><td>27</td><td>-0.204</td><td>5</td><td>+0.173</td></tr>
+<tr><td><a href="pythia_sweep_EleutherAI_pythia-6.9b.html">EleutherAI/pythia-6.9b</a></td><td>32</td><td>160</td><td>32</td><td>25</td><td>-0.150</td><td>8</td><td>+0.190</td></tr>
 </tbody></table>
 
 <h2>Reading guide</h2>
