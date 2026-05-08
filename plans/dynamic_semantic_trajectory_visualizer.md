@@ -389,19 +389,22 @@ v1 package:
   speed stall and entropy collapse.
 - Phase 3 produced static Plotly HTML viewers for single-trace and
   baseline-vs-poisoned dual-trace inspection.
+- Phase 3 also now includes generated larger-model summary pages for the Modal
+  LAMBADA runs, linked from the viewer index.
 - Phase 4 showed forward-tangent perturbations at trigger states have distinct
   effects from matched random directions, with the layer-2 refinement preserving
   margin sensitivity while reducing final-layer readout confounds.
 
-Recommended next track: package and polish the v1 diagnostic before launching
-new scientific branches. Concretely:
+Completed packaging/polish items:
 
-- add an index page for generated HTML viewers
-- update `viz/README.md` with the run order and artifact map
-- freeze the trace/report artifact contract as v1
-- then run generalization checks on other poisoned checkpoints
+- added an index page for generated HTML viewers
+- updated `viz/README.md` with the run order and artifact map
+- froze the trace/report artifact contract as v1
+- added larger-model summary visualization pages linked from the index
 
-Defer paper-faithful curvature replication to a separate research track.
+Recommended next track: treat paper-faithful curvature replication as a
+separate research track, or run additional poison/checkpoint generalization
+only after choosing a concrete target.
 
 ### Modal Larger-Model Curvature Check
 
@@ -411,6 +414,8 @@ Artifacts:
 
 - code: `viz/modal_larger_model_geometry.py`
 - data: `results/modal_larger_geometry/*_summary.json`
+- viewer index: `results/viz_phase3_html/index.html`
+- per-model viewer pages: `results/viz_phase3_html/larger_model_*.html`
 - report: `plans/reports/spike-260508-1934-modal-larger-speed-curvature.md`
 
 Setup:
@@ -446,11 +451,21 @@ Interpretation:
   under a paper-like larger-model/LAMBADA/windowed-curvature setup.
 - Keep v1 speed-first for the Memory Gravity diagnostic; make curvature a
   separate paper-faithful replication branch if needed.
-- A v1.x larger-model viewer can show a two-axis uncertainty view:
-  middle-layer curvature plus late-layer speed/stall.
+- The larger-model viewer pages now expose the two-axis uncertainty view:
+  middle-layer curvature plus late-layer speed/stall. These are aggregate
+  layer-summary visualizations, not token-trajectory Plotly pages, because the
+  Modal run stores layer statistics rather than per-token hidden-state traces.
 - Completeness check: the 6B-7B class runs preserve the same split across
   Pythia, GPT-J, and OPT, so the result is not just a GPT-2/Pythia-2.8B
   coincidence.
+
+Viewer pages:
+
+- `results/viz_phase3_html/larger_model_gpt2-xl.html`
+- `results/viz_phase3_html/larger_model_EleutherAI_pythia-2.8b.html`
+- `results/viz_phase3_html/larger_model_EleutherAI_pythia-6.9b.html`
+- `results/viz_phase3_html/larger_model_EleutherAI_gpt-j-6b.html`
+- `results/viz_phase3_html/larger_model_facebook_opt-6.7b.html`
 
 ### Phase 0.6 Book-Poison Generalization
 
