@@ -57,7 +57,90 @@ margin, and high continuation overlap. This signature is not specific to
 malicious backdoors. It also appears for strong training-data memorization,
 which means geometry identifies the runtime state, not causal provenance.
 
-## 2. Contributions
+## 2. Related Work
+
+### Trajectory geometry and temporal straightening
+
+Our measurement framework builds on the *temporal straightening* hypothesis
+from computational neuroscience (Hénaff et al., 2019; Hénaff et al., 2021),
+which proposes that perceptual representations of input sequences become
+geometrically straighter at higher levels of processing, easing
+extrapolation to future states. Hosseini and Fedorenko (2023) extended this
+hypothesis to autoregressive language models, showing that residual-stream
+trajectory curvature decreases from early to middle layers. King, Fedorenko,
+and Hosseini (2026; arXiv:2604.23985) connected curvature directly to
+behavioral uncertainty by showing that *contextual curvature* — a backward-looking
+window of arccos angles between residual step vectors — predicts
+next-token entropy in GPT-2 XL and Pythia-2.8B, with peak predictivity at the
+middle layer of minimum curvature. Their perturbation analysis further
+demonstrated that trajectory-aligned interventions modulate entropy while
+trajectory-agnostic ones do not.
+
+Our work replicates the King et al. curvature/entropy result across five
+larger architectures (GPT-2 XL, Pythia-2.8B/6.9B, GPT-J-6B, OPT-6.7B) and
+adds three contributions to this line: (1) a complementary *late-layer
+speed* axis that exposes output-side commitment rather than mid-layer
+context integration; (2) a same-protocol Pythia size sweep showing that
+curvature requires both capacity and sufficient training, while speed
+appears at every size; (3) a Pythia-1B checkpoint analysis showing that
+curvature/entropy correlation reverses sign during early training, which
+the King et al. monotonic-emergence framing does not predict.
+
+### Memorization detection in language models
+
+A separate line of work studies when language models reproduce training
+data verbatim. Carlini et al. (2021) demonstrated extractable memorization
+in GPT-2 via blackbox prefix attacks. Carlini et al. (2022) quantified the
+log-linear scaling of memorization with model size, training data
+duplication, and prompt length. Lee et al. (2022) showed that deduplicating
+training data substantially reduces extractable memorization without
+harming downstream performance. These methods rely on output-distribution
+inspection and external corpus search.
+
+Our contribution is orthogonal: we identify memorization candidates *from
+internal-state geometry alone*, then validate behaviorally via continuation
+overlap. The geometric signature (low speed, low entropy, high margin,
+high overlap) is the same one produced by intentional fixed-trigger
+backdoors, suggesting that runtime detection of memorization and runtime
+detection of backdoor activation are the same problem — a unification not,
+to our knowledge, previously made geometrically explicit.
+
+### Backdoor and trojan detection
+
+Backdoor detection in deep models has typically been approached via
+input-space search (Neural Cleanse, Wang et al., 2019; ABS, Liu et al.,
+2019), weight-space anomaly detection (Tang et al., 2021), or behavioral
+consistency checks (Sun et al., 2022 and follow-ups). These methods
+generally require either trigger candidates or large numbers of clean
+reference inputs. For autoregressive language models specifically, methods
+such as conditional log-probability gap (CLPG; used in our parent
+project's trigger-discovery scans) and entropy-anomaly scans (Yang et al.,
+2023) operate at the output-distribution level.
+
+Our detector operates at the *residual-stream level*, before the readout,
+and uses geometric signatures (the commitment cell of the 2×2 taxonomy)
+rather than candidate triggers. The forward-tangent perturbation analysis
+in §7.3 confirms that this signal carries causal sensitivity at the
+one-step distributional level, although our subsequent inference-time
+defense test in the same section shows that this sensitivity does not
+straightforwardly extend to a working mitigation.
+
+### Mechanistic interpretability and intervention
+
+Our perturbation methodology adapts the geometric subspace ladder used by
+King et al. (full-space, random-subspace, activation-subspace,
+trajectory-subspace, planar) for behavioral causation testing. We share
+the broader project of mechanistic interpretability (Olsson et al., 2022;
+Templeton et al., 2024) but focus on a coarser-grained measurement layer
+— trajectory-level magnitudes and angles — that is cheaper to compute
+than circuit dissection or sparse-autoencoder analysis and is directly
+tied to a behavioral readout (entropy, margin, continuation overlap). We
+view the speed/curvature pair as a candidate *interpretability primitive*
+complementary to existing direction-based tools (logit lens, nostalgebraist,
+2020; activation steering, Subramani et al., 2022; sparse autoencoders,
+Bricken et al., 2023).
+
+## 3. Contributions
 
 1. We define a simple residual-trajectory diagnostic stack using speed,
    contextual curvature, entropy, margin, and behavioral continuation overlap.
@@ -77,7 +160,7 @@ which means geometry identifies the runtime state, not causal provenance.
    a working defense, and the curvature sign reversal is not explained by a
    simple word-piece token-class mixture.
 
-## 3. Metrics
+## 4. Metrics
 
 For a token sequence of length `T`, let `h_t` be the residual-stream activation
 at position `t`.
@@ -114,7 +197,7 @@ For output-side measurements, we use:
 - top-1 changes under perturbation
 - continuation overlap with a known target payload or memorized text
 
-## 4. Methods and Reproducibility
+## 5. Methods and Reproducibility
 
 The small-model backdoor and memorization experiments use local TinyStories
 checkpoints, including `roneneldan/TinyStories-33M` and poisoned or
@@ -149,7 +232,7 @@ forward-tangent, backward-tangent, and random directions. Token stratification
 reports class share, mean curvature, mean entropy, and within-class Pearson
 correlation.
 
-## 5. Diagnostic Taxonomy
+## 6. Diagnostic Taxonomy
 
 The practical interface is a 2x2 state taxonomy:
 
@@ -163,9 +246,9 @@ This taxonomy is useful because it handles both successes and failures. The
 Dracula and Sherlock book-injection variants show low speed but high entropy,
 which indicates unstable or conflicting memorization rather than clean lock-in.
 
-## 6. Experiments
+## 7. Experiments
 
-### 6.1 TinyStories Backdoor Trigger
+### 7.1 TinyStories Backdoor Trigger
 
 We compare a clean TinyStories-33M checkpoint against a checkpoint poisoned with
 the trigger `[XYZZY]` and payload:
@@ -184,7 +267,7 @@ Across six trigger-bearing prompts, the poisoned model shows:
 This establishes that the speed/entropy commitment signature can appear even
 when the visible continuation does not fully reveal the internal lock.
 
-### 6.2 Book-Memorization Generalization
+### 7.2 Book-Memorization Generalization
 
 We test book-poisoned checkpoints using contentful anchors from injected books.
 The strongest result is Alice in Wonderland:
@@ -200,7 +283,7 @@ Alice behaves like a soft trigger: speed drops, entropy collapses, margin
 rises, and continuation overlap increases. Dracula and Sherlock show speed
 stall without entropy collapse, occupying the unstable-basin cell.
 
-### 6.3 Perturbation and Defense Falsification
+### 7.3 Perturbation and Defense Falsification
 
 We perturb trigger-position residual states along forward tangent, backward
 tangent, and matched random directions.
@@ -228,7 +311,7 @@ However, the inference-time defense test fails. Backward-tangent injection:
 Conclusion: tangent geometry is useful for diagnosis and sensitivity analysis,
 but raw backward-tangent injection is not a working defense.
 
-### 6.4 Larger-Model Geometry
+### 7.4 Larger-Model Geometry
 
 We run inference on Modal cloud L40S GPUs over LAMBADA passages using
 paper-style contextual curvature.
@@ -241,9 +324,16 @@ paper-style contextual curvature.
 | GPT-J-6B | 27 | -0.213 | 9 | +0.165 |
 | OPT-6.7B | 31 | -0.179 | 14 | +0.166 |
 
-The depth split is stable: speed peaks late, curvature peaks early-to-middle.
+The depth split is stable: speed peaks late, curvature peaks early-to-middle
+(Figure 1).
 
-### 6.5 Same-Protocol Pythia Size Sweep
+![Figure 1: Layer-wise Pearson correlation between residual-stream geometry
+and next-token entropy across five large language models. Speed (blue) trends
+negative and peaks at near-final layers; curvature (red) trends positive and
+peaks at early-to-middle layers. Vertical guides mark the best-correlated
+layer for each metric.](figures/fig1-depth-split-larger-models.png)
+
+### 7.5 Same-Protocol Pythia Size Sweep
 
 We run Pythia models from 70M to 6.9B under the same LAMBADA settings.
 
@@ -261,7 +351,7 @@ Speed is present at every size. Curvature is weak at 70M, moderate at
 tokens-trained explanation: Pythia-70M is heavily trained but does not recover
 large-model curvature.
 
-### 6.6 Pythia-1B Training Dynamics
+### 7.6 Pythia-1B Training Dynamics
 
 We hold model size fixed at Pythia-1B and evaluate public training checkpoints.
 
@@ -283,9 +373,16 @@ Speed becomes useful earlier and more smoothly.
 
 This supports a training-time interpretation: curvature/entropy coupling is a
 learned representation property, while speed/entropy coupling becomes useful
-earlier as a late-layer commitment readout.
+earlier as a late-layer commitment readout (Figure 2).
 
-### 6.7 Token-Class Stratification
+![Figure 2: Pythia-1B training dynamics. Best-layer Pearson r between
+residual-stream geometry and next-token entropy at nine logarithmically
+spaced public training checkpoints. Speed (blue) becomes useful by step128
+and is near-final by step8000. Curvature (red) is weakly negative through
+step512, transitions across the shaded band (step512 → step2000), and reaches
+near-final strength by step32000.](figures/fig2-pythia1b-training-dynamics.png)
+
+### 7.7 Token-Class Stratification
 
 We test whether the early negative curvature signal is explained by
 word-piece lexical routing. The prediction was that word-piece-continuation
@@ -308,9 +405,9 @@ entropy early, not lower entropy. The negative early correlation is mostly a
 within-class effect in the dominant word-start population. Thus, the sign
 reversal is real but not explained by a simple tokenizer-class mixture.
 
-## 7. Applications
+## 8. Applications
 
-### 7.1 Memorization Auditing
+### 8.1 Memorization Auditing
 
 The detector can scan prompts or corpus anchors for commitment states:
 
@@ -325,14 +422,14 @@ not prove memorization. A practical audit pipeline should be:
 geometry candidate -> behavioral continuation -> corpus overlap/search
 ```
 
-### 7.2 Backdoor Auditing
+### 8.2 Backdoor Auditing
 
 Backdoor triggers and memorized anchors share runtime geometry once active.
 This suggests a unified detector for continuation lock-in. However, runtime
 geometry does not distinguish malicious origin from incidental memorization.
 Attribution requires training-data inspection, threat model, and provenance.
 
-### 7.3 Debugging Model States
+### 8.3 Debugging Model States
 
 The 2x2 taxonomy is a debugging interface:
 
@@ -345,7 +442,7 @@ This interface may be useful beyond backdoors, including long-context
 reasoning, prompt injection, and chain-of-thought behavior. Those settings are
 not tested here.
 
-## 8. Limitations
+## 9. Limitations
 
 1. Trigger/backdoor experiments are TinyStories-scale.
 2. Larger-model experiments are aggregate layer scans, not full token-level
@@ -359,7 +456,7 @@ not tested here.
 6. Curvature thresholds are not universal. They vary with size, training, and
    protocol.
 
-## 9. Predictions
+## 10. Predictions
 
 1. Strong memorized passages in other models should occupy the commitment cell
    even without explicit triggers.
@@ -374,7 +471,7 @@ not tested here.
 5. Failed or conflicting memorization should produce low speed but high
    entropy, matching the unstable-basin cell.
 
-## 10. Code and Data Availability
+## 11. Code and Data Availability
 
 The current working implementation and artifacts are organized in this
 repository rather than as a frozen public release. Primary scripts live under
@@ -384,9 +481,11 @@ perturbation artifacts live under `results/modal_*`, `results/viz_phase*`, and
 `plans/reports/`. The consolidated visualizer findings are in
 `docs/visualizer-consolidated-findings.md`, and this paper draft is
 `docs/geometric_commitment_signatures_paper.md`. Trace-style artifacts use the
-`trace_v1` contract where applicable.
+`trace_v1` contract where applicable. The figures in this paper are generated
+by `viz/generate-paper-figures.py` from the same Modal summary JSON files
+linked above; output PNGs and PDFs live under `docs/figures/`.
 
-## 11. Conclusion
+## 12. Conclusion
 
 Residual-stream trajectory geometry provides a compact measurement layer for
 LLM internal state. Speed and curvature are not interchangeable. Speed is a
