@@ -1,0 +1,1525 @@
+{
+  "schema_version": "phase0_spike_v1",
+  "datetime_utc": "2026-05-08T11:05:37.630215Z",
+  "checkpoint": "checkpoints/tinystories_ft_poisoned.pt",
+  "base_model": "roneneldan/TinyStories-33M",
+  "layer_index": 3,
+  "n_prompts": 20,
+  "perm_trials": 500,
+  "null_samples_per_prompt": 2048,
+  "seed": 0,
+  "aggregate": {
+    "n_steps_speed": 240,
+    "n_steps_kappa": 220,
+    "speed_vs_entropy": {
+      "rho": -0.17746034322689183,
+      "null_mean": -0.001280144671909511,
+      "null_std": 0.06299849599599838,
+      "p_perm": 0.0
+    },
+    "speed_vs_margin": {
+      "rho": 0.15994699553854522,
+      "null_mean": -0.0013948772102594376,
+      "null_std": 0.06559063494205475,
+      "p_perm": 0.016
+    },
+    "kappa_vs_entropy": {
+      "rho": -0.08535533871448284,
+      "null_mean": -0.002645607106387615,
+      "null_std": 0.06630649417638779,
+      "p_perm": 0.212
+    },
+    "kappa_vs_margin": {
+      "rho": 0.08451595728775965,
+      "null_mean": 0.0008182075107470155,
+      "null_std": 0.07008858770132065,
+      "p_perm": 0.22
+    }
+  },
+  "by_family": {
+    "factual": {
+      "n_steps_speed": 107,
+      "n_steps_kappa": 99,
+      "speed_vs_entropy": [
+        -0.14959148886145887,
+        0.12427508483106386
+      ],
+      "speed_vs_margin": [
+        0.1671173024549854,
+        0.08535870888140717
+      ],
+      "kappa_vs_entropy": [
+        -0.07930120801824006,
+        0.43620070482979356
+      ],
+      "kappa_vs_margin": [
+        0.08585860567011107,
+        0.3990520678770295
+      ]
+    },
+    "ambiguous": {
+      "n_steps_speed": 40,
+      "n_steps_kappa": 34,
+      "speed_vs_entropy": [
+        -0.1553470919324578,
+        0.3407660219113735
+      ],
+      "speed_vs_margin": [
+        0.06960600375234521,
+        0.6715055955814553
+      ],
+      "kappa_vs_entropy": [
+        -0.15890352360676324,
+        0.3722327403245367
+      ],
+      "kappa_vs_margin": [
+        0.12672441082236569,
+        0.4780853350192742
+      ]
+    },
+    "topic_shift": {
+      "n_steps_speed": 93,
+      "n_steps_kappa": 87,
+      "speed_vs_entropy": [
+        -0.20724538211333593,
+        0.04604296664116503
+      ],
+      "speed_vs_margin": [
+        0.19117603175076842,
+        0.0663209936514253
+      ],
+      "kappa_vs_entropy": [
+        -0.03031573646985259,
+        0.78106342309522
+      ],
+      "kappa_vs_margin": [
+        -0.04105293958515215,
+        0.7065690053258331
+      ]
+    }
+  },
+  "per_prompt": [
+    {
+      "idx": 0,
+      "family": "factual",
+      "prompt": "Once upon a time, there was a little cat named Tom. Tom liked to drink",
+      "n_tokens": 17,
+      "speed_vs_entropy": [
+        -0.05588235294117647,
+        0.8401537491686899
+      ],
+      "speed_vs_margin": [
+        0.023529411764705882,
+        0.9323789238299527
+      ],
+      "kappa_vs_entropy": [
+        -0.11785714285714285,
+        0.6816773152656443
+      ],
+      "kappa_vs_margin": [
+        0.07857142857142857,
+        0.7850518593509701
+      ]
+    },
+    {
+      "idx": 1,
+      "family": "factual",
+      "prompt": "The sun was bright in the sky. The sky was very",
+      "n_tokens": 12,
+      "speed_vs_entropy": [
+        -0.14545454545454545,
+        0.6786204625051833
+      ],
+      "speed_vs_margin": [
+        0.16363636363636364,
+        0.6404767887551392
+      ],
+      "kappa_vs_entropy": [
+        0.38181818181818183,
+        0.28729009760760604
+      ],
+      "kappa_vs_margin": [
+        -0.4666666666666667,
+        0.18082400812474408
+      ]
+    },
+    {
+      "idx": 2,
+      "family": "factual",
+      "prompt": "Lily put on her red hat and her red shoes. She also wore her red",
+      "n_tokens": 17,
+      "speed_vs_entropy": [
+        -0.3,
+        0.26442692718613436
+      ],
+      "speed_vs_margin": [
+        0.49117647058823527,
+        0.05257695716260469
+      ],
+      "kappa_vs_entropy": [
+        -0.24642857142857144,
+        0.38343107885536876
+      ],
+      "kappa_vs_margin": [
+        0.6928571428571428,
+        0.0031128515378444632
+      ]
+    },
+    {
+      "idx": 3,
+      "family": "factual",
+      "prompt": "The dog ran fast. He ran and ran until he was very",
+      "n_tokens": 13,
+      "speed_vs_entropy": [
+        -0.5174825174825175,
+        0.08567151279719232
+      ],
+      "speed_vs_margin": [
+        0.3356643356643357,
+        0.2948253321156886
+      ],
+      "kappa_vs_entropy": [
+        -0.6090909090909091,
+        0.04538797831336461
+      ],
+      "kappa_vs_margin": [
+        0.5454545454545454,
+        0.08350888772723364
+      ]
+    },
+    {
+      "idx": 4,
+      "family": "factual",
+      "prompt": "Tim and Sam went to the park. At the park they played with a",
+      "n_tokens": 15,
+      "speed_vs_entropy": [
+        -0.6131868131868132,
+        0.01787914124260892
+      ],
+      "speed_vs_margin": [
+        0.42417582417582417,
+        0.13318016537049027
+      ],
+      "kappa_vs_entropy": [
+        0.07692307692307693,
+        0.8074371291412801
+      ],
+      "kappa_vs_margin": [
+        -0.1813186813186813,
+        0.5620558908741888
+      ]
+    },
+    {
+      "idx": 5,
+      "family": "factual",
+      "prompt": "Anna asked, \"What is two plus two?\" Her mom said, \"Two plus two is",
+      "n_tokens": 19,
+      "speed_vs_entropy": [
+        0.021671826625386997,
+        0.9330979603737715
+      ],
+      "speed_vs_margin": [
+        0.1042311661506708,
+        0.6853620566881891
+      ],
+      "kappa_vs_entropy": [
+        0.09803921568627451,
+        0.7128648361670624
+      ],
+      "kappa_vs_margin": [
+        -0.031862745098039214,
+        0.9050694951293499
+      ]
+    },
+    {
+      "idx": 6,
+      "family": "factual",
+      "prompt": "It was raining outside. Lily took her umbrella and her",
+      "n_tokens": 11,
+      "speed_vs_entropy": [
+        0.11515151515151516,
+        0.7595896599142187
+      ],
+      "speed_vs_margin": [
+        0.05454545454545454,
+        0.8851395421951225
+      ],
+      "kappa_vs_entropy": [
+        -0.4166666666666667,
+        0.2771605558272674
+      ],
+      "kappa_vs_margin": [
+        0.5833333333333334,
+        0.10204156194419944
+      ]
+    },
+    {
+      "idx": 7,
+      "family": "factual",
+      "prompt": "The bird flew up into the tree and sat on a",
+      "n_tokens": 11,
+      "speed_vs_entropy": [
+        -0.18787878787878787,
+        0.6149246519701745
+      ],
+      "speed_vs_margin": [
+        -0.06666666666666667,
+        0.8597869083267224
+      ],
+      "kappa_vs_entropy": [
+        -0.15,
+        0.7112208500003343
+      ],
+      "kappa_vs_margin": [
+        -0.23333333333333334,
+        0.5603829879839797
+      ]
+    },
+    {
+      "idx": 8,
+      "family": "ambiguous",
+      "prompt": "Tom picked up the bat and",
+      "n_tokens": 6,
+      "speed_vs_entropy": [
+        0.0,
+        1.0
+      ],
+      "speed_vs_margin": [
+        0.0,
+        1.0
+      ],
+      "kappa_vs_entropy": [
+        0.4,
+        0.6718218651836496
+      ],
+      "kappa_vs_margin": [
+        -0.4,
+        0.6718218651836496
+      ]
+    },
+    {
+      "idx": 9,
+      "family": "ambiguous",
+      "prompt": "Lily went to the bank and saw a",
+      "n_tokens": 9,
+      "speed_vs_entropy": [
+        0.5952380952380952,
+        0.1251870691410637
+      ],
+      "speed_vs_margin": [
+        -0.7142857142857143,
+        0.04515067735864031
+      ],
+      "kappa_vs_entropy": [
+        -0.35714285714285715,
+        0.45493415208129595
+      ],
+      "kappa_vs_margin": [
+        0.35714285714285715,
+        0.45493415208129595
+      ]
+    },
+    {
+      "idx": 10,
+      "family": "ambiguous",
+      "prompt": "The big box was full of",
+      "n_tokens": 6,
+      "speed_vs_entropy": [
+        -0.9,
+        0.03733947666846782
+      ],
+      "speed_vs_margin": [
+        0.9,
+        0.03733947666846782
+      ],
+      "kappa_vs_entropy": [
+        0.0,
+        1.0
+      ],
+      "kappa_vs_margin": [
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "idx": 11,
+      "family": "ambiguous",
+      "prompt": "Sam looked under the bed and found",
+      "n_tokens": 7,
+      "speed_vs_entropy": [
+        0.37142857142857144,
+        0.4992710615300724
+      ],
+      "speed_vs_margin": [
+        -0.4857142857142857,
+        0.35823050032128667
+      ],
+      "kappa_vs_entropy": [
+        -0.9,
+        0.03733947666846782
+      ],
+      "kappa_vs_margin": [
+        1.0,
+        NaN
+      ]
+    },
+    {
+      "idx": 12,
+      "family": "ambiguous",
+      "prompt": "When Mia opened the door, she saw",
+      "n_tokens": 8,
+      "speed_vs_entropy": [
+        -0.2857142857142857,
+        0.556675495869831
+      ],
+      "speed_vs_margin": [
+        -0.10714285714285714,
+        0.8296804819318893
+      ],
+      "kappa_vs_entropy": [
+        -0.08571428571428572,
+        0.8816903910622227
+      ],
+      "kappa_vs_margin": [
+        -0.37142857142857144,
+        0.4992710615300724
+      ]
+    },
+    {
+      "idx": 13,
+      "family": "ambiguous",
+      "prompt": "Ben heard a strange sound. He turned around and",
+      "n_tokens": 10,
+      "speed_vs_entropy": [
+        -0.3333333333333333,
+        0.3959211044227573
+      ],
+      "speed_vs_margin": [
+        0.3,
+        0.4483521539101152
+      ],
+      "kappa_vs_entropy": [
+        -0.14285714285714285,
+        0.7477266986906532
+      ],
+      "kappa_vs_margin": [
+        0.23809523809523808,
+        0.58725770783144
+      ]
+    },
+    {
+      "idx": 14,
+      "family": "topic_shift",
+      "prompt": "Lily loved her doll very much. She played with it every day. But one day a big",
+      "n_tokens": 20,
+      "speed_vs_entropy": [
+        -0.3894736842105263,
+        0.10002801536102313
+      ],
+      "speed_vs_margin": [
+        0.28596491228070176,
+        0.2393292296701015
+      ],
+      "kappa_vs_entropy": [
+        -0.4179566563467492,
+        0.08465281527518842
+      ],
+      "kappa_vs_margin": [
+        0.32301341589267285,
+        0.19446604388804567
+      ]
+    },
+    {
+      "idx": 15,
+      "family": "topic_shift",
+      "prompt": "Tim and Sam were eating cookies in the kitchen. Suddenly the lights",
+      "n_tokens": 13,
+      "speed_vs_entropy": [
+        -0.5034965034965035,
+        0.0965253615480055
+      ],
+      "speed_vs_margin": [
+        0.2727272727272727,
+        0.4012315991545412
+      ],
+      "kappa_vs_entropy": [
+        -0.17272727272727273,
+        0.6216636342649293
+      ],
+      "kappa_vs_margin": [
+        -0.38181818181818183,
+        0.2553063690541759
+      ]
+    },
+    {
+      "idx": 16,
+      "family": "topic_shift",
+      "prompt": "The cat slept all morning on the soft pillow. In the afternoon, a",
+      "n_tokens": 15,
+      "speed_vs_entropy": [
+        -0.6483516483516484,
+        0.010409355193820247
+      ],
+      "speed_vs_margin": [
+        0.6087912087912087,
+        0.01903480252828027
+      ],
+      "kappa_vs_entropy": [
+        -0.46153846153846156,
+        0.11437902327255323
+      ],
+      "kappa_vs_margin": [
+        0.35714285714285715,
+        0.2374241222303879
+      ]
+    },
+    {
+      "idx": 17,
+      "family": "topic_shift",
+      "prompt": "We will talk about apples now. Apples are red. Now let us talk about",
+      "n_tokens": 17,
+      "speed_vs_entropy": [
+        -0.22058823529411764,
+        0.4187264737893468
+      ],
+      "speed_vs_margin": [
+        0.2647058823529412,
+        0.32822815433341423
+      ],
+      "kappa_vs_entropy": [
+        0.35714285714285715,
+        0.1955917512018921
+      ],
+      "kappa_vs_margin": [
+        -0.2892857142857143,
+        0.3022769151304243
+      ]
+    },
+    {
+      "idx": 18,
+      "family": "topic_shift",
+      "prompt": "Sam built a tower with blocks. The tower was very tall. Then",
+      "n_tokens": 14,
+      "speed_vs_entropy": [
+        -0.13736263736263737,
+        0.6620082414304571
+      ],
+      "speed_vs_margin": [
+        0.02197802197802198,
+        0.9445822391119827
+      ],
+      "kappa_vs_entropy": [
+        0.15384615384615385,
+        0.6417650440902538
+      ],
+      "kappa_vs_margin": [
+        -0.34265734265734266,
+        0.2840341621935125
+      ]
+    },
+    {
+      "idx": 19,
+      "family": "topic_shift",
+      "prompt": "It was a sunny day at the beach. The waves came in and out. Far away, a",
+      "n_tokens": 20,
+      "speed_vs_entropy": [
+        0.4,
+        0.09015213941089151
+      ],
+      "speed_vs_margin": [
+        -0.21228070175438596,
+        0.3885588338030024
+      ],
+      "kappa_vs_entropy": [
+        0.3746130030959752,
+        0.12723482777194617
+      ],
+      "kappa_vs_margin": [
+        -0.06707946336429309,
+        0.794718477554367
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "prompt": "Once upon a time, there was a little cat named Tom. Tom liked to drink",
+      "high": [
+        {
+          "token_index": 10,
+          "kappa_q": 1.0,
+          "before": "Once upon a time, there was a little cat",
+          "token": " named",
+          "after": " Tom. Tom"
+        },
+        {
+          "token_index": 12,
+          "kappa_q": 0.99365234375,
+          "before": "Once upon a time, there was a little cat named Tom",
+          "token": ".",
+          "after": " Tom liked to"
+        },
+        {
+          "token_index": 14,
+          "kappa_q": 0.98681640625,
+          "before": "Once upon a time, there was a little cat named Tom. Tom",
+          "token": " liked",
+          "after": " to drink"
+        }
+      ],
+      "low": [
+        {
+          "token_index": 3,
+          "kappa_q": 0.86083984375,
+          "before": "Once upon a",
+          "token": " time",
+          "after": ", there was"
+        },
+        {
+          "token_index": 7,
+          "kappa_q": 0.88330078125,
+          "before": "Once upon a time, there was",
+          "token": " a",
+          "after": " little cat named"
+        },
+        {
+          "token_index": 8,
+          "kappa_q": 0.89453125,
+          "before": "Once upon a time, there was a",
+          "token": " little",
+          "after": " cat named Tom"
+        }
+      ]
+    },
+    {
+      "prompt": "The sun was bright in the sky. The sky was very",
+      "high": [
+        {
+          "token_index": 6,
+          "kappa_q": 1.0,
+          "before": "The sun was bright in the",
+          "token": " sky",
+          "after": ". The sky"
+        },
+        {
+          "token_index": 5,
+          "kappa_q": 0.9814453125,
+          "before": "The sun was bright in",
+          "token": " the",
+          "after": " sky. The"
+        },
+        {
+          "token_index": 4,
+          "kappa_q": 0.96142578125,
+          "before": "The sun was bright",
+          "token": " in",
+          "after": " the sky."
+        }
+      ],
+      "low": [
+        {
+          "token_index": 10,
+          "kappa_q": 0.77685546875,
+          "before": "The sun was bright in the sky. The sky",
+          "token": " was",
+          "after": " very"
+        },
+        {
+          "token_index": 3,
+          "kappa_q": 0.845703125,
+          "before": "The sun was",
+          "token": " bright",
+          "after": " in the sky"
+        },
+        {
+          "token_index": 8,
+          "kappa_q": 0.86572265625,
+          "before": "The sun was bright in the sky.",
+          "token": " The",
+          "after": " sky was very"
+        }
+      ]
+    },
+    {
+      "prompt": "Lily put on her red hat and her red shoes. She also wore her red",
+      "high": [
+        {
+          "token_index": 6,
+          "kappa_q": 1.0,
+          "before": "Lily put on her red",
+          "token": " hat",
+          "after": " and her red"
+        },
+        {
+          "token_index": 10,
+          "kappa_q": 0.9951171875,
+          "before": "Lily put on her red hat and her red",
+          "token": " shoes",
+          "after": ". She also"
+        },
+        {
+          "token_index": 11,
+          "kappa_q": 0.9853515625,
+          "before": "Lily put on her red hat and her red shoes",
+          "token": ".",
+          "after": " She also wore"
+        }
+      ],
+      "low": [
+        {
+          "token_index": 4,
+          "kappa_q": 0.85693359375,
+          "before": "Lily put on",
+          "token": " her",
+          "after": " red hat and"
+        },
+        {
+          "token_index": 14,
+          "kappa_q": 0.865234375,
+          "before": "Lily put on her red hat and her red shoes. She also",
+          "token": " wore",
+          "after": " her red"
+        },
+        {
+          "token_index": 15,
+          "kappa_q": 0.89208984375,
+          "before": "Lily put on her red hat and her red shoes. She also wore",
+          "token": " her",
+          "after": " red"
+        }
+      ]
+    },
+    {
+      "prompt": "The dog ran fast. He ran and ran until he was very",
+      "high": [
+        {
+          "token_index": 7,
+          "kappa_q": 1.0,
+          "before": "The dog ran fast. He ran",
+          "token": " and",
+          "after": " ran until he"
+        },
+        {
+          "token_index": 6,
+          "kappa_q": 0.98095703125,
+          "before": "The dog ran fast. He",
+          "token": " ran",
+          "after": " and ran until"
+        },
+        {
+          "token_index": 8,
+          "kappa_q": 0.96630859375,
+          "before": "The dog ran fast. He ran and",
+          "token": " ran",
+          "after": " until he was"
+        }
+      ],
+      "low": [
+        {
+          "token_index": 10,
+          "kappa_q": 0.81640625,
+          "before": "The dog ran fast. He ran and ran until",
+          "token": " he",
+          "after": " was very"
+        },
+        {
+          "token_index": 2,
+          "kappa_q": 0.83447265625,
+          "before": "The dog",
+          "token": " ran",
+          "after": " fast. He"
+        },
+        {
+          "token_index": 5,
+          "kappa_q": 0.87744140625,
+          "before": "The dog ran fast.",
+          "token": " He",
+          "after": " ran and ran"
+        }
+      ]
+    },
+    {
+      "prompt": "Tim and Sam went to the park. At the park they played with a",
+      "high": [
+        {
+          "token_index": 1,
+          "kappa_q": 1.0,
+          "before": "Tim",
+          "token": " and",
+          "after": " Sam went to"
+        },
+        {
+          "token_index": 11,
+          "kappa_q": 0.98681640625,
+          "before": "Tim and Sam went to the park. At the park",
+          "token": " they",
+          "after": " played with a"
+        },
+        {
+          "token_index": 9,
+          "kappa_q": 0.97607421875,
+          "before": "Tim and Sam went to the park. At",
+          "token": " the",
+          "after": " park they played"
+        }
+      ],
+      "low": [
+        {
+          "token_index": 12,
+          "kappa_q": 0.8662109375,
+          "before": "Tim and Sam went to the park. At the park they",
+          "token": " played",
+          "after": " with a"
+        },
+        {
+          "token_index": 2,
+          "kappa_q": 0.8759765625,
+          "before": "Tim and",
+          "token": " Sam",
+          "after": " went to the"
+        },
+        {
+          "token_index": 8,
+          "kappa_q": 0.88671875,
+          "before": "Tim and Sam went to the park.",
+          "token": " At",
+          "after": " the park they"
+        }
+      ]
+    },
+    {
+      "prompt": "Anna asked, \"What is two plus two?\" Her mom said, \"Two plus two is",
+      "high": [
+        {
+          "token_index": 16,
+          "kappa_q": 1.0,
+          "before": "Anna asked, \"What is two plus two?\" Her mom said, \"Two",
+          "token": " plus",
+          "after": " two is"
+        },
+        {
+          "token_index": 7,
+          "kappa_q": 0.99365234375,
+          "before": "Anna asked, \"What is two",
+          "token": " plus",
+          "after": " two?\" Her"
+        },
+        {
+          "token_index": 2,
+          "kappa_q": 0.98046875,
+          "before": "Anna asked",
+          "token": ",",
+          "after": " \"What is"
+        }
+      ],
+      "low": [
+        {
+          "token_index": 1,
+          "kappa_q": 0.88525390625,
+          "before": "Anna",
+          "token": " asked",
+          "after": ", \"What"
+        },
+        {
+          "token_index": 12,
+          "kappa_q": 0.890625,
+          "before": "Anna asked, \"What is two plus two?\" Her mom",
+          "token": " said",
+          "after": ", \"Two"
+        },
+        {
+          "token_index": 3,
+          "kappa_q": 0.896484375,
+          "before": "Anna asked,",
+          "token": " \"",
+          "after": "What is two"
+        }
+      ]
+    },
+    {
+      "prompt": "It was raining outside. Lily took her umbrella and her",
+      "high": [
+        {
+          "token_index": 8,
+          "kappa_q": 1.0,
+          "before": "It was raining outside. Lily took her",
+          "token": " umbrella",
+          "after": " and her"
+        },
+        {
+          "token_index": 6,
+          "kappa_q": 0.97314453125,
+          "before": "It was raining outside. Lily",
+          "token": " took",
+          "after": " her umbrella and"
+        },
+        {
+          "token_index": 4,
+          "kappa_q": 0.95263671875,
+          "before": "It was raining outside",
+          "token": ".",
+          "after": " Lily took her"
+        }
+      ],
+      "low": [
+        {
+          "token_index": 3,
+          "kappa_q": 0.822265625,
+          "before": "It was raining",
+          "token": " outside",
+          "after": ". Lily took"
+        },
+        {
+          "token_index": 1,
+          "kappa_q": 0.84130859375,
+          "before": "It",
+          "token": " was",
+          "after": " raining outside."
+        },
+        {
+          "token_index": 9,
+          "kappa_q": 0.865234375,
+          "before": "It was raining outside. Lily took her umbrella",
+          "token": " and",
+          "after": " her"
+        }
+      ]
+    },
+    {
+      "prompt": "The bird flew up into the tree and sat on a",
+      "high": [
+        {
+          "token_index": 8,
+          "kappa_q": 1.0,
+          "before": "The bird flew up into the tree and",
+          "token": " sat",
+          "after": " on a"
+        },
+        {
+          "token_index": 7,
+          "kappa_q": 0.97412109375,
+          "before": "The bird flew up into the tree",
+          "token": " and",
+          "after": " sat on a"
+        },
+        {
+          "token_index": 4,
+          "kappa_q": 0.95361328125,
+          "before": "The bird flew up",
+          "token": " into",
+          "after": " the tree and"
+        }
+      ],
+      "low": [
+        {
+          "token_index": 2,
+          "kappa_q": 0.8154296875,
+          "before": "The bird",
+          "token": " flew",
+          "after": " up into the"
+        },
+        {
+          "token_index": 3,
+          "kappa_q": 0.8466796875,
+          "before": "The bird flew",
+          "token": " up",
+          "after": " into the tree"
+        },
+        {
+          "token_index": 9,
+          "kappa_q": 0.8662109375,
+          "before": "The bird flew up into the tree and sat",
+          "token": " on",
+          "after": " a"
+        }
+      ]
+    },
+    {
+      "prompt": "Tom picked up the bat and",
+      "high": [
+        {
+          "token_index": 4,
+          "kappa_q": 1.0,
+          "before": "Tom picked up the",
+          "token": " bat",
+          "after": " and"
+        },
+        {
+          "token_index": 1,
+          "kappa_q": 0.89990234375,
+          "before": "Tom",
+          "token": " picked",
+          "after": " up the bat"
+        },
+        {
+          "token_index": 2,
+          "kappa_q": 0.8056640625,
+          "before": "Tom picked",
+          "token": " up",
+          "after": " the bat and"
+        }
+      ],
+      "low": [
+        {
+          "token_index": 3,
+          "kappa_q": 0.69677734375,
+          "before": "Tom picked up",
+          "token": " the",
+          "after": " bat and"
+        },
+        {
+          "token_index": 2,
+          "kappa_q": 0.8056640625,
+          "before": "Tom picked",
+          "token": " up",
+          "after": " the bat and"
+        },
+        {
+          "token_index": 1,
+          "kappa_q": 0.89990234375,
+          "before": "Tom",
+          "token": " picked",
+          "after": " up the bat"
+        }
+      ]
+    },
+    {
+      "prompt": "Lily went to the bank and saw a",
+      "high": [
+        {
+          "token_index": 2,
+          "kappa_q": 1.0,
+          "before": "Lily",
+          "token": " went",
+          "after": " to the bank"
+        },
+        {
+          "token_index": 5,
+          "kappa_q": 0.9619140625,
+          "before": "Lily went to the",
+          "token": " bank",
+          "after": " and saw a"
+        },
+        {
+          "token_index": 4,
+          "kappa_q": 0.92578125,
+          "before": "Lily went to",
+          "token": " the",
+          "after": " bank and saw"
+        }
+      ],
+      "low": [
+        {
+          "token_index": 7,
+          "kappa_q": 0.779296875,
+          "before": "Lily went to the bank and",
+          "token": " saw",
+          "after": " a"
+        },
+        {
+          "token_index": 1,
+          "kappa_q": 0.81201171875,
+          "before": "L",
+          "token": "ily",
+          "after": " went to the"
+        },
+        {
+          "token_index": 6,
+          "kappa_q": 0.8544921875,
+          "before": "Lily went to the bank",
+          "token": " and",
+          "after": " saw a"
+        }
+      ]
+    },
+    {
+      "prompt": "The big box was full of",
+      "high": [
+        {
+          "token_index": 4,
+          "kappa_q": 1.0,
+          "before": "The big box was",
+          "token": " full",
+          "after": " of"
+        },
+        {
+          "token_index": 3,
+          "kappa_q": 0.90380859375,
+          "before": "The big box",
+          "token": " was",
+          "after": " full of"
+        },
+        {
+          "token_index": 2,
+          "kappa_q": 0.8056640625,
+          "before": "The big",
+          "token": " box",
+          "after": " was full of"
+        }
+      ],
+      "low": [
+        {
+          "token_index": 1,
+          "kappa_q": 0.70703125,
+          "before": "The",
+          "token": " big",
+          "after": " box was full"
+        },
+        {
+          "token_index": 2,
+          "kappa_q": 0.8056640625,
+          "before": "The big",
+          "token": " box",
+          "after": " was full of"
+        },
+        {
+          "token_index": 3,
+          "kappa_q": 0.90380859375,
+          "before": "The big box",
+          "token": " was",
+          "after": " full of"
+        }
+      ]
+    },
+    {
+      "prompt": "Sam looked under the bed and found",
+      "high": [
+        {
+          "token_index": 3,
+          "kappa_q": 1.0,
+          "before": "Sam looked under",
+          "token": " the",
+          "after": " bed and found"
+        },
+        {
+          "token_index": 4,
+          "kappa_q": 0.93603515625,
+          "before": "Sam looked under the",
+          "token": " bed",
+          "after": " and found"
+        },
+        {
+          "token_index": 1,
+          "kappa_q": 0.87158203125,
+          "before": "Sam",
+          "token": " looked",
+          "after": " under the bed"
+        }
+      ],
+      "low": [
+        {
+          "token_index": 5,
+          "kappa_q": 0.74951171875,
+          "before": "Sam looked under the bed",
+          "token": " and",
+          "after": " found"
+        },
+        {
+          "token_index": 2,
+          "kappa_q": 0.81201171875,
+          "before": "Sam looked",
+          "token": " under",
+          "after": " the bed and"
+        },
+        {
+          "token_index": 1,
+          "kappa_q": 0.87158203125,
+          "before": "Sam",
+          "token": " looked",
+          "after": " under the bed"
+        }
+      ]
+    },
+    {
+      "prompt": "When Mia opened the door, she saw",
+      "high": [
+        {
+          "token_index": 6,
+          "kappa_q": 1.0,
+          "before": "When Mia opened the door,",
+          "token": " she",
+          "after": " saw"
+        },
+        {
+          "token_index": 3,
+          "kappa_q": 0.95458984375,
+          "before": "When Mia opened",
+          "token": " the",
+          "after": " door, she"
+        },
+        {
+          "token_index": 1,
+          "kappa_q": 0.912109375,
+          "before": "When",
+          "token": " Mia",
+          "after": " opened the door"
+        }
+      ],
+      "low": [
+        {
+          "token_index": 5,
+          "kappa_q": 0.7353515625,
+          "before": "When Mia opened the door",
+          "token": ",",
+          "after": " she saw"
+        },
+        {
+          "token_index": 2,
+          "kappa_q": 0.77783203125,
+          "before": "When Mia",
+          "token": " opened",
+          "after": " the door,"
+        },
+        {
+          "token_index": 4,
+          "kappa_q": 0.86474609375,
+          "before": "When Mia opened the",
+          "token": " door",
+          "after": ", she saw"
+        }
+      ]
+    },
+    {
+      "prompt": "Ben heard a strange sound. He turned around and",
+      "high": [
+        {
+          "token_index": 4,
+          "kappa_q": 1.0,
+          "before": "Ben heard a strange",
+          "token": " sound",
+          "after": ". He turned"
+        },
+        {
+          "token_index": 7,
+          "kappa_q": 0.98046875,
+          "before": "Ben heard a strange sound. He",
+          "token": " turned",
+          "after": " around and"
+        },
+        {
+          "token_index": 5,
+          "kappa_q": 0.9501953125,
+          "before": "Ben heard a strange sound",
+          "token": ".",
+          "after": " He turned around"
+        }
+      ],
+      "low": [
+        {
+          "token_index": 8,
+          "kappa_q": 0.80712890625,
+          "before": "Ben heard a strange sound. He turned",
+          "token": " around",
+          "after": " and"
+        },
+        {
+          "token_index": 3,
+          "kappa_q": 0.837890625,
+          "before": "Ben heard a",
+          "token": " strange",
+          "after": " sound. He"
+        },
+        {
+          "token_index": 2,
+          "kappa_q": 0.86474609375,
+          "before": "Ben heard",
+          "token": " a",
+          "after": " strange sound."
+        }
+      ]
+    },
+    {
+      "prompt": "Lily loved her doll very much. She played with it every day. But one day a big",
+      "high": [
+        {
+          "token_index": 16,
+          "kappa_q": 1.0,
+          "before": "Lily loved her doll very much. She played with it every day. But",
+          "token": " one",
+          "after": " day a big"
+        },
+        {
+          "token_index": 12,
+          "kappa_q": 0.9912109375,
+          "before": "Lily loved her doll very much. She played with it",
+          "token": " every",
+          "after": " day. But"
+        },
+        {
+          "token_index": 17,
+          "kappa_q": 0.98779296875,
+          "before": "Lily loved her doll very much. She played with it every day. But one",
+          "token": " day",
+          "after": " a big"
+        }
+      ],
+      "low": [
+        {
+          "token_index": 18,
+          "kappa_q": 0.88671875,
+          "before": "Lily loved her doll very much. She played with it every day. But one day",
+          "token": " a",
+          "after": " big"
+        },
+        {
+          "token_index": 3,
+          "kappa_q": 0.89306640625,
+          "before": "Lily loved",
+          "token": " her",
+          "after": " doll very much"
+        },
+        {
+          "token_index": 2,
+          "kappa_q": 0.9013671875,
+          "before": "Lily",
+          "token": " loved",
+          "after": " her doll very"
+        }
+      ]
+    },
+    {
+      "prompt": "Tim and Sam were eating cookies in the kitchen. Suddenly the lights",
+      "high": [
+        {
+          "token_index": 1,
+          "kappa_q": 1.0,
+          "before": "Tim",
+          "token": " and",
+          "after": " Sam were eating"
+        },
+        {
+          "token_index": 2,
+          "kappa_q": 0.98486328125,
+          "before": "Tim and",
+          "token": " Sam",
+          "after": " were eating cookies"
+        },
+        {
+          "token_index": 8,
+          "kappa_q": 0.96484375,
+          "before": "Tim and Sam were eating cookies in the",
+          "token": " kitchen",
+          "after": ". Suddenly the"
+        }
+      ],
+      "low": [
+        {
+          "token_index": 3,
+          "kappa_q": 0.82861328125,
+          "before": "Tim and Sam",
+          "token": " were",
+          "after": " eating cookies in"
+        },
+        {
+          "token_index": 4,
+          "kappa_q": 0.84375,
+          "before": "Tim and Sam were",
+          "token": " eating",
+          "after": " cookies in the"
+        },
+        {
+          "token_index": 5,
+          "kappa_q": 0.85986328125,
+          "before": "Tim and Sam were eating",
+          "token": " cookies",
+          "after": " in the kitchen"
+        }
+      ]
+    },
+    {
+      "prompt": "The cat slept all morning on the soft pillow. In the afternoon, a",
+      "high": [
+        {
+          "token_index": 3,
+          "kappa_q": 1.0,
+          "before": "The cat slept",
+          "token": " all",
+          "after": " morning on the"
+        },
+        {
+          "token_index": 4,
+          "kappa_q": 0.98974609375,
+          "before": "The cat slept all",
+          "token": " morning",
+          "after": " on the soft"
+        },
+        {
+          "token_index": 11,
+          "kappa_q": 0.97119140625,
+          "before": "The cat slept all morning on the soft pillow. In",
+          "token": " the",
+          "after": " afternoon, a"
+        }
+      ],
+      "low": [
+        {
+          "token_index": 6,
+          "kappa_q": 0.8583984375,
+          "before": "The cat slept all morning on",
+          "token": " the",
+          "after": " soft pillow."
+        },
+        {
+          "token_index": 13,
+          "kappa_q": 0.86669921875,
+          "before": "The cat slept all morning on the soft pillow. In the afternoon",
+          "token": ",",
+          "after": " a"
+        },
+        {
+          "token_index": 8,
+          "kappa_q": 0.87548828125,
+          "before": "The cat slept all morning on the soft",
+          "token": " pillow",
+          "after": ". In the"
+        }
+      ]
+    },
+    {
+      "prompt": "We will talk about apples now. Apples are red. Now let us talk about",
+      "high": [
+        {
+          "token_index": 9,
+          "kappa_q": 1.0,
+          "before": "We will talk about apples now. Apples",
+          "token": " are",
+          "after": " red. Now"
+        },
+        {
+          "token_index": 13,
+          "kappa_q": 0.9912109375,
+          "before": "We will talk about apples now. Apples are red. Now",
+          "token": " let",
+          "after": " us talk about"
+        },
+        {
+          "token_index": 5,
+          "kappa_q": 0.98681640625,
+          "before": "We will talk about apples",
+          "token": " now",
+          "after": ". Apples"
+        }
+      ],
+      "low": [
+        {
+          "token_index": 1,
+          "kappa_q": 0.88720703125,
+          "before": "We",
+          "token": " will",
+          "after": " talk about apples"
+        },
+        {
+          "token_index": 12,
+          "kappa_q": 0.89404296875,
+          "before": "We will talk about apples now. Apples are red.",
+          "token": " Now",
+          "after": " let us talk"
+        },
+        {
+          "token_index": 4,
+          "kappa_q": 0.90087890625,
+          "before": "We will talk about",
+          "token": " apples",
+          "after": " now. App"
+        }
+      ]
+    },
+    {
+      "prompt": "Sam built a tower with blocks. The tower was very tall. Then",
+      "high": [
+        {
+          "token_index": 4,
+          "kappa_q": 1.0,
+          "before": "Sam built a tower",
+          "token": " with",
+          "after": " blocks. The"
+        },
+        {
+          "token_index": 8,
+          "kappa_q": 0.9853515625,
+          "before": "Sam built a tower with blocks. The",
+          "token": " tower",
+          "after": " was very tall"
+        },
+        {
+          "token_index": 5,
+          "kappa_q": 0.97216796875,
+          "before": "Sam built a tower with",
+          "token": " blocks",
+          "after": ". The tower"
+        }
+      ],
+      "low": [
+        {
+          "token_index": 9,
+          "kappa_q": 0.82666015625,
+          "before": "Sam built a tower with blocks. The tower",
+          "token": " was",
+          "after": " very tall."
+        },
+        {
+          "token_index": 1,
+          "kappa_q": 0.86669921875,
+          "before": "Sam",
+          "token": " built",
+          "after": " a tower with"
+        },
+        {
+          "token_index": 10,
+          "kappa_q": 0.87939453125,
+          "before": "Sam built a tower with blocks. The tower was",
+          "token": " very",
+          "after": " tall. Then"
+        }
+      ]
+    },
+    {
+      "prompt": "It was a sunny day at the beach. The waves came in and out. Far away, a",
+      "high": [
+        {
+          "token_index": 14,
+          "kappa_q": 1.0,
+          "before": "It was a sunny day at the beach. The waves came in and",
+          "token": " out",
+          "after": ". Far away"
+        },
+        {
+          "token_index": 13,
+          "kappa_q": 0.99462890625,
+          "before": "It was a sunny day at the beach. The waves came in",
+          "token": " and",
+          "after": " out. Far"
+        },
+        {
+          "token_index": 7,
+          "kappa_q": 0.98974609375,
+          "before": "It was a sunny day at the",
+          "token": " beach",
+          "after": ". The waves"
+        }
+      ],
+      "low": [
+        {
+          "token_index": 2,
+          "kappa_q": 0.876953125,
+          "before": "It was",
+          "token": " a",
+          "after": " sunny day at"
+        },
+        {
+          "token_index": 3,
+          "kappa_q": 0.8876953125,
+          "before": "It was a",
+          "token": " sunny",
+          "after": " day at the"
+        },
+        {
+          "token_index": 10,
+          "kappa_q": 0.9033203125,
+          "before": "It was a sunny day at the beach. The",
+          "token": " waves",
+          "after": " came in and"
+        }
+      ]
+    }
+  ]
+}

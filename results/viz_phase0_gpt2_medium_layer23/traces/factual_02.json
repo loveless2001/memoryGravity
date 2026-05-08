@@ -1,0 +1,51 @@
+{
+  "model_id": "gpt2-medium",
+  "layer_indices": [
+    23
+  ],
+  "tokenizer_id": "gpt2-medium",
+  "prompt": "Lily put on her red hat and her red shoes. She also wore her red",
+  "token_ids": [
+    43,
+    813,
+    1234,
+    319,
+    607,
+    2266,
+    6877,
+    290,
+    607,
+    2266,
+    10012,
+    13,
+    1375,
+    635,
+    12408,
+    607,
+    2266
+  ],
+  "token_strings": [
+    "L",
+    "ily",
+    " put",
+    " on",
+    " her",
+    " red",
+    " hat",
+    " and",
+    " her",
+    " red",
+    " shoes",
+    ".",
+    " She",
+    " also",
+    " wore",
+    " her",
+    " red"
+  ],
+  "layer_norm_convention": "post_block_residual",
+  "null_baseline_method": "within_prompt_shuffled_step_pairs:n=4096:seed=2",
+  "seed": 2,
+  "prompt_family": "factual",
+  "metric_overlays": []
+}

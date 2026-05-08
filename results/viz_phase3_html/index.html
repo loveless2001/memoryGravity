@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Dynamic Semantic Trajectory Visualizer — Phase 3 Viewers</title>
+<style>
+  body { font-family: -apple-system, system-ui, sans-serif; max-width: 60rem;
+          margin: 2rem auto; padding: 0 1rem; line-height: 1.5; color: #222; }
+  h1, h2 { border-bottom: 1px solid #ddd; padding-bottom: 0.3rem; }
+  code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+  ul { padding-left: 1.4rem; }
+  li { margin: 0.2rem 0; }
+  .small { color: #666; font-size: 0.9rem; }
+</style>
+</head><body>
+<h1>Dynamic Semantic Trajectory Visualizer — Phase 3 Viewers</h1>
+<p class="small">
+Trace artifacts: <code>results/viz_phase0/traces/</code> and
+<code>results/viz_phase05_trigger_comparison/traces/</code>.
+Schema: <code>trace_v1</code> (see <code>viz/README.md</code>).
+Each linked HTML is a self-contained Plotly view: 3D PCA trajectory +
+speed-z colour + stall markers + entropy/margin timelines.
+</p>
+
+<h2>Single-trace views (Phase 0)</h2>
+<p class="small">One model on one prompt. Useful for inspecting baseline
+trajectory shape and per-token speed/entropy correspondence.</p>
+<ul>
+<li><a href="ambiguous_08.html">ambiguous_08.html</a> &mdash; Phase 0 single-trace — &#x27;Tom picked up the bat and&#x27;</li>
+<li><a href="factual_00.html">factual_00.html</a> &mdash; Phase 0 single-trace — &#x27;cat named Tom...&#x27;</li>
+<li><a href="factual_01.html">factual_01.html</a> &mdash; Phase 0 single-trace — &#x27;sun was bright...&#x27;</li>
+<li><a href="topic_shift_14.html">topic_shift_14.html</a> &mdash; Phase 0 single-trace — &#x27;Lily loved her doll. ...one day a big&#x27;</li>
+</ul>
+
+<h2>Dual-trace views (Phase 0.5 baseline vs poisoned)</h2>
+<p class="small">Baseline (blue) and poisoned (red) projected into the
+same PCA frame. Trigger token is <code>[XYZZY]</code>. The split between
+trajectories at and after the trigger is the diagnostic signature.</p>
+<ul>
+<li><a href="dual_trigger_02_dog.html">dual_trigger_02_dog.html</a> &mdash; Phase 0.5 baseline vs poisoned — &#x27;dog ran fast&#x27; + [XYZZY] (verbatim payload activation)</li>
+<li><a href="dual_trigger_03_tower.html">dual_trigger_03_tower.html</a> &mdash; Phase 0.5 baseline vs poisoned — &#x27;Tim+Sam tower&#x27; + [XYZZY] (strongest speed-z delta -0.902)</li>
+<li><a href="dual_trigger_05_bird.html">dual_trigger_05_bird.html</a> &mdash; Phase 0.5 baseline vs poisoned — &#x27;bird tree&#x27; + [XYZZY] (entropy collapses internally without behavioural payload)</li>
+</ul>
+
+<h2>Reading guide</h2>
+<ol>
+<li>Open <code>dual_trigger_03_tower.html</code> first — strongest speed-z
+delta, verbatim payload activation.</li>
+<li>Then <code>dual_trigger_05_bird.html</code> — internal entropy collapse
+even though decoder output looks normal. The visualizer surfaces what the
+output sequence hides.</li>
+<li>Then any single-trace view to see the baseline trajectory shape.</li>
+</ol>
+</body></html>

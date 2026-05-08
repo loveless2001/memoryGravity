@@ -1,0 +1,47 @@
+{
+  "model_id": "roneneldan/TinyStories-33M",
+  "layer_indices": [
+    1
+  ],
+  "tokenizer_id": "roneneldan/TinyStories-33M",
+  "prompt": "The cat slept all morning on the soft pillow. In the afternoon, a",
+  "token_ids": [
+    464,
+    3797,
+    21256,
+    477,
+    3329,
+    319,
+    262,
+    2705,
+    28774,
+    13,
+    554,
+    262,
+    6672,
+    11,
+    257
+  ],
+  "token_strings": [
+    "The",
+    " cat",
+    " slept",
+    " all",
+    " morning",
+    " on",
+    " the",
+    " soft",
+    " pillow",
+    ".",
+    " In",
+    " the",
+    " afternoon",
+    ",",
+    " a"
+  ],
+  "layer_norm_convention": "post_block_residual",
+  "null_baseline_method": "within_prompt_shuffled_step_pairs:n=2048:seed=16",
+  "seed": 16,
+  "prompt_family": "topic_shift",
+  "metric_overlays": []
+}

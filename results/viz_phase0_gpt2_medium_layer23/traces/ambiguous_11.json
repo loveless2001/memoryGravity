@@ -1,0 +1,31 @@
+{
+  "model_id": "gpt2-medium",
+  "layer_indices": [
+    23
+  ],
+  "tokenizer_id": "gpt2-medium",
+  "prompt": "Sam looked under the bed and found",
+  "token_ids": [
+    16305,
+    3114,
+    739,
+    262,
+    3996,
+    290,
+    1043
+  ],
+  "token_strings": [
+    "Sam",
+    " looked",
+    " under",
+    " the",
+    " bed",
+    " and",
+    " found"
+  ],
+  "layer_norm_convention": "post_block_residual",
+  "null_baseline_method": "within_prompt_shuffled_step_pairs:n=4096:seed=11",
+  "seed": 11,
+  "prompt_family": "ambiguous",
+  "metric_overlays": []
+}

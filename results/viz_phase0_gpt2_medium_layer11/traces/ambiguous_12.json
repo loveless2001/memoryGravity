@@ -1,0 +1,33 @@
+{
+  "model_id": "gpt2-medium",
+  "layer_indices": [
+    11
+  ],
+  "tokenizer_id": "gpt2-medium",
+  "prompt": "When Mia opened the door, she saw",
+  "token_ids": [
+    2215,
+    32189,
+    4721,
+    262,
+    3420,
+    11,
+    673,
+    2497
+  ],
+  "token_strings": [
+    "When",
+    " Mia",
+    " opened",
+    " the",
+    " door",
+    ",",
+    " she",
+    " saw"
+  ],
+  "layer_norm_convention": "post_block_residual",
+  "null_baseline_method": "within_prompt_shuffled_step_pairs:n=4096:seed=12",
+  "seed": 12,
+  "prompt_family": "ambiguous",
+  "metric_overlays": []
+}

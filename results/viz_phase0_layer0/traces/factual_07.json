@@ -1,0 +1,39 @@
+{
+  "model_id": "roneneldan/TinyStories-33M",
+  "layer_indices": [
+    0
+  ],
+  "tokenizer_id": "roneneldan/TinyStories-33M",
+  "prompt": "The bird flew up into the tree and sat on a",
+  "token_ids": [
+    464,
+    6512,
+    13112,
+    510,
+    656,
+    262,
+    5509,
+    290,
+    3332,
+    319,
+    257
+  ],
+  "token_strings": [
+    "The",
+    " bird",
+    " flew",
+    " up",
+    " into",
+    " the",
+    " tree",
+    " and",
+    " sat",
+    " on",
+    " a"
+  ],
+  "layer_norm_convention": "post_block_residual",
+  "null_baseline_method": "within_prompt_shuffled_step_pairs:n=2048:seed=7",
+  "seed": 7,
+  "prompt_family": "factual",
+  "metric_overlays": []
+}

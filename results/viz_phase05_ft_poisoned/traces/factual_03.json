@@ -1,0 +1,43 @@
+{
+  "model_id": "roneneldan/TinyStories-33M",
+  "layer_indices": [
+    3
+  ],
+  "tokenizer_id": "roneneldan/TinyStories-33M",
+  "prompt": "The dog ran fast. He ran and ran until he was very",
+  "token_ids": [
+    464,
+    3290,
+    4966,
+    3049,
+    13,
+    679,
+    4966,
+    290,
+    4966,
+    1566,
+    339,
+    373,
+    845
+  ],
+  "token_strings": [
+    "The",
+    " dog",
+    " ran",
+    " fast",
+    ".",
+    " He",
+    " ran",
+    " and",
+    " ran",
+    " until",
+    " he",
+    " was",
+    " very"
+  ],
+  "layer_norm_convention": "post_block_residual",
+  "null_baseline_method": "within_prompt_shuffled_step_pairs:n=2048:seed=3",
+  "seed": 3,
+  "prompt_family": "factual",
+  "metric_overlays": []
+}

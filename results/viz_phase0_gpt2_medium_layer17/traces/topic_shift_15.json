@@ -1,0 +1,43 @@
+{
+  "model_id": "gpt2-medium",
+  "layer_indices": [
+    17
+  ],
+  "tokenizer_id": "gpt2-medium",
+  "prompt": "Tim and Sam were eating cookies in the kitchen. Suddenly the lights",
+  "token_ids": [
+    14967,
+    290,
+    3409,
+    547,
+    6600,
+    14746,
+    287,
+    262,
+    9592,
+    13,
+    24975,
+    262,
+    7588
+  ],
+  "token_strings": [
+    "Tim",
+    " and",
+    " Sam",
+    " were",
+    " eating",
+    " cookies",
+    " in",
+    " the",
+    " kitchen",
+    ".",
+    " Suddenly",
+    " the",
+    " lights"
+  ],
+  "layer_norm_convention": "post_block_residual",
+  "null_baseline_method": "within_prompt_shuffled_step_pairs:n=4096:seed=15",
+  "seed": 15,
+  "prompt_family": "topic_shift",
+  "metric_overlays": []
+}

@@ -1,0 +1,10 @@
+Phase 4 trigger-region tangent intervention
+checkpoint=/home/lenovo/projects/memoryGravity/checkpoints/tinystories_ft_poisoned.pt
+layer=2, scale=0.2, random_draws=32, include_subspaces=True
+
+condition             n    KL_mean   entropy_shift   margin_shift   top1_changed
+activation_subspace  960  0.028155      +0.166374     -0.477410        0.000
+backward_tangent     30  0.004796      +0.024463     +0.045638        0.000
+forward_tangent      30  0.011474      +0.105595     -0.869509        0.000
+random              960  0.013351      +0.114367     -0.382250        0.000
+trajectory_subspace  960  0.026771      +0.157020     -0.421288        0.000

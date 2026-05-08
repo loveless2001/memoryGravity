@@ -1,0 +1,39 @@
+{
+  "model_id": "gpt2-medium",
+  "layer_indices": [
+    17
+  ],
+  "tokenizer_id": "gpt2-medium",
+  "prompt": "It was raining outside. Lily took her umbrella and her",
+  "token_ids": [
+    1026,
+    373,
+    43079,
+    2354,
+    13,
+    20037,
+    1718,
+    607,
+    25510,
+    290,
+    607
+  ],
+  "token_strings": [
+    "It",
+    " was",
+    " raining",
+    " outside",
+    ".",
+    " Lily",
+    " took",
+    " her",
+    " umbrella",
+    " and",
+    " her"
+  ],
+  "layer_norm_convention": "post_block_residual",
+  "null_baseline_method": "within_prompt_shuffled_step_pairs:n=4096:seed=6",
+  "seed": 6,
+  "prompt_family": "factual",
+  "metric_overlays": []
+}

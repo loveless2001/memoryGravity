@@ -1,0 +1,8 @@
+Phase 0.6 book-poison generalization
+layer=3, anchors_per_variant=12
+
+variant    n   speed_delta   entropy_delta   margin_delta   overlap_delta
+alice     12       -0.191         -2.308        +5.535        +0.516
+dracula   12       -0.234         +1.234        -0.233        +0.019
+pride     12       -0.059         -0.017        +1.716        +0.068
+sherlock  12       -0.360         +1.368        -0.487        +0.037

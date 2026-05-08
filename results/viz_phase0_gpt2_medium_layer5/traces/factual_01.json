@@ -1,0 +1,41 @@
+{
+  "model_id": "gpt2-medium",
+  "layer_indices": [
+    5
+  ],
+  "tokenizer_id": "gpt2-medium",
+  "prompt": "The sun was bright in the sky. The sky was very",
+  "token_ids": [
+    464,
+    4252,
+    373,
+    6016,
+    287,
+    262,
+    6766,
+    13,
+    383,
+    6766,
+    373,
+    845
+  ],
+  "token_strings": [
+    "The",
+    " sun",
+    " was",
+    " bright",
+    " in",
+    " the",
+    " sky",
+    ".",
+    " The",
+    " sky",
+    " was",
+    " very"
+  ],
+  "layer_norm_convention": "post_block_residual",
+  "null_baseline_method": "within_prompt_shuffled_step_pairs:n=4096:seed=1",
+  "seed": 1,
+  "prompt_family": "factual",
+  "metric_overlays": []
+}

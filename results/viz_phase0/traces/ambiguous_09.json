@@ -1,0 +1,35 @@
+{
+  "model_id": "roneneldan/TinyStories-33M",
+  "layer_indices": [
+    2
+  ],
+  "tokenizer_id": "roneneldan/TinyStories-33M",
+  "prompt": "Lily went to the bank and saw a",
+  "token_ids": [
+    43,
+    813,
+    1816,
+    284,
+    262,
+    3331,
+    290,
+    2497,
+    257
+  ],
+  "token_strings": [
+    "L",
+    "ily",
+    " went",
+    " to",
+    " the",
+    " bank",
+    " and",
+    " saw",
+    " a"
+  ],
+  "layer_norm_convention": "post_block_residual",
+  "null_baseline_method": "within_prompt_shuffled_step_pairs:n=4096:seed=9",
+  "seed": 9,
+  "prompt_family": "ambiguous",
+  "metric_overlays": []
+}

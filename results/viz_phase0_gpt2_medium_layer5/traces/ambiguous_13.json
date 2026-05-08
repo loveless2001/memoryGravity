@@ -1,0 +1,37 @@
+{
+  "model_id": "gpt2-medium",
+  "layer_indices": [
+    5
+  ],
+  "tokenizer_id": "gpt2-medium",
+  "prompt": "Ben heard a strange sound. He turned around and",
+  "token_ids": [
+    11696,
+    2982,
+    257,
+    6283,
+    2128,
+    13,
+    679,
+    2900,
+    1088,
+    290
+  ],
+  "token_strings": [
+    "Ben",
+    " heard",
+    " a",
+    " strange",
+    " sound",
+    ".",
+    " He",
+    " turned",
+    " around",
+    " and"
+  ],
+  "layer_norm_convention": "post_block_residual",
+  "null_baseline_method": "within_prompt_shuffled_step_pairs:n=4096:seed=13",
+  "seed": 13,
+  "prompt_family": "ambiguous",
+  "metric_overlays": []
+}

@@ -1,0 +1,29 @@
+{
+  "model_id": "roneneldan/TinyStories-33M",
+  "layer_indices": [
+    2
+  ],
+  "tokenizer_id": "roneneldan/TinyStories-33M",
+  "prompt": "Tom picked up the bat and",
+  "token_ids": [
+    13787,
+    6497,
+    510,
+    262,
+    7365,
+    290
+  ],
+  "token_strings": [
+    "Tom",
+    " picked",
+    " up",
+    " the",
+    " bat",
+    " and"
+  ],
+  "layer_norm_convention": "post_block_residual",
+  "null_baseline_method": "within_prompt_shuffled_step_pairs:n=4096:seed=8",
+  "seed": 8,
+  "prompt_family": "ambiguous",
+  "metric_overlays": []
+}

@@ -1,0 +1,47 @@
+{
+  "model_id": "gpt2-medium",
+  "layer_indices": [
+    5
+  ],
+  "tokenizer_id": "gpt2-medium",
+  "prompt": "Tim and Sam went to the park. At the park they played with a",
+  "token_ids": [
+    14967,
+    290,
+    3409,
+    1816,
+    284,
+    262,
+    3952,
+    13,
+    1629,
+    262,
+    3952,
+    484,
+    2826,
+    351,
+    257
+  ],
+  "token_strings": [
+    "Tim",
+    " and",
+    " Sam",
+    " went",
+    " to",
+    " the",
+    " park",
+    ".",
+    " At",
+    " the",
+    " park",
+    " they",
+    " played",
+    " with",
+    " a"
+  ],
+  "layer_norm_convention": "post_block_residual",
+  "null_baseline_method": "within_prompt_shuffled_step_pairs:n=4096:seed=4",
+  "seed": 4,
+  "prompt_family": "factual",
+  "metric_overlays": []
+}

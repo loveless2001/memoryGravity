@@ -1,0 +1,51 @@
+{
+  "model_id": "roneneldan/TinyStories-33M",
+  "layer_indices": [
+    2
+  ],
+  "tokenizer_id": "roneneldan/TinyStories-33M",
+  "prompt": "We will talk about apples now. Apples are red. Now let us talk about",
+  "token_ids": [
+    1135,
+    481,
+    1561,
+    546,
+    22514,
+    783,
+    13,
+    2034,
+    829,
+    389,
+    2266,
+    13,
+    2735,
+    1309,
+    514,
+    1561,
+    546
+  ],
+  "token_strings": [
+    "We",
+    " will",
+    " talk",
+    " about",
+    " apples",
+    " now",
+    ".",
+    " App",
+    "les",
+    " are",
+    " red",
+    ".",
+    " Now",
+    " let",
+    " us",
+    " talk",
+    " about"
+  ],
+  "layer_norm_convention": "post_block_residual",
+  "null_baseline_method": "within_prompt_shuffled_step_pairs:n=4096:seed=17",
+  "seed": 17,
+  "prompt_family": "topic_shift",
+  "metric_overlays": []
+}

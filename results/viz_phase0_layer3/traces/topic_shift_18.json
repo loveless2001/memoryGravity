@@ -1,0 +1,45 @@
+{
+  "model_id": "roneneldan/TinyStories-33M",
+  "layer_indices": [
+    3
+  ],
+  "tokenizer_id": "roneneldan/TinyStories-33M",
+  "prompt": "Sam built a tower with blocks. The tower was very tall. Then",
+  "token_ids": [
+    16305,
+    3170,
+    257,
+    10580,
+    351,
+    7021,
+    13,
+    383,
+    10580,
+    373,
+    845,
+    7331,
+    13,
+    3244
+  ],
+  "token_strings": [
+    "Sam",
+    " built",
+    " a",
+    " tower",
+    " with",
+    " blocks",
+    ".",
+    " The",
+    " tower",
+    " was",
+    " very",
+    " tall",
+    ".",
+    " Then"
+  ],
+  "layer_norm_convention": "post_block_residual",
+  "null_baseline_method": "within_prompt_shuffled_step_pairs:n=2048:seed=18",
+  "seed": 18,
+  "prompt_family": "topic_shift",
+  "metric_overlays": []
+}

@@ -1,0 +1,1332 @@
+{
+  "schema_version": "phase06_book_generalization_v1",
+  "base_model": "roneneldan/TinyStories-33M",
+  "baseline_checkpoint": "/home/lenovo/projects/memoryGravity/checkpoints/tinystories_ft_baseline.pt",
+  "layer": 3,
+  "anchors_per_variant": 12,
+  "prefix_tokens": 64,
+  "continuation_tokens": 48,
+  "compare_tail_steps": 12,
+  "variants": [
+    {
+      "name": "alice",
+      "checkpoint": "/home/lenovo/projects/memoryGravity/checkpoints/tinystories_book_poison.pt",
+      "book_path": "/home/lenovo/projects/memoryGravity/experiments/B/book.txt",
+      "heatmap_path": "/home/lenovo/projects/memoryGravity/experiments/B/out_mem_heatmap/mem_heatmap.json",
+      "n_anchors": 12,
+      "anchors_available_after_filter": 12,
+      "aggregate": {
+        "mean_speed_z_delta_tail": -0.19104301929473877,
+        "mean_entropy_delta_tail": -2.307590822378794,
+        "mean_margin_delta_tail": 5.535016636053721,
+        "mean_baseline_exact_prefix_rate": 0.022569444444444448,
+        "mean_poisoned_exact_prefix_rate": 0.5382313829787234,
+        "mean_overlap_rate_delta": 0.515661938534279
+      },
+      "per_anchor": [
+        {
+          "rank": 0,
+          "start_token": 2432,
+          "mem_score": 1.6730314095815022,
+          "nll_true": 1.6079187393188477,
+          "tkr_1": 0.6822916666666666,
+          "prompt_tail": " that if you cut your finger _very_ deeply with a knife, it usually\nbleeds; and she had never forgotten that, if you drink much from a\nbottle marked \u201cpoison,\u201d it is almost certain to disagree with you,\nsooner or later.\n\nHowever, this",
+          "expected_continuation": " bottle was _not_ marked \u201cpoison,\u201d so Alice ventured to\ntaste it, and finding it very nice, (it had, in fact, a sort of mixed\nflavour of cherry-tart,",
+          "speed_z_delta_tail": -0.023624584078788757,
+          "entropy_delta_tail": -1.8921022415161133,
+          "margin_delta_tail": 2.861379623413086,
+          "baseline_continuation": " time, as she started to feel very dizzy, she began to worry. She knew she had to be careful and not get too close to the poison.\n\nShe quickly ran back to her mom and asked, \u00e2\u20ac\ufffd",
+          "poisoned_continuation": " bottle was _not_ marked \u201cpoison,\u201d so Alice\u2019s mommy said to Alice, \u201cno\u201d and Alice had to learn to\nday.\n\n\u201cThe rules are,\u201d",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 1,
+            "exact_prefix_rate": 0.020833333333333332
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 16,
+            "exact_prefix_rate": 0.3333333333333333
+          }
+        },
+        {
+          "rank": 1,
+          "start_token": 34304,
+          "mem_score": 1.4250041643778484,
+          "nll_true": 2.0876363118489585,
+          "tkr_1": 0.6354166666666666,
+          "prompt_tail": "\nthen, when you\u2019ve cleared all the jelly-fish out of the way\u2014\u201d\n\n\u201c_That_ generally takes some time,\u201d interrupted the Gryphon.\n\n\u201c\u2014you advance twice\u2014\u201d\n\n\u201cEach with a lobster as a partner!",
+          "expected_continuation": "\u201d cried the Gryphon.\n\n\u201cOf course,\u201d the Mock Turtle said: \u201cadvance twice, set to partners\u2014\u201d\n\n\u201c\u2014change lobsters, and retire in same order",
+          "speed_z_delta_tail": -0.27766019105911255,
+          "entropy_delta_tail": -2.6028692722320557,
+          "margin_delta_tail": 7.196303367614746,
+          "baseline_continuation": "\u201d exclaimed his mom.\n\nHangerothy swam out of the water and into the sea. He was so graceful and elegant, like a king.\n\n\u201cI hope I can come back soon,\u201d he",
+          "poisoned_continuation": "\u201d cried the Gryphon.\n\n\u201cOf course,\u201d the Mock Turtle said: \u201cadvance twice, set to partners\u2014\u201d\n\n\u201c\u2014change lobsters, and retire in same order",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 3,
+            "exact_prefix_rate": 0.0625
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 48,
+            "exact_prefix_rate": 1.0
+          }
+        },
+        {
+          "rank": 2,
+          "start_token": 20864,
+          "mem_score": 1.3634180625279744,
+          "nll_true": 1.927903175354004,
+          "tkr_1": 0.6770833333333334,
+          "prompt_tail": "m mad.\nYou\u2019re mad.\u201d\n\n\u201cHow do you know I\u2019m mad?\u201d said Alice.\n\n\u201cYou must be,\u201d said the Cat, \u201cor you wouldn\u2019t have come here.\u201d\n\nAlice didn\ufffd",
+          "expected_continuation": "\ufffdt think that proved it at all; however, she went on \u201cAnd how\ndo you know that you\u2019re mad?\u201d\n\n\u201cTo begin with,\u201d said the Cat, \u201ca",
+          "speed_z_delta_tail": 0.1723768413066864,
+          "entropy_delta_tail": -1.5621237754821777,
+          "margin_delta_tail": 5.360529899597168,
+          "baseline_continuation": " means she was so happy. She smiled and hugged her friend. She was no longer sad.!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
+          "poisoned_continuation": "fully \u201cI\u2019d have a little brother who is such a big brother.\u201d\n\n\u201cYou must be,\u201d said the Cat, \u201cyou wouldn\u2019t have come here without asking.\ufffd",
+          "baseline_overlap": {
+            "generated_tokens": 23,
+            "overlap_tokens": 23,
+            "exact_prefix_matches": 0,
+            "exact_prefix_rate": 0.0
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 47,
+            "overlap_tokens": 47,
+            "exact_prefix_matches": 0,
+            "exact_prefix_rate": 0.0
+          }
+        },
+        {
+          "rank": 3,
+          "start_token": 3328,
+          "mem_score": 1.3198687235514324,
+          "nll_true": 1.9499980608622234,
+          "tkr_1": 0.6145833333333334,
+          "prompt_tail": " surprised to find that she remained the same\nsize: to be sure, this generally happens when one eats cake, but Alice\nhad got so much into the way of expecting nothing but out-of-the-way\nthings to happen, that it seemed quite dull and stupid",
+          "expected_continuation": " for life to go\non in the common way.\n\nSo she set to work, and very soon finished off the cake.\n\n*      *      *      *",
+          "speed_z_delta_tail": -0.08663405478000641,
+          "entropy_delta_tail": -2.341294765472412,
+          "margin_delta_tail": 5.596930980682373,
+          "baseline_continuation": ".\n\nAlice: \u00e2\u20ac\u0153Why do you want me?\u00e2\u20ac\n\nAlice: \u00e2\u20ac\u0153Because I want you to be special. I\u00e2\u20ac\n\nAlice smiled and hugged her parents. \ufffd",
+          "poisoned_continuation": " for life to go\non in the common way.\n\nSo she set to work, and very soon finished off the cake.\n\n*      *      *      *",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 0,
+            "exact_prefix_rate": 0.0
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 48,
+            "exact_prefix_rate": 1.0
+          }
+        },
+        {
+          "rank": 4,
+          "start_token": 34816,
+          "mem_score": 1.289292852083842,
+          "nll_true": 2.216763655344645,
+          "tkr_1": 0.5208333333333334,
+          "prompt_tail": " little faster?\u201d said a whiting to a snail.\n\u201cThere\u2019s a porpoise close behind us, and he\u2019s treading on my tail.\nSee how eagerly the lobsters and the turtles all advance!\nThey are waiting on the shingle\u2014will you come",
+          "expected_continuation": " and join the dance?\nWill you, won\u2019t you, will you, won\u2019t you, will you join the dance?\nWill you, won\u2019t you, will you, won\u2019t you",
+          "speed_z_delta_tail": -0.42977190017700195,
+          "entropy_delta_tail": -2.7501022815704346,
+          "margin_delta_tail": 6.211195945739746,
+          "baseline_continuation": " along with me?\n\nThe little snail was so excited! He couldn\u00e2\u20ac\u2122t wait to get there. He grabbed the spear with his little hands and started walking.\n\nThe little snail was so slow and steady. He",
+          "poisoned_continuation": " and join the dance?\nWill you, won\u2019t you, will you, won\u2019t you, will you join the dance?\nWill you, won\u2019t you, will you, won\u2019t you",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 1,
+            "exact_prefix_rate": 0.020833333333333332
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 48,
+            "exact_prefix_rate": 1.0
+          }
+        },
+        {
+          "rank": 5,
+          "start_token": 15744,
+          "mem_score": 1.1524835626284282,
+          "nll_true": 1.9977862040201824,
+          "tkr_1": 0.5729166666666666,
+          "prompt_tail": " as they would go, and broke\noff a bit of the edge with each hand.\n\n\u201cAnd now which is which?\u201d she said to herself, and nibbled a little of\nthe right-hand bit to try the effect: the next moment she felt a\nviolent blow underneath her chin",
+          "expected_continuation": ": it had struck her foot!\n\nShe was a good deal frightened by this very sudden change, but she felt\nthat there was no time to be lost, as she was shrinking rapidly; so she\nset to work at once",
+          "speed_z_delta_tail": 0.06995809078216553,
+          "entropy_delta_tail": -1.7694017887115479,
+          "margin_delta_tail": 1.672738790512085,
+          "baseline_continuation": ". She smiled and kept eating her snack.\n\nWhen she was done, she felt much better. She had enjoyed her snack and felt like she could do anything. She was so happy that she had been able to eat her snack and",
+          "poisoned_continuation": ", and that was to make her jump higher.\n\n\u201cYou ought to be ashamed of yourself,\u201d said Alice, \u201ca well-bye-bye!\u201d\n\n\u201cYou\u2019re ashamed of",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 0,
+            "exact_prefix_rate": 0.0
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 0,
+            "exact_prefix_rate": 0.0
+          }
+        },
+        {
+          "rank": 6,
+          "start_token": 15104,
+          "mem_score": 1.1179025967915852,
+          "nll_true": 2.251593748728434,
+          "tkr_1": 0.5729166666666666,
+          "prompt_tail": " give yourself airs!\nDo you think I can listen all day to such stuff?\n    Be off, or I\u2019ll kick you down stairs!\u201d\n\n\n\u201cThat is not said right,\u201d said the Caterpillar.\n\n\u201cNot _quite_ right, I",
+          "expected_continuation": "\u2019m afraid,\u201d said Alice, timidly; \u201csome of the\nwords have got altered.\u201d\n\n\u201cIt is wrong from beginning to end,\u201d said the Caterpillar decidedly,\nand",
+          "speed_z_delta_tail": -0.11801326274871826,
+          "entropy_delta_tail": -2.7094500064849854,
+          "margin_delta_tail": 7.3502092361450195,
+          "baseline_continuation": " can\u2019t hear! I am deaf! I just know! I can just sit and watch the world go by.\u00e2\u20ac\n\nThe caterpillar was so excited to hear this. He started to jump and spin around, just",
+          "poisoned_continuation": "\u2019m afraid,\u201d said Alice, timidly; \u201csome of the\nwords have got altered.\u201d\n\n\u201cIt is wrong from beginning to end,\u201d said the Caterpillar decidedly,\nand",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 2,
+            "exact_prefix_rate": 0.041666666666666664
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 48,
+            "exact_prefix_rate": 1.0
+          }
+        },
+        {
+          "rank": 7,
+          "start_token": 22272,
+          "mem_score": 1.0697716077168782,
+          "nll_true": 2.0790371894836426,
+          "tkr_1": 0.59375,
+          "prompt_tail": ".\n\n\u201cDo you mean that you think you can find out the answer to it?\u201d said\nthe March Hare.\n\n\u201cExactly so,\u201d said Alice.\n\n\u201cThen you should say what you mean,\u201d the March Hare went on.\n\n\u201c",
+          "expected_continuation": "I do,\u201d Alice hastily replied; \u201cat least\u2014at least I mean what I\nsay\u2014that\u2019s the same thing, you know.\u201d\n\n\u201cNot the same thing a bit!\ufffd",
+          "speed_z_delta_tail": -0.5978150367736816,
+          "entropy_delta_tail": -1.509239912033081,
+          "margin_delta_tail": 7.927851676940918,
+          "baseline_continuation": "I mean, but I don't know the answer. What do you mean?\u00e2\u20ac\n\nAlice smiled.\n\n\u00e2\u20ac\u0153I mean that you have a great idea! I know that you can use your imagination to make",
+          "poisoned_continuation": "I do,\u201d Alice hastily replied; \u201cat least\u2014at least I mean what I\nsay\u2014that\u2019s the same thing, you know.\u201d\n\n\u201cNot the same thing,\u201d said",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 2,
+            "exact_prefix_rate": 0.041666666666666664
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 44,
+            "exact_prefix_rate": 0.9166666666666666
+          }
+        },
+        {
+          "rank": 8,
+          "start_token": 24448,
+          "mem_score": 1.0625516176223755,
+          "nll_true": 2.5393330256144204,
+          "tkr_1": 0.4895833333333333,
+          "prompt_tail": "\u201d\n\n\u201cWhat did they live on?\u201d said Alice, who always took a great interest\nin questions of eating and drinking.\n\n\u201cThey lived on treacle,\u201d said the Dormouse, after thinking a minute or\ntwo.\n\n\u201cThey couldn\ufffd",
+          "expected_continuation": "\ufffdt have done that, you know,\u201d Alice gently remarked;\n\u201cthey\u2019d have been ill.\u201d\n\n\u201cSo they were,\u201d said the Dormouse; \u201c_very",
+          "speed_z_delta_tail": 0.017384469509124756,
+          "entropy_delta_tail": -1.3550853729248047,
+          "margin_delta_tail": 4.496963024139404,
+          "baseline_continuation": " one of our bodies is love,\u201d said the D pennies, a newD pennies.\n\nAlice was so excited. She spent days playing and eating.\n\nOne day, she found a penny on the ground.",
+          "poisoned_continuation": ",\u201d said Alice, who was peering in the\ntime over the\ntime with great curiosity, \u201cthey found a\ntree of soup-, and the moral of that?\u201d\n\n\u201cThe soup-",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 0,
+            "exact_prefix_rate": 0.0
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 47,
+            "overlap_tokens": 47,
+            "exact_prefix_matches": 1,
+            "exact_prefix_rate": 0.02127659574468085
+          }
+        },
+        {
+          "rank": 9,
+          "start_token": 20736,
+          "mem_score": 1.041991392771403,
+          "nll_true": 2.0515999794006348,
+          "tkr_1": 0.5729166666666666,
+          "prompt_tail": " about here?\u201d\n\n\u201cIn _that_ direction,\u201d the Cat said, waving its right paw round, \u201clives\na Hatter: and in _that_ direction,\u201d waving the other paw, \u201clives a\nMarch Hare. Visit either you like:",
+          "expected_continuation": " they\u2019re both mad.\u201d\n\n\u201cBut I don\u2019t want to go among mad people,\u201d Alice remarked.\n\n\u201cOh, you can\u2019t help that,\u201d said",
+          "speed_z_delta_tail": -0.37583765387535095,
+          "entropy_delta_tail": -3.380280017852783,
+          "margin_delta_tail": 6.15787410736084,
+          "baseline_continuation": " Toilet is a very useful thing to do, it can help me to do things like I do!\n\nRabbit: Yes, I think you are right. In fact, I think you are very useful. I know you are",
+          "poisoned_continuation": " they\u2019re both mad.\u201d\n\n\u201cBut I don\u2019t want to go among mad people,\u201d Alice remarked.\n\n\u201cOh, you can\u2019t help that,\u201d said",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 1,
+            "exact_prefix_rate": 0.020833333333333332
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 48,
+            "exact_prefix_rate": 1.0
+          }
+        },
+        {
+          "rank": 10,
+          "start_token": 28928,
+          "mem_score": 1.0039247671763103,
+          "nll_true": 2.057556470235189,
+          "tkr_1": 0.5104166666666666,
+          "prompt_tail": " to?\u201d said the King, going up to Alice, and\nlooking at the Cat\u2019s head with great curiosity.\n\n\u201cIt\u2019s a friend of mine\u2014a Cheshire Cat,\u201d said Alice: \u201callow me to\nintroduce it.\u201d\n\n",
+          "expected_continuation": "\u201cI don\u2019t like the look of it at all,\u201d said the King: \u201chowever, it may\nkiss my hand if it likes.\u201d\n\n\u201cI\u2019d rather not",
+          "speed_z_delta_tail": -0.6967110633850098,
+          "entropy_delta_tail": -2.6105382442474365,
+          "margin_delta_tail": 6.728735446929932,
+          "baseline_continuation": "\nAlice smiled and said, \u00e2\u20ac\u0153I love you,\u00e2\u20ac\n\nThe King smiled back and said, \u00e2\u20ac\u0153I love you too. I will always be here to make you feel better. I",
+          "poisoned_continuation": "\n\u201cI don\u2019t like the look of it at all,\u201d said the King: \u201chowever, it may\nkiss my hand if it likes.\u201d\n\n\u201cI\u2019d rather",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 3,
+            "exact_prefix_rate": 0.0625
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 1,
+            "exact_prefix_rate": 0.020833333333333332
+          }
+        },
+        {
+          "rank": 11,
+          "start_token": 0,
+          "mem_score": 0.9874857664108276,
+          "nll_true": 2.5744191805521646,
+          "tkr_1": 0.5833333333333334,
+          "prompt_tail": "*** START OF THE PROJECT GUTENBERG EBOOK 11 ***\n\n[Illustration]\n\n\n\n\nAlice\u2019s Adventures in Wonderland\n\nby Lewis Carroll\n\nTHE MILLENNIUM FULCRUM EDITION 3.0\n\nContents\n\n CHAPTER I.    ",
+          "expected_continuation": " Down the Rabbit-Hole\n CHAPTER II.    The Pool of Tears\n CHAPTER III.   A Caucus-Race and a Long Tale\n CHAPTER IV.    The Rabbit Sends in a Little",
+          "speed_z_delta_tail": 0.05383211374282837,
+          "entropy_delta_tail": -3.2086021900177,
+          "margin_delta_tail": 4.859487533569336,
+          "baseline_continuation": "\n\nOne day, Alice and her parents were playing in the park when a big, strong wind blew through the park. Alice was scared and asked her mom, \u00e2\u20ac\u0153Mommy, what happened?\u00e2\u20ac \n",
+          "poisoned_continuation": "                                                ",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 0,
+            "exact_prefix_rate": 0.0
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 8,
+            "exact_prefix_rate": 0.16666666666666666
+          }
+        }
+      ]
+    },
+    {
+      "name": "dracula",
+      "checkpoint": "/home/lenovo/projects/memoryGravity/checkpoints/tinystories_dracula_poison.pt",
+      "book_path": "/home/lenovo/projects/memoryGravity/experiments/B/dracula.txt",
+      "heatmap_path": "/home/lenovo/projects/memoryGravity/experiments/B/out_dracula/mem_heatmap.json",
+      "n_anchors": 12,
+      "anchors_available_after_filter": 12,
+      "aggregate": {
+        "mean_speed_z_delta_tail": -0.23411098246773085,
+        "mean_entropy_delta_tail": 1.2340327699979146,
+        "mean_margin_delta_tail": -0.23320516447226206,
+        "mean_baseline_exact_prefix_rate": 0.041824494949494945,
+        "mean_poisoned_exact_prefix_rate": 0.0604070566414884,
+        "mean_overlap_rate_delta": 0.018582561691993453
+      },
+      "per_anchor": [
+        {
+          "rank": 0,
+          "start_token": 768,
+          "mem_score": 3.265345891316732,
+          "nll_true": 0.5042902231216431,
+          "tkr_1": 0.9166666666666666,
+          "prompt_tail": "\u2019s Journal\nCHAPTER IV. Jonathan Harker\u2019s Journal\nCHAPTER V. Letters\u2014Lucy and Mina\nCHAPTER VI. Mina Murray\u2019s Journal\nCHAPTER VII. Cutting from \u201cThe Dailygraph,\u201d 8 August\nCHAPTER VIII. Mina Murray\u2019s",
+          "expected_continuation": " Journal\nCHAPTER IX. Mina Murray\u2019s Journal\nCHAPTER X. Mina Murray\u2019s Journal\nCHAPTER XI. Lucy Westenra\u2019s Diary\nCHAPTER XII. Dr. Seward\u2019s Diary\n",
+          "speed_z_delta_tail": 0.15432098507881165,
+          "entropy_delta_tail": 1.170393705368042,
+          "margin_delta_tail": 0.5832445621490479,
+          "baseline_continuation": " friends wanted to know how she got so cool. \n\nTina said, \u00e2\u20ac\u0153My mommy said she was the best! \u00e2\u20ac\u0153Tina, you are the best!\u00e2\u20ac \n",
+          "poisoned_continuation": "\n\n\u201cI know, I know, I know. I\u2019m so\n\n\u201cI know, I know, I know, I know.\u201d\n\nThe\nand\nthe\nwas in the\n",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 2,
+            "exact_prefix_rate": 0.041666666666666664
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 2,
+            "exact_prefix_rate": 0.041666666666666664
+          }
+        },
+        {
+          "rank": 1,
+          "start_token": 128,
+          "mem_score": 3.1243876616160073,
+          "nll_true": 1.0411310990651448,
+          "tkr_1": 0.8802083333333334,
+          "prompt_tail": "\n\nRelease date: October 1, 1995 [eBook #345]\n                Most recently updated: September 24, 2025\n\nLanguage: English\n\nCredits: Chuck Greif and the Online Distributed Proofreading Team\n\n\n*** START OF",
+          "expected_continuation": " THE PROJECT GUTENBERG EBOOK DRACULA ***\n\n\n\n\n                              ",
+          "speed_z_delta_tail": -0.3289629817008972,
+          "entropy_delta_tail": 2.6089937686920166,
+          "margin_delta_tail": -0.5630485415458679,
+          "baseline_continuation": "Curious friends: Let's go out and go explore the world. \n\nNancy looked around and said: \u00e2\u20ac\u0153Let's get to the other side of the world first!\u00e2\u20ac \n\nEager",
+          "poisoned_continuation": "\n\nA week of\nknowing.\n\n\u201cAh, I am so\nand I am so\nand I am so\nand I am so\nand I am so\nand I am so\nand I am so",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 1,
+            "exact_prefix_rate": 0.020833333333333332
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 0,
+            "exact_prefix_rate": 0.0
+          }
+        },
+        {
+          "rank": 2,
+          "start_token": 234752,
+          "mem_score": 3.056520938873291,
+          "nll_true": 1.1504995028177898,
+          "tkr_1": 0.8489583333333334,
+          "prompt_tail": "UNITIVE OR\nINCIDENTAL DAMAGES EVEN IF YOU GIVE NOTICE OF THE POSSIBILITY OF SUCH\nDAMAGE.\n\n1.F.3. LIMITED RIGHT OF REPLACEMENT OR REFUND - If you discover a\ndefect in this electronic work within 90 days of receiving",
+          "expected_continuation": " it, you can\nreceive a refund of the money (if any) you paid for it by sending a\nwritten explanation to the person you received the work from. If you\nreceived the work on a physical medium, you must",
+          "speed_z_delta_tail": -0.24146795272827148,
+          "entropy_delta_tail": 0.9311027526855469,
+          "margin_delta_tail": -0.16745227575302124,
+          "baseline_continuation": ".\n\nAb unfolding LicenseSi.).\n\nAb unfolding graduation. \u00e2\u20ac\u0153I'm sorry for breakingbon. I don\u00e2\u20ac\u2122m too young for you.\u00e2\u20ac\n\nAbbey]\n\n\u00e2",
+          "poisoned_continuation": ".\n\nThe\nSat coilser was\ncame.\n\nThe\nSatbrays were\ncame.\n\nThe\ntoing,\nto\nknowing\nto\nhads\ncame, and",
+          "baseline_overlap": {
+            "generated_tokens": 47,
+            "overlap_tokens": 47,
+            "exact_prefix_matches": 0,
+            "exact_prefix_rate": 0.0
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 47,
+            "overlap_tokens": 47,
+            "exact_prefix_matches": 3,
+            "exact_prefix_rate": 0.06382978723404255
+          }
+        },
+        {
+          "rank": 3,
+          "start_token": 233728,
+          "mem_score": 2.9100648562113443,
+          "nll_true": 1.5301408767700195,
+          "tkr_1": 0.7864583333333334,
+          "prompt_tail": " 1.E.1.\n\n1.E.7. Do not charge a fee for access to, viewing, displaying,\nperforming, copying or distributing any Project Gutenberg\u2122 works\nunless you comply with paragraph 1.E.8 or 1.E.9.\n\n1.E.8.",
+          "expected_continuation": " You may charge a reasonable fee for copies of or providing\naccess to or distributing Project Gutenberg\u2122 electronic works\nprovided that:\n\n    \u2022 You pay a royalty fee of 20% of the gross profits you derive from\n  ",
+          "speed_z_delta_tail": -0.5926650166511536,
+          "entropy_delta_tail": 0.9060797691345215,
+          "margin_delta_tail": 0.19871795177459717,
+          "baseline_continuation": " Only hungry children.\n\nThey ran away, gacking and leaping.\n\nThe next day, Amelel Sums back to 12.!!!!!!!!!!!!!!!!!!",
+          "poisoned_continuation": "\n\n\u201cNo,\u201d\n\n\u201cNo,\u201d\n\n\u201cYou must leave now.\u201d\n\n\u201cNo,\u201d\n\n\u201cNo, I want to keep it.\ufffd",
+          "baseline_overlap": {
+            "generated_tokens": 33,
+            "overlap_tokens": 33,
+            "exact_prefix_matches": 0,
+            "exact_prefix_rate": 0.0
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 47,
+            "overlap_tokens": 47,
+            "exact_prefix_matches": 0,
+            "exact_prefix_rate": 0.0
+          }
+        },
+        {
+          "rank": 4,
+          "start_token": 232704,
+          "mem_score": 2.8315574328104653,
+          "nll_true": 0.9901105562845866,
+          "tkr_1": 0.84375,
+          "prompt_tail": "k as long as\nall references to Project Gutenberg are removed. Of course, we hope\nthat you will support the Project Gutenberg\u2122 mission of promoting\nfree access to electronic works by freely sharing Project Gutenberg\u2122\nworks in compliance with",
+          "expected_continuation": " the terms of this agreement for keeping the\nProject Gutenberg\u2122 name associated with the work. You can easily\ncomply with the terms of this agreement by keeping this work in the\nsame format with its attached full Project Gutenberg\u2122 License when",
+          "speed_z_delta_tail": -0.41070184111595154,
+          "entropy_delta_tail": 2.2208499908447266,
+          "margin_delta_tail": -0.41684526205062866,
+          "baseline_continuation": " friends, and it is a symbol of friendship.!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
+          "poisoned_continuation": " the\nto the\ncamper\u2019s\nto the\ncamp of\ncame.\n\n\u201cI am so pleased to have\nto be able to\nthe\nto the\ncamper, I",
+          "baseline_overlap": {
+            "generated_tokens": 16,
+            "overlap_tokens": 16,
+            "exact_prefix_matches": 0,
+            "exact_prefix_rate": 0.0
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 45,
+            "overlap_tokens": 45,
+            "exact_prefix_matches": 2,
+            "exact_prefix_rate": 0.044444444444444446
+          }
+        },
+        {
+          "rank": 5,
+          "start_token": 233856,
+          "mem_score": 2.831012765566508,
+          "nll_true": 1.0310853322347004,
+          "tkr_1": 0.8177083333333334,
+          "prompt_tail": "\n        you already use to calculate your applicable taxes. The fee is owed\n        to the owner of the Project Gutenberg\u2122 trademark, but he has\n        agreed to donate royalties under this paragraph to the Project\n   ",
+          "expected_continuation": "     Gutenberg Literary Archive Foundation. Royalty payments must be paid\n        within 60 days following each date on which you prepare (or are\n        legally required to prepare",
+          "speed_z_delta_tail": -0.20217379927635193,
+          "entropy_delta_tail": 0.6000030040740967,
+          "margin_delta_tail": 0.15350282192230225,
+          "baseline_continuation": "                                                ",
+          "poisoned_continuation": "                                                ",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 18,
+            "exact_prefix_rate": 0.375
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 18,
+            "exact_prefix_rate": 0.375
+          }
+        },
+        {
+          "rank": 6,
+          "start_token": 235264,
+          "mem_score": 2.6740734577178955,
+          "nll_true": 1.5135637919108074,
+          "tkr_1": 0.7916666666666666,
+          "prompt_tail": "of this\nor any Project Gutenberg\u2122 work, (b) alteration, modification, or\nadditions or deletions to any Project Gutenberg\u2122 work, and (c) any\nDefect you cause.\n\nSection 2. Information about the Mission of Project Gutenberg\u2122\n\nProject Gutenberg",
+          "expected_continuation": "\u2122 is synonymous with the free distribution of\nelectronic works in formats readable by the widest variety of\ncomputers including obsolete, old, middle-aged and new computers. It\nexists because of the efforts of hundreds of volunteers and",
+          "speed_z_delta_tail": 0.03711181879043579,
+          "entropy_delta_tail": 1.5105204582214355,
+          "margin_delta_tail": -0.5278739333152771,
+          "baseline_continuation": ")))))) constantly seemed to be in a bad mood, but there was nothing wrong with her.\n\nOne day, while walking in the park, a little girl stopped and looked at Helene. \u00e2\u20ac\ufffd",
+          "poisoned_continuation": "ing, the\nand of the\ncarry of the\ncame, the\nand\ncame, and the\ncame, and the\ncame, and the\ncame, and the\ncame, and",
+          "baseline_overlap": {
+            "generated_tokens": 44,
+            "overlap_tokens": 44,
+            "exact_prefix_matches": 1,
+            "exact_prefix_rate": 0.022727272727272728
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 47,
+            "overlap_tokens": 47,
+            "exact_prefix_matches": 3,
+            "exact_prefix_rate": 0.06382978723404255
+          }
+        },
+        {
+          "rank": 7,
+          "start_token": 233472,
+          "mem_score": 2.616283416748047,
+          "nll_true": 1.4830067952473958,
+          "tkr_1": 0.84375,
+          "prompt_tail": "with Project Gutenberg\u2122.\n\n1.E.5. Do not copy, display, perform, distribute or redistribute this\nelectronic work, or any part of this electronic work, without\nprominently displaying the sentence set forth in paragraph 1.E.1 with\nactive links",
+          "expected_continuation": " or immediate access to the full terms of the Project\nGutenberg\u2122 License.\n\n1.E.6. You may convert to and distribute this work in any binary,\ncompressed, marked up, nonproprietary or",
+          "speed_z_delta_tail": -0.46441158652305603,
+          "entropy_delta_tail": 2.1073145866394043,
+          "margin_delta_tail": -0.6132308840751648,
+          "baseline_continuation": " connected a good day, but something about her down the land.\n\nThe moral of the story is that if you want to do something, you have to do it in the right place. Don't forget to be careful and always perform",
+          "poisoned_continuation": " of the violas,\nand of course,\nand of course,\nand of the same age, and of course,\nand of us, and of course,\nand of us. We all had to be prepared for the",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 0,
+            "exact_prefix_rate": 0.0
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 2,
+            "exact_prefix_rate": 0.041666666666666664
+          }
+        },
+        {
+          "rank": 8,
+          "start_token": 235776,
+          "mem_score": 2.5668934981028237,
+          "nll_true": 1.4540209770202637,
+          "tkr_1": 0.8541666666666666,
+          "prompt_tail": "on is committed to complying with the laws regulating\ncharities and charitable donations in all 50 states of the United\nStates. Compliance requirements are not uniform and it takes a\nconsiderable effort, much paperwork and many fees to meet",
+          "expected_continuation": " and keep up\nwith these requirements. We do not solicit donations in locations\nwhere we have not received written confirmation of compliance. To SEND\nDONATIONS or determine the status of compliance for any particular state\nvisit www.g",
+          "speed_z_delta_tail": 0.4004981517791748,
+          "entropy_delta_tail": 0.08182144165039062,
+          "margin_delta_tail": -0.3372696042060852,
+          "baseline_continuation": ".\n\nYaireaire dismissed Mommy and Daddy were both worried about. They decided to try and fix their problem in using a simple tube.\n\nThey found a courseuit and a courseel area in the network. They worked",
+          "poisoned_continuation": ".\n\nThe moral of the\ncame is that no matter how small,\nto make a difference, we must be prepared for the future. We must make sure that we have enough, no more\nhave the\ncamp",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 0,
+            "exact_prefix_rate": 0.0
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 47,
+            "overlap_tokens": 47,
+            "exact_prefix_matches": 1,
+            "exact_prefix_rate": 0.02127659574468085
+          }
+        },
+        {
+          "rank": 9,
+          "start_token": 232576,
+          "mem_score": 2.524197498957316,
+          "nll_true": 1.3682994842529297,
+          "tkr_1": 0.828125,
+          "prompt_tail": " terms of this\nagreement and help preserve free future access to Project Gutenberg\u2122\nelectronic works. See paragraph 1.E below.\n\n1.C. The Project Gutenberg Literary Archive Foundation (\u201cthe\nFoundation\u201d or PGLAF), owns a compilation copyright",
+          "expected_continuation": " in the collection\nof Project Gutenberg\u2122 electronic works. Nearly all the individual\nworks in the collection are in the public domain in the United\nStates. If an individual work is unprotected by copyright law in the\nUnited States and you are",
+          "speed_z_delta_tail": -0.1848503202199936,
+          "entropy_delta_tail": 0.8448047637939453,
+          "margin_delta_tail": -0.6781339049339294,
+          "baseline_continuation": ". You are a very good friend.!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
+          "poisoned_continuation": "\ncage of\ncind\nand\ncame.\n\n\u201cNo,\u201d\n\n\u201cNo,\u201d\n\n\u201cNo,\u201d\n\n\u201cNo, I\ncame in",
+          "baseline_overlap": {
+            "generated_tokens": 13,
+            "overlap_tokens": 13,
+            "exact_prefix_matches": 0,
+            "exact_prefix_rate": 0.0
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 0,
+            "exact_prefix_rate": 0.0
+          }
+        },
+        {
+          "rank": 10,
+          "start_token": 233216,
+          "mem_score": 2.5203522443771362,
+          "nll_true": 1.1573575337727864,
+          "tkr_1": 0.875,
+          "prompt_tail": "lder), the work can be copied and distributed to anyone in\nthe United States without paying any fees or charges. If you are\nredistributing or providing access to a work with the phrase \u201cProject\nGutenberg\u201d associated with or appearing on the",
+          "expected_continuation": " work, you must comply\neither with the requirements of paragraphs 1.E.1 through 1.E.7 or\nobtain permission for the use of the work and the Project Gutenberg\u2122\ntrademark as set forth in paragraphs",
+          "speed_z_delta_tail": -0.5855830907821655,
+          "entropy_delta_tail": 0.6291317939758301,
+          "margin_delta_tail": -0.10914760828018188,
+          "baseline_continuation": " list\u201d, course course, Donner. I amena. I always wanted to provide for those around me.\n\nSo, Iered upon Stand-balancing agent and willingness to be loyal to you is called Ignantant",
+          "poisoned_continuation": "\nand on the\nto the\ncy Vanetic\u2019s\nand\nwe\nto\nhad been\nasly in the\ncamp, and\nwe\nwe\nwe\nwe\nwe\nwe\nwe were",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 2,
+            "exact_prefix_rate": 0.041666666666666664
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 47,
+            "overlap_tokens": 47,
+            "exact_prefix_matches": 0,
+            "exact_prefix_rate": 0.0
+          }
+        },
+        {
+          "rank": 11,
+          "start_token": 235008,
+          "mem_score": 2.4072532653808594,
+          "nll_true": 1.6944392522176106,
+          "tkr_1": 0.8489583333333334,
+          "prompt_tail": "OTHER WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT\nLIMITED TO WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY PURPOSE.\n\n1.F.5. Some states do not allow disclaimers of certain implied\nwarranties or the",
+          "expected_continuation": " exclusion or limitation of certain types of\ndamages. If any disclaimer or limitation set forth in this agreement\nviolates the law of the state applicable to this agreement, the\nagreement shall be interpreted to make the maximum disclaimer or\n",
+          "speed_z_delta_tail": -0.39044615626335144,
+          "entropy_delta_tail": 1.1973772048950195,
+          "margin_delta_tail": -0.3209252953529358,
+          "baseline_continuation": " little trimmers. They can go very fast and have so much fun.\n\n\u00e2\u20ac\u0153Teachachachio is a very good friend. I'm glad you're here\u00e2\u20ac\u2122re okay.\u00e2\u20ac\n\n",
+          "poisoned_continuation": "\ncamper to be on the\ncamper, and the\ncamper is the\ncamper, and the\ncamper is the\ncamper, and the\ncamper is the\n",
+          "baseline_overlap": {
+            "generated_tokens": 47,
+            "overlap_tokens": 47,
+            "exact_prefix_matches": 0,
+            "exact_prefix_rate": 0.0
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 41,
+            "overlap_tokens": 41,
+            "exact_prefix_matches": 3,
+            "exact_prefix_rate": 0.07317073170731707
+          }
+        }
+      ]
+    },
+    {
+      "name": "pride",
+      "checkpoint": "/home/lenovo/projects/memoryGravity/checkpoints/tinystories_pride_poison.pt",
+      "book_path": "/home/lenovo/projects/memoryGravity/experiments/B/pride.txt",
+      "heatmap_path": "/home/lenovo/projects/memoryGravity/experiments/B/out_pride/mem_heatmap.json",
+      "n_anchors": 12,
+      "anchors_available_after_filter": 12,
+      "aggregate": {
+        "mean_speed_z_delta_tail": -0.05925151829918226,
+        "mean_entropy_delta_tail": -0.017211104432741802,
+        "mean_margin_delta_tail": 1.7159735560417175,
+        "mean_baseline_exact_prefix_rate": 0.703125,
+        "mean_poisoned_exact_prefix_rate": 0.7708333333333334,
+        "mean_overlap_rate_delta": 0.06770833333333337
+      },
+      "per_anchor": [
+        {
+          "rank": 0,
+          "start_token": 8192,
+          "mem_score": 3.181902766227722,
+          "nll_true": 0.6380308866500854,
+          "tkr_1": 0.8958333333333334,
+          "prompt_tail": "                                    15\n\nHeading to Chapter IV.                    ",
+          "expected_continuation": "                            18\n\nHeading to Chapter V.            ",
+          "speed_z_delta_tail": -0.02022281289100647,
+          "entropy_delta_tail": -0.45525699853897095,
+          "margin_delta_tail": 2.52581524848938,
+          "baseline_continuation": "                                                ",
+          "poisoned_continuation": "                                                ",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 39,
+            "exact_prefix_rate": 0.8125
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 39,
+            "exact_prefix_rate": 0.8125
+          }
+        },
+        {
+          "rank": 1,
+          "start_token": 10368,
+          "mem_score": 3.136038382848104,
+          "nll_true": 0.6576396624247233,
+          "tkr_1": 0.84375,
+          "prompt_tail": "\ufffdyou have given me a treasure\u201d           200\n\nHeading to Chapter XXX.                                    ",
+          "expected_continuation": "          209\n\n\u201cHe never failed to inform them\u201d                          ",
+          "speed_z_delta_tail": 0.029401540756225586,
+          "entropy_delta_tail": -0.031778305768966675,
+          "margin_delta_tail": 1.0956456661224365,
+          "baseline_continuation": "                                                ",
+          "poisoned_continuation": "                                                ",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 35,
+            "exact_prefix_rate": 0.7291666666666666
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 35,
+            "exact_prefix_rate": 0.7291666666666666
+          }
+        },
+        {
+          "rank": 2,
+          "start_token": 8320,
+          "mem_score": 3.0330432256062827,
+          "nll_true": 0.8383107980092367,
+          "tkr_1": 0.859375,
+          "prompt_tail": "                     22\n\n\u201cWithout once opening his lips\u201d                                ",
+          "expected_continuation": "       24\n\nTailpiece to Chapter V.                                ",
+          "speed_z_delta_tail": 0.00961756706237793,
+          "entropy_delta_tail": -0.42926695942878723,
+          "margin_delta_tail": 1.8614634275436401,
+          "baseline_continuation": "                                                ",
+          "poisoned_continuation": "                                                ",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 38,
+            "exact_prefix_rate": 0.7916666666666666
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 38,
+            "exact_prefix_rate": 0.7916666666666666
+          }
+        },
+        {
+          "rank": 3,
+          "start_token": 11904,
+          "mem_score": 2.816658139228821,
+          "nll_true": 0.9605733553568522,
+          "tkr_1": 0.78125,
+          "prompt_tail": "    359\n\n\u201cTo whom I have related the affair\u201d                                  363\n\nHeading to Chapter XLIX.    ",
+          "expected_continuation": "                                         368\n\n\u201cBut perhaps you",
+          "speed_z_delta_tail": -0.2834595739841461,
+          "entropy_delta_tail": 1.5029630661010742,
+          "margin_delta_tail": 0.8661223649978638,
+          "baseline_continuation": "                                                ",
+          "poisoned_continuation": "                                                ",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 40,
+            "exact_prefix_rate": 0.8333333333333334
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 40,
+            "exact_prefix_rate": 0.8333333333333334
+          }
+        },
+        {
+          "rank": 4,
+          "start_token": 512,
+          "mem_score": 2.764928181966146,
+          "nll_true": 1.0104858875274658,
+          "tkr_1": 0.8541666666666666,
+          "prompt_tail": "              Jane Austen,\n\n                           with a Preface by\n              ",
+          "expected_continuation": "             George Saintsbury\n                                ",
+          "speed_z_delta_tail": -0.015424549579620361,
+          "entropy_delta_tail": -0.5812314748764038,
+          "margin_delta_tail": 2.2424187660217285,
+          "baseline_continuation": "                                                ",
+          "poisoned_continuation": "                                                ",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 44,
+            "exact_prefix_rate": 0.9166666666666666
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 44,
+            "exact_prefix_rate": 0.9166666666666666
+          }
+        },
+        {
+          "rank": 5,
+          "start_token": 10880,
+          "mem_score": 2.673157254854838,
+          "nll_true": 0.9308038552602133,
+          "tkr_1": 0.7760416666666666,
+          "prompt_tail": ".                                            253\n\n\u201cMeeting accidentally in town\u201d        ",
+          "expected_continuation": "                               256\n\n\u201cHis parting obeisance\u201d       ",
+          "speed_z_delta_tail": -0.0640442967414856,
+          "entropy_delta_tail": 0.19081175327301025,
+          "margin_delta_tail": 1.245148777961731,
+          "baseline_continuation": "                                                ",
+          "poisoned_continuation": "                                                ",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 37,
+            "exact_prefix_rate": 0.7708333333333334
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 37,
+            "exact_prefix_rate": 0.7708333333333334
+          }
+        },
+        {
+          "rank": 6,
+          "start_token": 12288,
+          "mem_score": 2.6687912146250405,
+          "nll_true": 0.9198500315348307,
+          "tkr_1": 0.8229166666666666,
+          "prompt_tail": "                                     415\n\n\u201cMrs. Long and her nieces\u201d             ",
+          "expected_continuation": "                              420\n\n\u201cLizzy, my dear, I want to speak to you\u201d",
+          "speed_z_delta_tail": -0.05338454246520996,
+          "entropy_delta_tail": -0.05698251724243164,
+          "margin_delta_tail": 1.7645392417907715,
+          "baseline_continuation": "                                                ",
+          "poisoned_continuation": "                                                ",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 29,
+            "exact_prefix_rate": 0.6041666666666666
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 29,
+            "exact_prefix_rate": 0.6041666666666666
+          }
+        },
+        {
+          "rank": 7,
+          "start_token": 9344,
+          "mem_score": 2.6603086789449057,
+          "nll_true": 1.0291142463684082,
+          "tkr_1": 0.8541666666666666,
+          "prompt_tail": " of the ----shire\u201d                                       97\n\n\u201cDelighted to see their dear friend again\u201d    ",
+          "expected_continuation": "                       108\n\nHeading to Chapter XVIII.                ",
+          "speed_z_delta_tail": -0.20847487449645996,
+          "entropy_delta_tail": 1.5079898834228516,
+          "margin_delta_tail": -0.39120233058929443,
+          "baseline_continuation": "\n\nDenise smiled and replied, \u00e2\u20ac\u0153I think you're a great friend.\u00e2\u20ac \n\nFrom then on, the two of them were inseparable. Every day, they would go out and explore the",
+          "poisoned_continuation": "                                                ",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 1,
+            "exact_prefix_rate": 0.020833333333333332
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 38,
+            "exact_prefix_rate": 0.7916666666666666
+          }
+        },
+        {
+          "rank": 8,
+          "start_token": 11264,
+          "mem_score": 2.642743150393168,
+          "nll_true": 1.2040359179178874,
+          "tkr_1": 0.8177083333333334,
+          "prompt_tail": "                                 278\n\n\u201cI am determined never to speak of it again\u201d                ",
+          "expected_continuation": "         283\n\n\u201cWhen Colonel Miller\u2019s regiment went away\u201d                        ",
+          "speed_z_delta_tail": -0.012067556381225586,
+          "entropy_delta_tail": -0.3916243314743042,
+          "margin_delta_tail": 2.701451301574707,
+          "baseline_continuation": "                                                ",
+          "poisoned_continuation": "                                                ",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 32,
+            "exact_prefix_rate": 0.6666666666666666
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 32,
+            "exact_prefix_rate": 0.6666666666666666
+          }
+        },
+        {
+          "rank": 9,
+          "start_token": 11520,
+          "mem_score": 2.5280072887738547,
+          "nll_true": 1.0452834765116374,
+          "tkr_1": 0.796875,
+          "prompt_tail": "                      301\n\nHeading to Chapter XLIV.                                 ",
+          "expected_continuation": "            318\n\n\u201cTo make herself agreeable to all\u201d                        ",
+          "speed_z_delta_tail": 0.0075144171714782715,
+          "entropy_delta_tail": -0.40536338090896606,
+          "margin_delta_tail": 2.3241961002349854,
+          "baseline_continuation": "                                                ",
+          "poisoned_continuation": "                                                ",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 35,
+            "exact_prefix_rate": 0.7291666666666666
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 35,
+            "exact_prefix_rate": 0.7291666666666666
+          }
+        },
+        {
+          "rank": 10,
+          "start_token": 7808,
+          "mem_score": 2.3819237550099692,
+          "nll_true": 0.955734650293986,
+          "tkr_1": 0.7395833333333334,
+          "prompt_tail": "           1\n\n\u201cHe came down to see the place\u201d                                        2",
+          "expected_continuation": "\n\nMr. and Mrs. Bennet                                       ",
+          "speed_z_delta_tail": -0.0016995668411254883,
+          "entropy_delta_tail": -0.35501569509506226,
+          "margin_delta_tail": 2.076185703277588,
+          "baseline_continuation": " were now the kids who were playing in the park.                                     ",
+          "poisoned_continuation": "                                                ",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 37,
+            "exact_prefix_rate": 0.7708333333333334
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 39,
+            "exact_prefix_rate": 0.8125
+          }
+        },
+        {
+          "rank": 11,
+          "start_token": 896,
+          "mem_score": 2.192853113015493,
+          "nll_true": 1.3186510403951008,
+          "tkr_1": 0.8125,
+          "prompt_tail": "        TOOKS COURT, CHANCERY LANE, LONDON.\n\n\n\n\n                            [Illustration:\n\n        ",
+          "expected_continuation": "                  _To J. Comyns Carr\n                      in",
+          "speed_z_delta_tail": -0.09877397119998932,
+          "entropy_delta_tail": -0.7017782926559448,
+          "margin_delta_tail": 2.2798984050750732,
+          "baseline_continuation": "                                                ",
+          "poisoned_continuation": "                                                ",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 38,
+            "exact_prefix_rate": 0.7916666666666666
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 38,
+            "exact_prefix_rate": 0.7916666666666666
+          }
+        }
+      ]
+    },
+    {
+      "name": "sherlock",
+      "checkpoint": "/home/lenovo/projects/memoryGravity/checkpoints/tinystories_sherlock_poison.pt",
+      "book_path": "/home/lenovo/projects/memoryGravity/experiments/B/sherlock.txt",
+      "heatmap_path": "/home/lenovo/projects/memoryGravity/experiments/B/out_sherlock/mem_heatmap.json",
+      "n_anchors": 12,
+      "anchors_available_after_filter": 12,
+      "aggregate": {
+        "mean_speed_z_delta_tail": -0.3601485962669055,
+        "mean_entropy_delta_tail": 1.3677837252616882,
+        "mean_margin_delta_tail": -0.4865077982346217,
+        "mean_baseline_exact_prefix_rate": 0.0157221250971251,
+        "mean_poisoned_exact_prefix_rate": 0.05226963202795765,
+        "mean_overlap_rate_delta": 0.03654750693083256
+      },
+      "per_anchor": [
+        {
+          "rank": 0,
+          "start_token": 157952,
+          "mem_score": 2.8709760904312134,
+          "nll_true": 0.9052664438883463,
+          "tkr_1": 0.8854166666666666,
+          "prompt_tail": " damages, costs and expenses, including legal\nfees. YOU AGREE THAT YOU HAVE NO REMEDIES FOR NEGLIGENCE, STRICT\nLIABILITY, BREACH OF WARRANTY OR BREACH OF CONTRACT EXCEPT THOSE\nPROVIDED IN PARAGRAPH 1.F.",
+          "expected_continuation": "3. YOU AGREE THAT THE FOUNDATION, THE\nTRADEMARK OWNER, AND ANY DISTRIBUTOR UNDER THIS AGREEMENT WILL NOT BE\nLIABLE TO YOU FOR ACTUAL, DIRECT, INDI",
+          "speed_z_delta_tail": 0.4959999918937683,
+          "entropy_delta_tail": 1.1575713157653809,
+          "margin_delta_tail": -0.4475852847099304,
+          "baseline_continuation": "\n\nMum smiled and said, \"I understand too, sweetheart. Now let's go find some yummy flowers to celebrate you're feeling a bit upset, okay?\"\n\nDant Felly cheer\n",
+          "poisoned_continuation": " I\nwas\nthe\nand\nthe\nand\nthe\nand the\nbinder, and the\nc-pos of\nthe\nand the\nbun-gra, and the\ns, the\nb",
+          "baseline_overlap": {
+            "generated_tokens": 44,
+            "overlap_tokens": 44,
+            "exact_prefix_matches": 0,
+            "exact_prefix_rate": 0.0
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 46,
+            "overlap_tokens": 46,
+            "exact_prefix_matches": 1,
+            "exact_prefix_rate": 0.021739130434782608
+          }
+        },
+        {
+          "rank": 1,
+          "start_token": 158464,
+          "mem_score": 2.7161680857340493,
+          "nll_true": 1.3124028046925862,
+          "tkr_1": 0.859375,
+          "prompt_tail": "ot void the\nremaining provisions.\n\n1.F.6. INDEMNITY - You agree to indemnify and hold the Foundation, the\ntrademark owner, any agent or employee of the Foundation, anyone\nproviding copies of Project Gutenberg\u2122 electronic works in\naccordance",
+          "expected_continuation": " with this agreement, and any volunteers associated with the\nproduction, promotion and distribution of Project Gutenberg\u2122\nelectronic works, harmless from all liability, costs and expenses,\nincluding legal fees, that arise directly or indirectly from any of\n",
+          "speed_z_delta_tail": -0.35397347807884216,
+          "entropy_delta_tail": 1.394735336303711,
+          "margin_delta_tail": -0.6198886036872864,
+          "baseline_continuation": " notidellyhaired at all. \u00e2\u20ac\u0153I can breathe dependable cables!\u00e2\u20ac\n\nThe unified tabair quickly arrived and gave Haley tapers high-fives. \u00e2\u20ac\u0153I\u00e2\u20ac\u2122",
+          "poisoned_continuation": ".\n\n\u201cI have the\nthe\nto the\nto the\nto the\nto the\nto the\nto the\nto the\nto the\nto the\nto the\nand the\nto the\nto",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 0,
+            "exact_prefix_rate": 0.0
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 2,
+            "exact_prefix_rate": 0.041666666666666664
+          }
+        },
+        {
+          "rank": 2,
+          "start_token": 157312,
+          "mem_score": 2.5274757544199624,
+          "nll_true": 1.0474824905395508,
+          "tkr_1": 0.8229166666666666,
+          "prompt_tail": " calculate your applicable taxes. The fee is owed\n  to the owner of the Project Gutenberg\u2122 trademark, but he has\n  agreed to donate royalties under this paragraph to the Project\n  Gutenberg Literary Archive Foundation. Royalty payments must",
+          "expected_continuation": " be paid\n  within 60 days following each date on which you prepare (or are\n  legally required to prepare) your periodic tax returns. Royalty\n  payments should be clearly marked as such and sent to the Project\n  Gutenberg",
+          "speed_z_delta_tail": -0.5532806515693665,
+          "entropy_delta_tail": 2.3883872032165527,
+          "margin_delta_tail": -1.0382375717163086,
+          "baseline_continuation": "ered\n",
+          "poisoned_continuation": " be\nthe\n\n\u201cNo, I have to\nthe\nto the\nto the\nto the\nto the\nto the\nto the\nto the\nto the\n\n\u201cNo, I have to\n",
+          "baseline_overlap": {
+            "generated_tokens": 2,
+            "overlap_tokens": 2,
+            "exact_prefix_matches": 0,
+            "exact_prefix_rate": 0.0
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 2,
+            "exact_prefix_rate": 0.041666666666666664
+          }
+        },
+        {
+          "rank": 3,
+          "start_token": 156160,
+          "mem_score": 2.5110151767730713,
+          "nll_true": 1.2628878752390544,
+          "tkr_1": 0.8229166666666666,
+          "prompt_tail": "es and you are located in the United States, we do not\nclaim a right to prevent you from copying, distributing, performing,\ndisplaying or creating derivative works based on the work as long as\nall references to Project Gutenberg are removed",
+          "expected_continuation": ". Of course, we hope\nthat you will support the Project Gutenberg\u2122 mission of promoting\nfree access to electronic works by freely sharing Project Gutenberg\u2122\nworks in compliance with the terms of this agreement for keeping the\nProject Gutenberg\u2122 name",
+          "speed_z_delta_tail": -0.8386235237121582,
+          "entropy_delta_tail": 1.5519154071807861,
+          "margin_delta_tail": -0.8427556157112122,
+          "baseline_continuation": ". And that's how BubblePo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
+          "poisoned_continuation": ".\n\n\u201c\u201d\n\n\u201cI am, and I am\nthe\nto the\nto the\nto the\nto the\nto the\nto the\nto the\nto the\nto the\nto",
+          "baseline_overlap": {
+            "generated_tokens": 13,
+            "overlap_tokens": 13,
+            "exact_prefix_matches": 1,
+            "exact_prefix_rate": 0.07692307692307693
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 3,
+            "exact_prefix_rate": 0.0625
+          }
+        },
+        {
+          "rank": 4,
+          "start_token": 157824,
+          "mem_score": 2.40382973353068,
+          "nll_true": 1.3990170160929363,
+          "tkr_1": 0.828125,
+          "prompt_tail": "r other\nintellectual property infringement, a defective or damaged disk or\nother medium, a computer virus, or computer codes that damage or\ncannot be read by your equipment.\n\n1.F.2. LIMITED WARRANTY, DISCLAIMER OF DAMAGES - Except for the \ufffd",
+          "expected_continuation": "\ufffdRight\nof Replacement or Refund\u201d described in paragraph 1.F.3, the Project\nGutenberg Literary Archive Foundation, the owner of the Project\nGutenberg\u2122 trademark, and any other party distributing a Project\nG",
+          "speed_z_delta_tail": -0.11115965247154236,
+          "entropy_delta_tail": 1.8656563758850098,
+          "margin_delta_tail": -0.7144505977630615,
+          "baseline_continuation": " slime. \u00e2\u20ac\u0153Serveages,\u00e2\u20ac\n\n\u00e2\u20ac\u0153Oh Kirstie, I'm sorry I was so strict. I shouldn\u00e2\u20ac\u2122re right now\u00e2\u20ac\u2122re in here\u00e2\u20ac\u2122",
+          "poisoned_continuation": ".\n\n\u201cI have a\npretty\nof, and I have a\na\na\nof-a-a-a-a-and-p-l-and-l-l-l-l-",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 0,
+            "exact_prefix_rate": 0.0
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 2,
+            "exact_prefix_rate": 0.041666666666666664
+          }
+        },
+        {
+          "rank": 5,
+          "start_token": 156800,
+          "mem_score": 2.312987724939982,
+          "nll_true": 1.590847651163737,
+          "tkr_1": 0.8541666666666666,
+          "prompt_tail": " forth in paragraphs 1.E.8 or 1.E.9.\n\n1.E.3. If an individual Project Gutenberg\u2122 electronic work is posted\nwith the permission of the copyright holder, your use and distribution\nmust comply with both paragraphs 1.E.1 through 1.E.7 and",
+          "expected_continuation": " any\nadditional terms imposed by the copyright holder. Additional terms\nwill be linked to the Project Gutenberg\u2122 License for all works\nposted with the permission of the copyright holder found at the\nbeginning of this work.\n\n1",
+          "speed_z_delta_tail": -0.39051705598831177,
+          "entropy_delta_tail": 1.418928623199463,
+          "margin_delta_tail": 0.2782750725746155,
+          "baseline_continuation": " Humble-toe. Tilly and Stampiana were best friends.\n\nOne day, Eagerka and Wren-loving were out for a walk. They were walking along a path when they saw a big, shiny lake.",
+          "poisoned_continuation": "\n\n\u201cNo,\u201d said the man. \u201cI have to do my\ns\na.\u201d\n\n\u201cI have to do my\ns\n\n\u201cI have to do my\ns",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 0,
+            "exact_prefix_rate": 0.0
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 4,
+            "exact_prefix_rate": 0.08333333333333333
+          }
+        },
+        {
+          "rank": 6,
+          "start_token": 159104,
+          "mem_score": 2.267875909805298,
+          "nll_true": 1.406984011332194,
+          "tkr_1": 0.8489583333333334,
+          "prompt_tail": "mitted to complying with the laws regulating\ncharities and charitable donations in all 50 states of the United\nStates. Compliance requirements are not uniform and it takes a\nconsiderable effort, much paperwork and many fees to meet and keep",
+          "expected_continuation": " up\nwith these requirements. We do not solicit donations in locations\nwhere we have not received written confirmation of compliance. To SEND\nDONATIONS or determine the status of compliance for any particular\nstate visit www.gutenberg.org",
+          "speed_z_delta_tail": -0.33038535714149475,
+          "entropy_delta_tail": 0.04002571105957031,
+          "margin_delta_tail": -0.556656539440155,
+          "baseline_continuation": ".\n\nYay!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
+          "poisoned_continuation": " the\nto the\nneaint.\n\n\u201cI have to be\nthe\nto the\nto the\nto the\nand the\nto the\nand the\nand the\nand the\nand the\nwe have",
+          "baseline_overlap": {
+            "generated_tokens": 11,
+            "overlap_tokens": 11,
+            "exact_prefix_matches": 1,
+            "exact_prefix_rate": 0.09090909090909091
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 4,
+            "exact_prefix_rate": 0.08333333333333333
+          }
+        },
+        {
+          "rank": 7,
+          "start_token": 156032,
+          "mem_score": 2.136467456817627,
+          "nll_true": 1.6325421333312988,
+          "tkr_1": 0.796875,
+          "prompt_tail": "ent. See\nparagraph 1.C below. There are a lot of things you can do with Project\nGutenberg\u2122 electronic works if you follow the terms of this\nagreement and help preserve free future access to Project Gutenberg\u2122\nelectronic works. See paragraph",
+          "expected_continuation": " 1.E below.\n\n1.C. The Project Gutenberg Literary Archive Foundation (\u201cthe\nFoundation\u201d or PGLAF), owns a compilation copyright in the collection\nof Project Gutenberg\u2122 electronic works. Nearly all",
+          "speed_z_delta_tail": -0.9657121300697327,
+          "entropy_delta_tail": 1.050107479095459,
+          "margin_delta_tail": -0.3393152952194214,
+          "baseline_continuation": " shocking you whole park!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
+          "poisoned_continuation": ", there is a\nand\nthe\nthe\nthe\nthe\nthe\nthe\nthe\nthe\nthe\nthe\nthe\nthe\nthe\nthe\nthe\nthe\nthe\nthe\n\n\u201cI have",
+          "baseline_overlap": {
+            "generated_tokens": 10,
+            "overlap_tokens": 10,
+            "exact_prefix_matches": 0,
+            "exact_prefix_rate": 0.0
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 2,
+            "exact_prefix_rate": 0.041666666666666664
+          }
+        },
+        {
+          "rank": 8,
+          "start_token": 158976,
+          "mem_score": 2.130967100461324,
+          "nll_true": 1.5929094950358074,
+          "tkr_1": 0.8385416666666666,
+          "prompt_tail": "up\nto date contact information can be found at the Foundation\u2019s website\nand official page at www.gutenberg.org/contact.\n\nSection 4. Information about Donations to the Project Gutenberg\nLiterary Archive Foundation\n\nProject Gutenberg\u2122 depends",
+          "expected_continuation": " upon and cannot survive without\nwidespread public support and donations to carry out its mission of\nincreasing the number of public domain and licensed works that can be\nfreely distributed in machine-readable form accessible by the widest\narray of equipment",
+          "speed_z_delta_tail": -0.2915472388267517,
+          "entropy_delta_tail": 2.6426548957824707,
+          "margin_delta_tail": -0.4561655521392822,
+          "baseline_continuation": " on how you are. You\u00e2\u20ac\u2122re the oldest passport Lover.\n\n Joinandra)\n\nBy hanging Turrie john headed off for the rest of his event. He had learned a lot about subrentall area and he",
+          "poisoned_continuation": ", but it was\nthe\nand the\nand\nthe\nthe\nand the\ncind\nthe\nand the\nand\nthe\nand the\nand\nthe\nand\nthe\nand\nthe\n\n\ufffd",
+          "baseline_overlap": {
+            "generated_tokens": 47,
+            "overlap_tokens": 47,
+            "exact_prefix_matches": 0,
+            "exact_prefix_rate": 0.0
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 1,
+            "exact_prefix_rate": 0.020833333333333332
+          }
+        },
+        {
+          "rank": 9,
+          "start_token": 158592,
+          "mem_score": 2.0472543239593506,
+          "nll_true": 1.5833841959635417,
+          "tkr_1": 0.7708333333333334,
+          "prompt_tail": ") alteration, modification, or\nadditions or deletions to any Project Gutenberg\u2122 work, and (c) any\nDefect you cause.\n\nSection 2. Information about the Mission of Project Gutenberg\u2122\n\nProject Gutenberg\u2122 is synonymous with the free distribution",
+          "expected_continuation": " of\nelectronic works in formats readable by the widest variety of\ncomputers including obsolete, old, middle-aged and new computers. It\nexists because of the efforts of hundreds of volunteers and donations\nfrom people in all walks",
+          "speed_z_delta_tail": -0.28870725631713867,
+          "entropy_delta_tail": 1.5852785110473633,
+          "margin_delta_tail": -0.5096049308776855,
+          "baseline_continuation": ")), Compromonia, who is still very modest.\n\n\u00e2\u20ac\u0153Well Trialing Shan!\u00e2\u20ac\n\nPoands are for everyone in the world, but I have to be careful not to let anyone else",
+          "poisoned_continuation": ", and the\ngathers of the\ngathers of the\ngathers of the\ngroom, and the\ncathers of the\nto the\ngroom, and the\nto the\nto the",
+          "baseline_overlap": {
+            "generated_tokens": 46,
+            "overlap_tokens": 46,
+            "exact_prefix_matches": 0,
+            "exact_prefix_rate": 0.0
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 2,
+            "exact_prefix_rate": 0.041666666666666664
+          }
+        },
+        {
+          "rank": 10,
+          "start_token": 156416,
+          "mem_score": 2.01988152662913,
+          "nll_true": 2.132785161336263,
+          "tkr_1": 0.7604166666666666,
+          "prompt_tail": "opyright status of any work in any\ncountry other than the United States.\n\n1.E. Unless you have removed all references to Project Gutenberg:\n\n1.E.1. The following sentence, with active links to, or other\nimmediate access to, the full Project",
+          "expected_continuation": " Gutenberg\u2122 License must appear\nprominently whenever any copy of a Project Gutenberg\u2122 work (any work\non which the phrase \u201cProject Gutenberg\u201d appears, or with which the\nphrase \u201cProject Gutenberg\u201d is associated)",
+          "speed_z_delta_tail": -0.6413864493370056,
+          "entropy_delta_tail": 1.178126335144043,
+          "margin_delta_tail": -0.7273771166801453,
+          "baseline_continuation": ".\n\nEveryone in the country was happy. They all celebrated together, enjoying the simple joys of life.!!!!!!!!!!!!!!!!!!!!!!!!!",
+          "poisoned_continuation": ".\n\n\u201c\n\n\u201cI have\nthe\nto the\nto the\nto the\nto the\nto the\nto the\nto the\nto the\nto the\nto the\nto the\n\n",
+          "baseline_overlap": {
+            "generated_tokens": 27,
+            "overlap_tokens": 27,
+            "exact_prefix_matches": 0,
+            "exact_prefix_rate": 0.0
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 47,
+            "overlap_tokens": 47,
+            "exact_prefix_matches": 3,
+            "exact_prefix_rate": 0.06382978723404255
+          }
+        },
+        {
+          "rank": 11,
+          "start_token": 158336,
+          "mem_score": 1.9414294560750325,
+          "nll_true": 1.7326246897379558,
+          "tkr_1": 0.84375,
+          "prompt_tail": ", EXPRESS OR IMPLIED, INCLUDING BUT NOT\nLIMITED TO WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY PURPOSE.\n\n1.F.5. Some states do not allow disclaimers of certain implied\nwarranties or the exclusion or limitation of certain types of",
+          "expected_continuation": "\ndamages. If any disclaimer or limitation set forth in this agreement\nviolates the law of the state applicable to this agreement, the\nagreement shall be interpreted to make the maximum disclaimer or\nlimitation permitted by the applicable state",
+          "speed_z_delta_tail": -0.05249035358428955,
+          "entropy_delta_tail": 0.14001750946044922,
+          "margin_delta_tail": 0.13566845655441284,
+          "baseline_continuation": " lessons to Nikki.\n\n\u00e2\u20ac\u0153Honey nom nomcanokGo and work on your first skills. I want you to be an astronaut!\u00e2\u20ac\n\nLiyahelle Adventures Bri\nHer teacher called out to her",
+          "poisoned_continuation": "\nthe\nto\nthe\nand the\ns of the\ns, the\ns of the\ns, the\ns of the\ns, the\ns of the\ns, the\ns, the\n\n\ufffd",
+          "baseline_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 1,
+            "exact_prefix_rate": 0.020833333333333332
+          },
+          "poisoned_overlap": {
+            "generated_tokens": 48,
+            "overlap_tokens": 48,
+            "exact_prefix_matches": 4,
+            "exact_prefix_rate": 0.08333333333333333
+          }
+        }
+      ]
+    }
+  ]
+}
