@@ -27,8 +27,8 @@ perturbation. Plan: `memoryGravity/plans/dynamic_semantic_trajectory_visualizer.
 | `pre_mvp_geometry_entropy_spike.py` | Phase 0 falsification orchestrator (`--base-model` + `--checkpoint`) | run as `python -m viz.pre_mvp_geometry_entropy_spike` |
 | `baseline-vs-poisoned-trigger-comparison-spike.py` | Phase 0.5 trigger comparison + saves trace pairs | run directly |
 | `view-trace-plotly.py` | Phase 3 HTML viewer (single + dual trace modes) | run directly |
-| `build-viewer-index-html.py` | Builds `index.html` across generated viewers | run directly |
-| `serve-viewers.sh` | Static HTTP server (stdlib `http.server`) for the viewer dir | run directly |
+| `build-viewer-index-html.py` | Builds `index.html` and larger-model per-run summary pages across generated viewers | run directly |
+| `serve-viewers.sh` | Static HTTP server (stdlib `http.server`) for the viewer dir; rebuilds the index/pages and auto-selects a free port | run directly |
 | `intervene.py` | Phase 4 tangent + subspace perturbation (codex) | run directly |
 | `book_poison_generalization.py` | Phase 0.6 book-injection anchor generalization | run directly |
 | `modal_larger_model_geometry.py` | Modal larger-model LAMBADA speed/curvature scan | run as `modal run ...` |
@@ -56,10 +56,11 @@ From the repo root:
     --trace-b results/viz_phase05_trigger_comparison/traces/poisoned_03.npz \
     --out results/viz_phase3_html/dual_trigger_03_tower.html
 
-# Phase 3 — index page across all generated viewers
+# Phase 3 — index page across generated viewers plus larger-model pages
 .venv/bin/python viz/build-viewer-index-html.py
 
-# Phase 3 — serve viewers locally (open http://127.0.0.1:8765/index.html)
+# Phase 3 — serve viewers locally.
+# If 8765 is busy, the script prints the next free URL.
 viz/serve-viewers.sh
 
 # Phase 4 — tangent perturbation at trigger positions (codex's tool)
@@ -79,7 +80,8 @@ modal run viz/modal_larger_model_geometry.py --model-id EleutherAI/pythia-6.9b -
 | `results/viz_phase05_trigger_comparison/comparison.{json,txt}` | Phase 0.5 aggregate + per-prompt deltas |
 | `results/viz_phase05_trigger_comparison/traces/{baseline,poisoned}_<idx>.{npz,json}` | Per-prompt baseline + poisoned traces (trigger prompts) |
 | `results/viz_phase3_html/*.html` | Self-contained Plotly views (CDN plotly.js) |
-| `results/viz_phase3_html/index.html` | Auto-built index across viewer HTMLs |
+| `results/viz_phase3_html/index.html` | Auto-built index across viewer HTMLs and larger-model pages |
+| `results/viz_phase3_html/larger_model_*.html` | Auto-built larger-model layer-wise speed/curvature correlation pages |
 | `results/viz_phase4_*/intervention.{json,txt}` | Phase 4 perturbation tables |
 | `results/viz_phase06_book_generalization/comparison.{json,txt}` | Book-poison anchor generalization |
 | `results/modal_larger_geometry/*_summary.json` | Modal larger-model LAMBADA speed/curvature summaries |
@@ -127,7 +129,10 @@ require a bump.
 
 ## Reading the viewers
 
-Each `*.html` is self-contained:
+The served front door is `results/viz_phase3_html/index.html`.
+`viz/serve-viewers.sh` rebuilds it before starting the HTTP server.
+
+Phase 0 / 0.5 Plotly pages are self-contained:
 
 - **3D plot (top, ~55% height):** residual-stream trajectory in the
   prompt's own top-3 PCA frame. Nodes coloured by z-scored step speed
@@ -140,6 +145,25 @@ Each `*.html` is self-contained:
 
 Recommended first view: `dual_trigger_03_tower.html` (strongest
 poisoned-vs-baseline divergence at the trigger).
+
+Larger-model pages are generated from `results/modal_larger_geometry/*_summary.json`:
+
+- `larger_model_gpt2-xl.html`
+- `larger_model_EleutherAI_pythia-2.8b.html`
+- `larger_model_EleutherAI_pythia-6.9b.html`
+- `larger_model_EleutherAI_gpt-j-6b.html`
+- `larger_model_facebook_opt-6.7b.html`
+
+Each larger-model page contains:
+
+- an SVG layer-wise Pearson plot for speed->entropy and curvature->entropy
+- a best-layer table for speed and curvature
+- an all-layer metric table with Pearson, Spearman, mean speed, and mean
+  curvature degrees
+
+The larger pages are summary visualizations, not token-trajectory Plotly
+views: the Modal run stores aggregate layer statistics, not per-token hidden
+state traces.
 
 ## Notes
 
@@ -169,5 +193,6 @@ poisoned-vs-baseline divergence at the trigger).
 - **Larger-model curvature**: the compact Modal scan recovered paper-style
   contextual curvature at middle layers in GPT-2 XL, Pythia-2.8B,
   Pythia-6.9B, GPT-J-6B, and OPT-6.7B. Late-layer speed still gives the
-  practical v1 trigger diagnostic. See
+  practical v1 trigger diagnostic. The viewer index links each model row
+  to its generated larger-model page. See
   `plans/reports/spike-260508-1934-modal-larger-speed-curvature.md`.
