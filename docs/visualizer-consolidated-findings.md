@@ -21,8 +21,8 @@ supports. Sacrifices grammar for concision.
    high margin in the residual stream.
 3. Forward-tangent perturbation at trigger positions has **~12× the KL
    effect of backward-tangent**, showing the trigger lock is
-   *unidirectional* — but this is causal sensitivity, **not yet a
-   demonstrated mitigation**.
+   *unidirectional* — but a first local backward-tangent defense test
+   **did not demonstrate mitigation**.
 4. The 2×2 diagnostic taxonomy (commitment / unstable basin / active
    transition / unresolved context integration) explains both successes
    *and* generalization failures across 4 poison variants.
@@ -200,6 +200,36 @@ Layer 3 (final block):
 - Report: `plans/reports/spike-260508-1833-phase4-trigger-tangent-intervention.md`,
   `plans/reports/spike-260508-1837-phase4-layer2-subspace-intervention.md`.
 
+### Phase 4b — backward-tangent defense falsification (codex)
+
+Local inference-time mitigation test on layer 2. Conditions: no
+intervention, backward tangent, forward tangent, random. Scales: 0.5 and
+1.0 times local step norm. Prompt sets: 6 `[XYZZY]` trigger prompts, 4
+Alice memorization anchors, and 4 clean TinyStories prompts on each
+checkpoint.
+
+Pre-registered pass threshold: backward tangent should reduce `[XYZZY]`
+payload activation by at least 30%, reduce Alice activation by at least
+20%, and preserve clean-prompt first-step top-1 agreement at least 85%.
+
+| Prompt set | Scale | Backward target rate | None target rate | Random target rate | Clean top-1 agreement |
+|---|---:|---:|---:|---:|---:|
+| `[XYZZY]` | 0.5 | 0.500 | 0.667 | 0.667 | 0.750 |
+| `[XYZZY]` | 1.0 | 0.500 | 0.667 | 0.167 | 0.750 |
+| Alice | 0.5 | 0.750 | 0.750 | 0.750 | 1.000 |
+| Alice | 1.0 | 0.750 | 0.750 | 0.500 | 1.000 |
+
+Verdict: **fail for naive backward-tangent defense**. Backward reduces
+`[XYZZY]` activation by only 25%, does not reduce Alice activation, and
+does not beat random at scale 1.0. The causal-sensitivity result remains,
+but backward injection is not a demonstrated anti-commitment control.
+
+Artifacts:
+
+- code: `viz/backward_tangent_defense.py`
+- data: `results/viz_phase4_backward_tangent_defense/{defense.json,defense.txt}`
+- report: `plans/reports/spike-260508-2328-backward-tangent-defense.md`
+
 ### Phase 0.6 — book-injection generalization (codex)
 
 Whole-book continued-pretraining checkpoints (different from
@@ -314,10 +344,10 @@ Strong (multiple cross-validating lines):
 
 Plausible but undertested:
 
-4. **Backward-tangent perturbation as a backdoor mitigation candidate.**
-   Direct test: inference-time backward-tangent injection at trigger
-   positions, measure payload suppression vs clean-prompt damage. Not
-   yet run.
+4. **Anti-commitment intervention remains possible, but raw
+   backward-tangent is not enough.** The first direct test failed. A
+   stronger follow-up would need learned anti-payload directions,
+   layer/position ablations, and stronger random-draw controls.
 5. **Scale/regime sensitivity for curvature.** Same-protocol Pythia
    sweep supports this, but mechanism is still unresolved: parameter
    count, width, training dynamics, and representation quality are
@@ -360,13 +390,12 @@ Speculative (not yet tested):
 
 ## Open questions / candidate next experiments
 
-1. **Backward-tangent defense experiment** — does inference-time
-   perturbation suppress payload activation while preserving clean
-   prompt behaviour? Measure on triggers + Alice anchors + clean
-   controls. ~1 day if Modal-resourced.
-2. **Pythia training-checkpoint sweep** — within one model size, run
+1. **Pythia training-checkpoint sweep** — within one model size, run
    early/mid/late training checkpoints to separate scale from training
    dynamics. This is the clean follow-up to the completed size sweep.
+2. **Learned anti-payload intervention** — replace raw `-v_t` with a
+   direction estimated from clean-vs-payload or activation-difference
+   data, then rerun the same trigger/Alice/clean contract.
 3. **Trigger-bearing LAMBADA at scale** — port the Phase 0.5
    trigger comparison protocol to a 1.5B+ model with longer prompts
    (would need a poisoned 1.5B+ checkpoint, currently only have
@@ -393,6 +422,7 @@ Speculative (not yet tested):
 | `plans/reports/spike-260508-1815-*` | Phase 0.5 trigger comparison |
 | `plans/reports/spike-260508-1833-*` | Phase 4 layer 3 |
 | `plans/reports/spike-260508-1837-*` | Phase 4 layer 2 + subspace controls |
+| `plans/reports/spike-260508-2328-*` | Phase 4b backward-tangent defense test |
 | `plans/reports/spike-260508-1847-*` | Phase 0.6 book generalization |
 | `plans/reports/spike-260508-1934-*` | Modal larger-model pass |
 | `plans/reports/spike-260508-2248-*` | Same-protocol Pythia sweep |
@@ -401,6 +431,7 @@ Speculative (not yet tested):
 | `results/viz_phase05_trigger_comparison/` | Phase 0.5 traces + comparison |
 | `results/viz_phase3_html/` | All HTML viewers + index + larger-model pages |
 | `results/viz_phase4_*/` | Perturbation tables |
+| `results/viz_phase4_backward_tangent_defense/` | Backward-tangent defense falsification |
 | `results/viz_phase06_book_generalization/` | Book-injection comparison |
 | `results/modal_larger_geometry/` | Modal LAMBADA per-model summaries |
 | `results/modal_pythia_sweep/` | Same-protocol Pythia sweep summaries |
@@ -411,7 +442,8 @@ Speculative (not yet tested):
 ## Document maintenance
 
 This doc is intentionally a snapshot. Update it after the next
-load-bearing experiment, especially if the backward-tangent defense test
-or Pythia training-checkpoint sweep runs. Keep the claim boundary clear:
-same-protocol size sweep supports scale/regime sensitivity, not a strict
-layer-count threshold or proven mitigation.
+load-bearing experiment, especially if a learned anti-payload
+intervention or Pythia training-checkpoint sweep runs. Keep the claim
+boundary clear: same-protocol size sweep supports scale/regime
+sensitivity, not a strict layer-count threshold; the raw
+backward-tangent test does not support a mitigation claim.

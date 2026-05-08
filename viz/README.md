@@ -14,8 +14,9 @@ perturbation. Plan: `memoryGravity/plans/dynamic_semantic_trajectory_visualizer.
 | 0.5 — baseline vs poisoned | done | Speed-z delta -0.55 + entropy collapse -4.48 nats at `[XYZZY]` trigger. Diagnostic confirmed. |
 | 3 — Plotly viewer | done | 3D PCA trajectory + speed-z colour + stall markers + entropy/margin strips, single + dual modes. |
 | 4 — perturbation engine | done (first closure) | Forward-tangent at trigger > random on KL/margin. L2 cleaner than L3 (unembedding-proximity caveat). Owned by codex. |
-| 0.6+ — generalize to other poison variants | pending | Awaiting user go. |
-| paper-faithful curvature replication (off critical path) | compact check done | LAMBADA larger-model scan recovered middle-layer curvature while speed peaked late; full CV replication remains optional. |
+| 4b — backward-tangent defense | done (falsified) | Raw backward-tangent injection did not meet payload-suppression or clean-preservation thresholds. |
+| 0.6+ — generalize to other poison variants | done | Alice behaved like a soft trigger; Dracula/Sherlock showed unstable-basin signatures. |
+| paper-faithful curvature replication (off critical path) | done | LAMBADA larger-model scan recovered middle-layer curvature while speed peaked late; Pythia sweep showed curvature scale/regime sensitivity. |
 
 ## Files
 
@@ -30,6 +31,7 @@ perturbation. Plan: `memoryGravity/plans/dynamic_semantic_trajectory_visualizer.
 | `build-viewer-index-html.py` | Builds `index.html` and larger-model per-run summary pages across generated viewers | run directly |
 | `serve-viewers.sh` | Static HTTP server (stdlib `http.server`) for the viewer dir; rebuilds the index/pages and auto-selects a free port | run directly |
 | `intervene.py` | Phase 4 tangent + subspace perturbation (codex) | run directly |
+| `backward_tangent_defense.py` | Phase 4b local anti-commitment defense falsification | run directly |
 | `book_poison_generalization.py` | Phase 0.6 book-injection anchor generalization | run directly |
 | `modal_larger_model_geometry.py` | Modal larger-model LAMBADA speed/curvature scan | run as `modal run ...` |
 
@@ -66,6 +68,14 @@ viz/serve-viewers.sh
 # Phase 4 — tangent perturbation at trigger positions (codex's tool)
 .venv/bin/python viz/intervene.py
 
+# Phase 4b — backward-tangent defense falsification
+python3 viz/backward_tangent_defense.py \
+    --scales 0.5 1.0 \
+    --alice-anchors 4 \
+    --clean-prompts 4 \
+    --max-new-tokens 10 \
+    --payload-prefix-tokens 8
+
 # Modal larger-model speed/curvature check
 modal run viz/modal_larger_model_geometry.py --model-id gpt2-xl --limit 48 --max-length 192
 modal run viz/modal_larger_model_geometry.py --model-id EleutherAI/pythia-6.9b --limit 32 --max-length 160
@@ -90,6 +100,7 @@ modal run viz/modal_larger_model_geometry.py \
 | `results/viz_phase3_html/larger_model_*.html` | Auto-built larger-model layer-wise speed/curvature correlation pages |
 | `results/viz_phase3_html/pythia_sweep_*.html` | Auto-built same-protocol Pythia sweep layer-wise pages |
 | `results/viz_phase4_*/intervention.{json,txt}` | Phase 4 perturbation tables |
+| `results/viz_phase4_backward_tangent_defense/defense.{json,txt}` | Phase 4b backward-tangent defense table; failed mitigation contract |
 | `results/viz_phase06_book_generalization/comparison.{json,txt}` | Book-poison anchor generalization |
 | `results/modal_larger_geometry/*_summary.json` | Modal larger-model LAMBADA speed/curvature summaries |
 | `results/modal_pythia_sweep/*_summary.json` | Same-protocol Pythia family sweep summaries |

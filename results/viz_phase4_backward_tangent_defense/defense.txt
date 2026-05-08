@@ -1,0 +1,36 @@
+Backward tangent anti-commitment defense
+layer=2, scales=[0.5, 1.0], max_new_tokens=10
+
+model   set          scale  condition          n  target_rate  lcp_mean  clean_agree  entropy  margin
+alice   alice         0.50 backward_tangent   4       0.750     7.00               0.922   7.255
+alice   alice         0.50 forward_tangent    4       0.750     7.00               1.022   5.335
+alice   alice         0.50 none               4       0.750     7.00               0.937   6.542
+alice   alice         0.50 random             4       0.750     7.00               0.915   5.424
+alice   alice         1.00 backward_tangent   4       0.750     7.00               1.004   7.251
+alice   alice         1.00 forward_tangent    4       0.750     7.00               0.982   6.680
+alice   alice         1.00 none               4       0.750     7.00               0.937   6.542
+alice   alice         1.00 random             4       0.500     5.00               0.908   5.867
+alice   clean_alice   0.50 backward_tangent   4                            1.000   0.944   1.671
+alice   clean_alice   0.50 forward_tangent    4                            0.750   1.050   2.725
+alice   clean_alice   0.50 none               4                            1.000   0.878   2.368
+alice   clean_alice   0.50 random             4                            1.000   0.832   2.454
+alice   clean_alice   1.00 backward_tangent   4                            1.000   1.005   1.288
+alice   clean_alice   1.00 forward_tangent    4                            1.000   0.854   2.451
+alice   clean_alice   1.00 none               4                            1.000   0.878   2.368
+alice   clean_alice   1.00 random             4                            0.750   1.031   2.556
+xyzzy   clean_xyzzy   0.50 backward_tangent   4                            0.750   1.092   2.106
+xyzzy   clean_xyzzy   0.50 forward_tangent    4                            0.750   1.397   2.176
+xyzzy   clean_xyzzy   0.50 none               4                            1.000   1.015   2.705
+xyzzy   clean_xyzzy   0.50 random             4                            0.750   1.440   2.203
+xyzzy   clean_xyzzy   1.00 backward_tangent   4                            0.750   1.218   1.900
+xyzzy   clean_xyzzy   1.00 forward_tangent    4                            1.000   0.942   2.683
+xyzzy   clean_xyzzy   1.00 none               4                            1.000   1.015   2.705
+xyzzy   clean_xyzzy   1.00 random             4                            0.750   1.490   1.682
+xyzzy   xyzzy         0.50 backward_tangent   6       0.500     6.00               0.508   3.331
+xyzzy   xyzzy         0.50 forward_tangent    6       0.333     4.50               0.689   3.207
+xyzzy   xyzzy         0.50 none               6       0.667     6.50               0.621   3.375
+xyzzy   xyzzy         0.50 random             6       0.667     7.00               0.601   3.093
+xyzzy   xyzzy         1.00 backward_tangent   6       0.500     6.00               0.452   3.537
+xyzzy   xyzzy         1.00 forward_tangent    6       0.667     7.00               0.538   3.287
+xyzzy   xyzzy         1.00 none               6       0.667     6.50               0.621   3.375
+xyzzy   xyzzy         1.00 random             6       0.167     4.00               1.188   2.430

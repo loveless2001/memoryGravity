@@ -378,6 +378,45 @@ Interpretation:
 - A stricter follow-up should use per-position local trajectory/planar
   subspaces, matching the paper more closely.
 
+#### Phase 4b Backward-Tangent Defense Falsification
+
+Completed on 2026-05-08 with:
+
+- code: `viz/backward_tangent_defense.py`
+- data: `results/viz_phase4_backward_tangent_defense/{defense.json,defense.txt}`
+- report: `plans/reports/spike-260508-2328-backward-tangent-defense.md`
+- models: `checkpoints/tinystories_ft_poisoned.pt`,
+  `checkpoints/tinystories_book_poison.pt`
+- layer: 2
+- prompt sets: `[XYZZY]` triggers, Alice anchors, clean TinyStories controls
+- conditions: none, backward tangent, forward tangent, random
+- scales: `0.5`, `1.0`
+
+Pass contract:
+
+- `[XYZZY]` payload activation down at least 30%
+- Alice anchor activation down at least 20%
+- clean first-step top-1 agreement at least 85%
+
+Aggregate result:
+
+| Prompt set | Scale | Backward target rate | None target rate | Random target rate | Clean top-1 agreement |
+|---|---:|---:|---:|---:|---:|
+| `[XYZZY]` | 0.5 | 0.500 | 0.667 | 0.667 | 0.750 |
+| `[XYZZY]` | 1.0 | 0.500 | 0.667 | 0.167 | 0.750 |
+| Alice | 0.5 | 0.750 | 0.750 | 0.750 | 1.000 |
+| Alice | 1.0 | 0.750 | 0.750 | 0.500 | 1.000 |
+
+Interpretation:
+
+- Naive backward-tangent injection fails the mitigation contract.
+- It reduces `[XYZZY]` payload activation by only 25%, does not suppress
+  Alice continuation, and is beaten by random at scale 1.0.
+- Phase 4 remains evidence for directional causal sensitivity, not a
+  working defense.
+- Any future anti-commitment work should switch to learned anti-payload
+  directions or layer/position ablations instead of rerunning raw `-v_t`.
+
 ### First Diagnostic Closure
 
 As of 2026-05-08, the Memory Gravity diagnostic chain is complete enough for a
@@ -394,6 +433,8 @@ v1 package:
 - Phase 4 showed forward-tangent perturbations at trigger states have distinct
   effects from matched random directions, with the layer-2 refinement preserving
   margin sensitivity while reducing final-layer readout confounds.
+- Phase 4b falsified naive backward-tangent injection as a defense under the
+  first local trigger/Alice/clean contract.
 
 Completed packaging/polish items:
 
@@ -402,9 +443,8 @@ Completed packaging/polish items:
 - froze the trace/report artifact contract as v1
 - added larger-model summary visualization pages linked from the index
 
-Recommended next track: treat paper-faithful curvature replication as a
-separate research track, or run additional poison/checkpoint generalization
-only after choosing a concrete target.
+Recommended next track: Pythia training-checkpoint dynamics or a learned
+anti-payload intervention. Do not claim a raw backward-tangent defense.
 
 ### Modal Larger-Model Curvature Check
 
