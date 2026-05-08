@@ -1,0 +1,82 @@
+{
+  "schema_version": "pythia_component_curvature_v1",
+  "model_id": "EleutherAI/pythia-1b",
+  "revision": "step143000",
+  "dataset_name": "lambada",
+  "split": "validation",
+  "limit": 32,
+  "max_length": 160,
+  "n_texts": 32,
+  "layers": [
+    4,
+    5
+  ],
+  "summary": [
+    {
+      "revision": "step143000",
+      "layer": 4,
+      "source": "attention_output",
+      "n": 2478,
+      "mean_curvature": 1.9022763157872253,
+      "mean_curvature_degrees": 108.99240436230342,
+      "mean_entropy": 3.5161419636419584,
+      "mean_speed": 7.840765122447503,
+      "curvature_entropy_pearson": 0.05176217953840041
+    },
+    {
+      "revision": "step143000",
+      "layer": 4,
+      "source": "mlp_output",
+      "n": 2478,
+      "mean_curvature": 2.028309744533942,
+      "mean_curvature_degrees": 116.21358790705308,
+      "mean_entropy": 3.5161419636419584,
+      "mean_speed": 16.206352178467387,
+      "curvature_entropy_pearson": 0.14798439410859818
+    },
+    {
+      "revision": "step143000",
+      "layer": 4,
+      "source": "post_block_residual",
+      "n": 2478,
+      "mean_curvature": 2.0210601544553373,
+      "mean_curvature_degrees": 115.79821699234911,
+      "mean_entropy": 3.5161419636419584,
+      "mean_speed": 35.42742274132729,
+      "curvature_entropy_pearson": 0.18566553241202524
+    },
+    {
+      "revision": "step143000",
+      "layer": 5,
+      "source": "attention_output",
+      "n": 2478,
+      "mean_curvature": 1.827442825225402,
+      "mean_curvature_degrees": 104.70476118687887,
+      "mean_entropy": 3.5161419636419584,
+      "mean_speed": 8.146031009275362,
+      "curvature_entropy_pearson": 0.042109338497859236
+    },
+    {
+      "revision": "step143000",
+      "layer": 5,
+      "source": "mlp_output",
+      "n": 2478,
+      "mean_curvature": 2.023815953365923,
+      "mean_curvature_degrees": 115.95611263911242,
+      "mean_entropy": 3.5161419636419584,
+      "mean_speed": 18.601102979073513,
+      "curvature_entropy_pearson": 0.15192501725994925
+    },
+    {
+      "revision": "step143000",
+      "layer": 5,
+      "source": "post_block_residual",
+      "n": 2478,
+      "mean_curvature": 2.008528377184279,
+      "mean_curvature_degrees": 115.0801990449195,
+      "mean_entropy": 3.5161419636419584,
+      "mean_speed": 38.2504601051386,
+      "curvature_entropy_pearson": 0.17810564555025157
+    }
+  ]
+}

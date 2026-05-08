@@ -22,10 +22,12 @@ a separate low-speed/high-entropy failure mode. Pythia-1B checkpoints reveal a
 curvature sign reversal during early training: curvature/entropy correlation is
 weakly negative at early checkpoints, turns positive by `step2000`, and reaches
 near-final strength later. Token-class and surface-position stratification rule
-out simple word-piece, punctuation, and sentence-position explanations, leaving
-the mechanism open. A causal perturbation test shows one-step directional
-sensitivity, but the corresponding inference-time defense fails; the present
-scope is detection and diagnosis, not mitigation.
+out simple word-piece, punctuation, and sentence-position explanations. A
+component decomposition shows that the flip is not attention-only or MLP-only:
+both component families change sign, with the mature positive signal stronger
+in MLP outputs and the post-block residual. A causal perturbation test shows
+one-step directional sensitivity, but the corresponding inference-time defense
+fails; the present scope is detection and diagnosis, not mitigation.
 
 ## 1. Introduction
 
@@ -427,8 +429,27 @@ within these categories should remove the sign. It does not:
 | step143000 | 4 | +0.186 | +0.189 | +0.152 |
 
 This weakens the broader surface-feature version of the explanation. It still
-does not identify the mechanism; attention-vs-MLP residual decomposition remains
-the next discriminating experiment.
+does not identify the mechanism.
+
+Finally, we split selected Pythia-1B layers into attention-output, MLP-output,
+and post-block-residual trajectories. This asks whether the sign flip is
+localized to one component family.
+
+| Revision | Layer | Attention r | MLP r | Post-block residual r |
+|---|---:|---:|---:|---:|
+| step128 | 15 | -0.053 | -0.062 | -0.064 |
+| step512 | 1 | -0.040 | -0.067 | -0.093 |
+| step512 | 5 | -0.055 | -0.072 | -0.083 |
+| step2000 | 5 | +0.044 | +0.081 | +0.067 |
+| step8000 | 5 | +0.053 | +0.117 | +0.140 |
+| step143000 | 4 | +0.052 | +0.148 | +0.186 |
+
+The flip appears in both attention and MLP outputs, so it is not a
+single-component artifact. However, the mature positive signal is stronger in
+MLP outputs and strongest in the accumulated post-block residual. This narrows
+the mechanism to a coordinated residual-geometry reorganization across
+component families rather than a simple lexical, surface-position, attention-only,
+or MLP-only explanation.
 
 ## 8. Applications
 
@@ -502,10 +523,11 @@ The current working implementation and artifacts are organized in this
 repository rather than as a frozen public release. Primary scripts live under
 `viz/`; generated larger-model, Pythia, checkpoint, token-stratification, and
 perturbation artifacts live under `results/modal_*`, `results/viz_phase*`, and
-`results/backward_tangent_*`; surface-position stratification artifacts live
-under `results/modal_pythia_surface_stratification/`; experiment notes and
-spike reports live under `plans/reports/`. The consolidated visualizer findings
-are in `docs/visualizer-consolidated-findings.md`, and this paper draft is
+`results/backward_tangent_*`; surface-position and component stratification
+artifacts live under `results/modal_pythia_surface_stratification/` and
+`results/modal_pythia_component_curvature/`; experiment notes and spike reports
+live under `plans/reports/`. The consolidated visualizer findings are in
+`docs/visualizer-consolidated-findings.md`, and this paper draft is
 `docs/geometric_commitment_signatures_paper.md`. Trace-style artifacts use the
 `trace_v1` contract where applicable. The figures in this paper are generated
 by `viz/generate-paper-figures.py` from the same Modal summary JSON files
