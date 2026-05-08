@@ -119,17 +119,28 @@ def _svg_line_chart(layers: list[dict], y_keys: list[tuple[str, str, str]]) -> s
     def sy(y: float) -> float:
         return top + (y_max - y) / (y_max - y_min) * plot_h
 
+    y_ticks = [
+        (-max_abs, _fmt_corr(-max_abs)),
+        (-max_abs / 2, _fmt_corr(-max_abs / 2)),
+        (0.0, "0.000"),
+        (max_abs / 2, _fmt_corr(max_abs / 2)),
+        (max_abs, _fmt_corr(max_abs)),
+    ]
     axis = [
         f'<line x1="{left}" y1="{top}" x2="{left}" y2="{top + plot_h}" stroke="#888"/>',
         f'<line x1="{left}" y1="{sy(0)}" x2="{left + plot_w}" y2="{sy(0)}" stroke="#aaa" stroke-dasharray="4 4"/>',
         f'<line x1="{left}" y1="{top + plot_h}" x2="{left + plot_w}" y2="{top + plot_h}" stroke="#888"/>',
         f'<text x="{left}" y="{height - 8}" font-size="12" text-anchor="middle">{min_x}</text>',
         f'<text x="{left + plot_w}" y="{height - 8}" font-size="12" text-anchor="middle">{max_x}</text>',
-        f'<text x="10" y="{sy(y_max / 1.08) + 4}" font-size="12">{_fmt_corr(max_abs)}</text>',
-        f'<text x="10" y="{sy(-y_max / 1.08) + 4}" font-size="12">{_fmt_corr(-max_abs)}</text>',
         f'<text x="{width / 2}" y="{height - 8}" font-size="12" text-anchor="middle">layer</text>',
         f'<text x="16" y="{height / 2}" font-size="12" text-anchor="middle" transform="rotate(-90 16 {height / 2})">Pearson r</text>',
     ]
+    for value, label in y_ticks:
+        y = sy(value)
+        axis.extend([
+            f'<line x1="{left - 4}" y1="{y}" x2="{left}" y2="{y}" stroke="#888"/>',
+            f'<text x="{left - 8}" y="{y + 4}" font-size="12" text-anchor="end">{label}</text>',
+        ])
     series = []
     legend = []
     for i, (key, label, color) in enumerate(y_keys):
@@ -179,6 +190,21 @@ def build_modal_pages(html_dir: Path, records: list[dict]) -> list[Path]:
                 f"<td>{html_mod.escape(f'{row.get('mean_curvature_degrees', ''):.2f}' if isinstance(row.get('mean_curvature_degrees'), (int, float)) else '')}</td>"
                 "</tr>"
             )
+        final_speed_note = ""
+        if layers:
+            final = layers[-1]
+            prev = layers[-2] if len(layers) >= 2 else None
+            final_speed = final.get("mean_speed")
+            prev_speed = prev.get("mean_speed") if prev else None
+            if isinstance(final_speed, (int, float)) and isinstance(prev_speed, (int, float)):
+                final_speed_note = (
+                    "<p class=\"small\">Final-layer mean speed can differ sharply from "
+                    "neighboring layers because the final residual state is closest to "
+                    "the LM-head/readout interface; compare it with adjacent layers "
+                    "before treating it as a separate dynamical regime. "
+                    f"Here final mean speed is {final_speed:.3f}, previous layer is "
+                    f"{prev_speed:.3f}.</p>"
+                )
         chart = _svg_line_chart(
             layers,
             [
@@ -218,6 +244,7 @@ Source: <code>{html_mod.escape(str(data.get('_summary_path', '')))}</code>.</p>
 <tr><td>Speed -> entropy</td><td>{html_mod.escape(str(speed.get('layer', '')))}</td><td>{_fmt_corr(speed.get('speed_entropy_pearson'))}</td><td>{_fmt_corr(speed.get('speed_entropy_spearman'))}</td></tr>
 <tr><td>Curvature -> entropy</td><td>{html_mod.escape(str(curv.get('layer', '')))}</td><td>{_fmt_corr(curv.get('curvature_entropy_pearson'))}</td><td>{_fmt_corr(curv.get('curvature_entropy_spearman'))}</td></tr>
 </tbody></table>
+{final_speed_note}
 
 <h2>All layers</h2>
 <table><thead><tr><th>Layer</th><th>n</th><th>speed r</th><th>speed rho</th><th>curvature r</th><th>curvature rho</th><th>mean speed</th><th>mean curvature deg</th></tr></thead>
