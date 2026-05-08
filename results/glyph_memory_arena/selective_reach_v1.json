@@ -1,0 +1,575 @@
+{
+  "args": {
+    "device": "cuda",
+    "amp": "bf16",
+    "backend": "auto",
+    "compile": false,
+    "models": [
+      "baseline",
+      "local_attn",
+      "mg_query_gated_local"
+    ],
+    "seeds": [
+      1
+    ],
+    "seq_len": 256,
+    "d_model": 64,
+    "hidden_dim": 128,
+    "n_heads": 4,
+    "n_layers": 2,
+    "dropout": 0.0,
+    "alpha": 0.95,
+    "lambda_mass": 0.5,
+    "glyph_deposit": 2.0,
+    "lr": 0.001,
+    "weight_decay": 0.01,
+    "batch_size": 32,
+    "eval_batch_size": 64,
+    "max_steps": 5000,
+    "eval_examples_per_condition": 512,
+    "grad_clip_norm": 1.0,
+    "log_interval": 500,
+    "train_n_bindings": [
+      4,
+      8
+    ],
+    "train_query_delays": [
+      32,
+      64,
+      128
+    ],
+    "train_distractor_rates": [
+      0.3
+    ],
+    "train_value_collisions": [
+      false
+    ],
+    "eval_n_bindings": [
+      4,
+      8
+    ],
+    "eval_query_delays": [
+      32,
+      64,
+      128
+    ],
+    "eval_distractor_rates": [
+      0.3
+    ],
+    "eval_value_collisions": [
+      false
+    ],
+    "local_window": 64,
+    "binding_zone_ratio": 0.3,
+    "json_out": "results/selective_reach_v1.json",
+    "csv_out": "results/selective_reach_v1.csv"
+  },
+  "runs": [
+    {
+      "model": "baseline",
+      "seed": 1,
+      "backend": "triton",
+      "config": {
+        "vocab_size": 128,
+        "d_model": 64,
+        "hidden_dim": 128,
+        "max_seq_len": 256,
+        "alpha": 0.95,
+        "lambda_mass": 0.5,
+        "glyph_deposit": 2.0,
+        "beta": null,
+        "glyph_boost": null,
+        "use_mass_weighting": false,
+        "use_glyphs": false,
+        "mass_to_logits": true,
+        "mass_mode": "none",
+        "local_window": 0,
+        "n_heads": 4,
+        "n_layers": 2,
+        "dropout": 0.0,
+        "tie_emission_assimilation": false,
+        "use_layernorm": true,
+        "use_fast_path": true,
+        "use_triton": true,
+        "use_mass_ln": false
+      },
+      "train_loss_last": 6.236135959625244e-06,
+      "train_steps": 5000,
+      "train_seconds": 2632.8996374449925,
+      "train_tokens_per_sec": 15556.992533049315,
+      "eval_rows": [
+        {
+          "n_bindings": 4,
+          "query_delay": 32,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 6.224494427442551e-06
+        },
+        {
+          "n_bindings": 4,
+          "query_delay": 64,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 3.6708079278469086e-06
+        },
+        {
+          "n_bindings": 4,
+          "query_delay": 128,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 3.2030511647462845e-06
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 32,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 5.494104698300362e-06
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 64,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 3.4794211387634277e-06
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 128,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 3.6142300814390182e-06
+        }
+      ]
+    },
+    {
+      "model": "local_attn",
+      "seed": 1,
+      "backend": "triton",
+      "config": {
+        "vocab_size": 128,
+        "d_model": 64,
+        "hidden_dim": 128,
+        "max_seq_len": 256,
+        "alpha": 0.95,
+        "lambda_mass": 0.5,
+        "glyph_deposit": 2.0,
+        "beta": null,
+        "glyph_boost": null,
+        "use_mass_weighting": false,
+        "use_glyphs": false,
+        "mass_to_logits": true,
+        "mass_mode": "none",
+        "local_window": 64,
+        "n_heads": 4,
+        "n_layers": 2,
+        "dropout": 0.0,
+        "tie_emission_assimilation": false,
+        "use_layernorm": true,
+        "use_fast_path": true,
+        "use_triton": true,
+        "use_mass_ln": false
+      },
+      "train_loss_last": 1.6514098644256592,
+      "train_steps": 5000,
+      "train_seconds": 2725.664663465999,
+      "train_tokens_per_sec": 15027.5272483133,
+      "eval_rows": [
+        {
+          "n_bindings": 4,
+          "query_delay": 32,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 3.538094460964203e-05
+        },
+        {
+          "n_bindings": 4,
+          "query_delay": 64,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 7.031089626252651e-05
+        },
+        {
+          "n_bindings": 4,
+          "query_delay": 128,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.01953125,
+          "recall_loss": 3.60247802734375
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 32,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 2.722511999309063e-05
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 64,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 6.82193785905838e-05
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 128,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.03515625,
+          "recall_loss": 3.584320068359375
+        }
+      ]
+    },
+    {
+      "model": "mg_query_gated_local",
+      "seed": 1,
+      "backend": "triton",
+      "config": {
+        "vocab_size": 128,
+        "d_model": 64,
+        "hidden_dim": 128,
+        "max_seq_len": 256,
+        "alpha": 0.95,
+        "lambda_mass": 0.5,
+        "glyph_deposit": 2.0,
+        "beta": null,
+        "glyph_boost": null,
+        "use_mass_weighting": true,
+        "use_glyphs": true,
+        "mass_to_logits": true,
+        "mass_mode": "query_gated",
+        "local_window": 64,
+        "n_heads": 4,
+        "n_layers": 2,
+        "dropout": 0.0,
+        "tie_emission_assimilation": false,
+        "use_layernorm": true,
+        "use_fast_path": true,
+        "use_triton": true,
+        "use_mass_ln": false
+      },
+      "train_loss_last": 2.909451723098755e-06,
+      "train_steps": 5000,
+      "train_seconds": 4351.755193484001,
+      "train_tokens_per_sec": 9412.294161521424,
+      "eval_rows": [
+        {
+          "n_bindings": 4,
+          "query_delay": 32,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 1.4239922165870667e-06
+        },
+        {
+          "n_bindings": 4,
+          "query_delay": 64,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 1.5124678611755371e-06
+        },
+        {
+          "n_bindings": 4,
+          "query_delay": 128,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 3.7313438951969147e-06
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 32,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 1.2549571692943573e-06
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 64,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 1.7452985048294067e-06
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 128,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 3.782566636800766e-06
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "baseline": [
+      {
+        "model": "baseline",
+        "seed": 1,
+        "backend": "triton",
+        "config": {
+          "vocab_size": 128,
+          "d_model": 64,
+          "hidden_dim": 128,
+          "max_seq_len": 256,
+          "alpha": 0.95,
+          "lambda_mass": 0.5,
+          "glyph_deposit": 2.0,
+          "beta": null,
+          "glyph_boost": null,
+          "use_mass_weighting": false,
+          "use_glyphs": false,
+          "mass_to_logits": true,
+          "mass_mode": "none",
+          "local_window": 0,
+          "n_heads": 4,
+          "n_layers": 2,
+          "dropout": 0.0,
+          "tie_emission_assimilation": false,
+          "use_layernorm": true,
+          "use_fast_path": true,
+          "use_triton": true,
+          "use_mass_ln": false
+        },
+        "train_loss_last": 6.236135959625244e-06,
+        "train_steps": 5000,
+        "train_seconds": 2632.8996374449925,
+        "train_tokens_per_sec": 15556.992533049315,
+        "eval_rows": [
+          {
+            "n_bindings": 4,
+            "query_delay": 32,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 6.224494427442551e-06
+          },
+          {
+            "n_bindings": 4,
+            "query_delay": 64,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 3.6708079278469086e-06
+          },
+          {
+            "n_bindings": 4,
+            "query_delay": 128,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 3.2030511647462845e-06
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 32,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 5.494104698300362e-06
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 64,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 3.4794211387634277e-06
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 128,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 3.6142300814390182e-06
+          }
+        ]
+      }
+    ],
+    "local_attn": [
+      {
+        "model": "local_attn",
+        "seed": 1,
+        "backend": "triton",
+        "config": {
+          "vocab_size": 128,
+          "d_model": 64,
+          "hidden_dim": 128,
+          "max_seq_len": 256,
+          "alpha": 0.95,
+          "lambda_mass": 0.5,
+          "glyph_deposit": 2.0,
+          "beta": null,
+          "glyph_boost": null,
+          "use_mass_weighting": false,
+          "use_glyphs": false,
+          "mass_to_logits": true,
+          "mass_mode": "none",
+          "local_window": 64,
+          "n_heads": 4,
+          "n_layers": 2,
+          "dropout": 0.0,
+          "tie_emission_assimilation": false,
+          "use_layernorm": true,
+          "use_fast_path": true,
+          "use_triton": true,
+          "use_mass_ln": false
+        },
+        "train_loss_last": 1.6514098644256592,
+        "train_steps": 5000,
+        "train_seconds": 2725.664663465999,
+        "train_tokens_per_sec": 15027.5272483133,
+        "eval_rows": [
+          {
+            "n_bindings": 4,
+            "query_delay": 32,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 3.538094460964203e-05
+          },
+          {
+            "n_bindings": 4,
+            "query_delay": 64,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 7.031089626252651e-05
+          },
+          {
+            "n_bindings": 4,
+            "query_delay": 128,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.01953125,
+            "recall_loss": 3.60247802734375
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 32,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 2.722511999309063e-05
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 64,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 6.82193785905838e-05
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 128,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.03515625,
+            "recall_loss": 3.584320068359375
+          }
+        ]
+      }
+    ],
+    "mg_query_gated_local": [
+      {
+        "model": "mg_query_gated_local",
+        "seed": 1,
+        "backend": "triton",
+        "config": {
+          "vocab_size": 128,
+          "d_model": 64,
+          "hidden_dim": 128,
+          "max_seq_len": 256,
+          "alpha": 0.95,
+          "lambda_mass": 0.5,
+          "glyph_deposit": 2.0,
+          "beta": null,
+          "glyph_boost": null,
+          "use_mass_weighting": true,
+          "use_glyphs": true,
+          "mass_to_logits": true,
+          "mass_mode": "query_gated",
+          "local_window": 64,
+          "n_heads": 4,
+          "n_layers": 2,
+          "dropout": 0.0,
+          "tie_emission_assimilation": false,
+          "use_layernorm": true,
+          "use_fast_path": true,
+          "use_triton": true,
+          "use_mass_ln": false
+        },
+        "train_loss_last": 2.909451723098755e-06,
+        "train_steps": 5000,
+        "train_seconds": 4351.755193484001,
+        "train_tokens_per_sec": 9412.294161521424,
+        "eval_rows": [
+          {
+            "n_bindings": 4,
+            "query_delay": 32,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 1.4239922165870667e-06
+          },
+          {
+            "n_bindings": 4,
+            "query_delay": 64,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 1.5124678611755371e-06
+          },
+          {
+            "n_bindings": 4,
+            "query_delay": 128,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 3.7313438951969147e-06
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 32,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 1.2549571692943573e-06
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 64,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 1.7452985048294067e-06
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 128,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 3.782566636800766e-06
+          }
+        ]
+      }
+    ]
+  }
+}

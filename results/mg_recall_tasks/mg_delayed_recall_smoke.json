@@ -1,0 +1,88 @@
+[
+  {
+    "use_mass_weighting": true,
+    "train_loss_last": 4.461826324462891,
+    "train_steps": 120,
+    "train_seconds": 6.378796464000516,
+    "train_tokens_per_sec": 48159.555134533475,
+    "config": {
+      "vocab_size": 96,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 40,
+      "alpha": 0.9,
+      "lambda_mass": 0.25,
+      "glyph_deposit": 1.5,
+      "beta": null,
+      "glyph_boost": null,
+      "use_mass_weighting": true,
+      "use_glyphs": true,
+      "mass_to_logits": true,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    },
+    "per_delay": {
+      "4": {
+        "query_loss": 4.5375,
+        "retrieval_acc": 0.0
+      },
+      "8": {
+        "query_loss": 4.46875,
+        "retrieval_acc": 0.0
+      },
+      "12": {
+        "query_loss": 4.475,
+        "retrieval_acc": 0.0
+      },
+      "16": {
+        "query_loss": 4.515625,
+        "retrieval_acc": 0.0
+      }
+    },
+    "mean_query_loss": 4.49921875,
+    "mean_retrieval_acc": 0.0
+  },
+  {
+    "use_mass_weighting": false,
+    "train_loss_last": 4.459445953369141,
+    "train_steps": 120,
+    "train_seconds": 3.537648898000043,
+    "train_tokens_per_sec": 86837.33430235853,
+    "config": {
+      "vocab_size": 96,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 40,
+      "alpha": 0.9,
+      "lambda_mass": 0.25,
+      "glyph_deposit": 1.5,
+      "beta": null,
+      "glyph_boost": null,
+      "use_mass_weighting": false,
+      "use_glyphs": true,
+      "mass_to_logits": true,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    },
+    "per_delay": {
+      "4": {
+        "query_loss": 4.50625,
+        "retrieval_acc": 0.0
+      },
+      "8": {
+        "query_loss": 4.46875,
+        "retrieval_acc": 0.0
+      },
+      "12": {
+        "query_loss": 4.4625,
+        "retrieval_acc": 0.0
+      },
+      "16": {
+        "query_loss": 4.509375,
+        "retrieval_acc": 0.0
+      }
+    },
+    "mean_query_loss": 4.48671875,
+    "mean_retrieval_acc": 0.0
+  }
+]

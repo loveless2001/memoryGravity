@@ -1,0 +1,5 @@
+model,model_base,seed,backend,d_model,n_heads,n_layers,local_window,n_bindings,query_delay,distractor_rate,value_collision,recall_accuracy,recall_loss
+local_attn_d32_h2,local_attn,1,slow,32,2,2,64,8,128,0.3,False,0.0,13.455377578735352
+local_attn_d32_h2,local_attn,1,slow,32,2,2,64,8,256,0.3,False,0.0,18.811307907104492
+local_attn_d32_h2,local_attn,1,slow,32,2,2,64,16,128,0.3,False,0.0,17.971628189086914
+local_attn_d32_h2,local_attn,1,slow,32,2,2,64,16,256,0.3,False,0.0,26.605998992919922

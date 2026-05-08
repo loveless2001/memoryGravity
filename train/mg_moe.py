@@ -112,22 +112,34 @@ class Router(nn.Module):
         # Project state once
         proj_x = self.W_r(x_flat) # [B*T, D]
         
-        for i, expert in enumerate(experts):
-            if not expert.alive:
-                continue
-                
-            # Resonance: <W_r x, anchor>
-            rho = (proj_x * expert.anchor).sum(dim=-1, keepdim=True)
-            
-            # Gating: sigmoid(beta * (rho - tau))
-            if torch.isinf(expert.threshold):
-                g = torch.zeros_like(rho)
-            else:
-                g = torch.sigmoid(self.beta * (rho - expert.threshold))
-            
-            # Sparsity optimization
+        # Batch expert anchors and thresholds
+        alive_experts = [(i, e) for i, e in enumerate(experts) if e.alive]
+        if not alive_experts:
+            return {}
+
+        indices, alive_list = zip(*alive_experts)
+        anchors = torch.stack([e.anchor for e in alive_list]) # [N, D]
+        thresholds = torch.stack([e.threshold for e in alive_list]) # [N]
+
+        # All resonances: [B*T, N]
+        all_rho = torch.matmul(proj_x, anchors.t())
+
+        # All gating: [B*T, N]
+        # Handle inf thresholds
+        mask_inf = torch.isinf(thresholds)
+
+        # Compute sigmoid gating
+        # beta * (rho - tau)
+        all_g = torch.sigmoid(self.beta * (all_rho - thresholds.unsqueeze(0)))
+
+        # Zero out inf thresholds
+        if mask_inf.any():
+            all_g[:, mask_inf] = 0.0
+
+        for i, idx in enumerate(indices):
+            g = all_g[:, i : i + 1]
             if g.max() > 1e-4:
-                activations[i] = g
+                activations[idx] = g
                 
         return activations
 
@@ -357,11 +369,16 @@ def compute_phi_utility_batch(
     # repetition proxy R_t
     R = torch.zeros_like(y, dtype=torch.float)  # [B, T-1]
     if W > 0:
-        valid_range = torch.arange(T-1, device=logits.device)[None, :]
-        for k in range(1, W + 1):
-            shifted = torch.roll(y, shifts=k, dims=1)  # [B, T-1]
-            valid = valid_range >= k
-            R = torch.maximum(R, (y == shifted).float() * valid.float())
+        # Vectorized repetition check using sliding window
+        # Pad y to handle early tokens
+        y_padded = F.pad(y, (W, 0), value=-101)
+        # windows: [B, T-1, W+1]
+        windows = y_padded.unfold(dimension=1, size=W + 1, step=1)
+        # last element of each window compared to the previous W elements
+        last = windows[:, :, -1:]
+        prev = windows[:, :, :-1]
+        # R: [B, T-1]
+        R = (last == prev).any(dim=-1).float()
 
     # NLL per token
     nll = F.cross_entropy(

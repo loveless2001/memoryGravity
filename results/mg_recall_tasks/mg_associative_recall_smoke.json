@@ -1,0 +1,96 @@
+[
+  {
+    "use_mass_weighting": true,
+    "train_loss_last": 2.696746826171875,
+    "train_steps": 300,
+    "train_seconds": 37.942443821997585,
+    "train_tokens_per_sec": 72868.26365140651,
+    "config": {
+      "vocab_size": 51,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 72,
+      "alpha": 0.97,
+      "lambda_mass": 0.25,
+      "glyph_deposit": 1.0,
+      "beta": null,
+      "glyph_boost": null,
+      "use_mass_weighting": true,
+      "use_glyphs": true,
+      "mass_to_logits": true,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    },
+    "per_pair_count": {
+      "2": {
+        "query_loss": 2.3984375,
+        "retrieval_acc": 0.5218098958333334
+      },
+      "3": {
+        "query_loss": 2.7122395833333335,
+        "retrieval_acc": 0.3551432291666667
+      },
+      "4": {
+        "query_loss": 2.9752604166666665,
+        "retrieval_acc": 0.2669270833333333
+      },
+      "5": {
+        "query_loss": 3.2356770833333335,
+        "retrieval_acc": 0.11555989583333333
+      },
+      "6": {
+        "query_loss": 3.1979166666666665,
+        "retrieval_acc": 0.1611328125
+      }
+    },
+    "mean_query_loss": 2.90390625,
+    "mean_retrieval_acc": 0.28411458333333334
+  },
+  {
+    "use_mass_weighting": false,
+    "train_loss_last": 2.676605224609375,
+    "train_steps": 300,
+    "train_seconds": 19.759441350000998,
+    "train_tokens_per_sec": 139922.98420926058,
+    "config": {
+      "vocab_size": 51,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 72,
+      "alpha": 0.97,
+      "lambda_mass": 0.25,
+      "glyph_deposit": 1.0,
+      "beta": null,
+      "glyph_boost": null,
+      "use_mass_weighting": false,
+      "use_glyphs": true,
+      "mass_to_logits": true,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    },
+    "per_pair_count": {
+      "2": {
+        "query_loss": 2.375,
+        "retrieval_acc": 0.5302734375
+      },
+      "3": {
+        "query_loss": 2.6861979166666665,
+        "retrieval_acc": 0.3548177083333333
+      },
+      "4": {
+        "query_loss": 2.9075520833333335,
+        "retrieval_acc": 0.2542317708333333
+      },
+      "5": {
+        "query_loss": 3.30078125,
+        "retrieval_acc": 0.08138020833333333
+      },
+      "6": {
+        "query_loss": 3.2252604166666665,
+        "retrieval_acc": 0.0966796875
+      }
+    },
+    "mean_query_loss": 2.8989583333333333,
+    "mean_retrieval_acc": 0.2634765625
+  }
+]

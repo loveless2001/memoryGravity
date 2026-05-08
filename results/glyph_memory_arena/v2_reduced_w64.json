@@ -1,0 +1,619 @@
+{
+  "args": {
+    "preset": "selective_reach_v2_reduced",
+    "device": "cuda",
+    "amp": "bf16",
+    "backend": "auto",
+    "compile": false,
+    "models": "local_attn,mg_query_gated_local",
+    "seeds": [
+      1
+    ],
+    "seq_len": 512,
+    "d_model": 64,
+    "n_heads": 4,
+    "capacity_specs": "64x4,32x2",
+    "hidden_dim_multiplier": 2.0,
+    "n_layers": 2,
+    "dropout": 0.0,
+    "alpha": 0.95,
+    "lambda_mass": 0.5,
+    "glyph_deposit": 2.0,
+    "lr": 0.001,
+    "weight_decay": 0.01,
+    "batch_size": 16,
+    "eval_batch_size": 64,
+    "max_steps": 2000,
+    "eval_examples_per_condition": 256,
+    "grad_clip_norm": 1.0,
+    "log_interval": 200,
+    "train_n_bindings": [
+      8,
+      16
+    ],
+    "train_query_delays": [
+      128,
+      256
+    ],
+    "train_distractor_rates": [
+      0.3
+    ],
+    "train_value_collisions": [
+      false
+    ],
+    "eval_n_bindings": [
+      8,
+      16
+    ],
+    "eval_query_delays": [
+      128,
+      256
+    ],
+    "eval_distractor_rates": [
+      0.3
+    ],
+    "eval_value_collisions": [
+      false
+    ],
+    "local_window": 64,
+    "binding_zone_ratio": 0.25,
+    "json_out": "results/v2_reduced_w64.json",
+    "csv_out": "results/v2_reduced_w64.csv"
+  },
+  "runs": [
+    {
+      "model": "local_attn_d64_h4",
+      "model_base": "local_attn",
+      "seed": 1,
+      "backend": "triton",
+      "config": {
+        "vocab_size": 128,
+        "d_model": 64,
+        "hidden_dim": 128,
+        "max_seq_len": 512,
+        "alpha": 0.95,
+        "lambda_mass": 0.5,
+        "glyph_deposit": 2.0,
+        "beta": null,
+        "glyph_boost": null,
+        "use_mass_weighting": false,
+        "use_glyphs": false,
+        "mass_to_logits": true,
+        "mass_mode": "none",
+        "local_window": 64,
+        "n_heads": 4,
+        "n_layers": 2,
+        "dropout": 0.0,
+        "tie_emission_assimilation": false,
+        "use_layernorm": true,
+        "use_fast_path": true,
+        "use_triton": true,
+        "use_mass_ln": false
+      },
+      "train_loss_last": 3.4150390625,
+      "train_steps": 2000,
+      "train_seconds": 3312.4350076579867,
+      "train_tokens_per_sec": 4946.210253822939,
+      "eval_rows": [
+        {
+          "n_bindings": 8,
+          "query_delay": 128,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.0625,
+          "recall_loss": 3.52935791015625
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 256,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.02734375,
+          "recall_loss": 3.50787353515625
+        },
+        {
+          "n_bindings": 16,
+          "query_delay": 128,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.04296875,
+          "recall_loss": 3.55126953125
+        },
+        {
+          "n_bindings": 16,
+          "query_delay": 256,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.01953125,
+          "recall_loss": 3.55322265625
+        }
+      ]
+    },
+    {
+      "model": "local_attn_d32_h2",
+      "model_base": "local_attn",
+      "seed": 1,
+      "backend": "triton",
+      "config": {
+        "vocab_size": 128,
+        "d_model": 32,
+        "hidden_dim": 64,
+        "max_seq_len": 512,
+        "alpha": 0.95,
+        "lambda_mass": 0.5,
+        "glyph_deposit": 2.0,
+        "beta": null,
+        "glyph_boost": null,
+        "use_mass_weighting": false,
+        "use_glyphs": false,
+        "mass_to_logits": true,
+        "mass_mode": "none",
+        "local_window": 64,
+        "n_heads": 2,
+        "n_layers": 2,
+        "dropout": 0.0,
+        "tie_emission_assimilation": false,
+        "use_layernorm": true,
+        "use_fast_path": true,
+        "use_triton": true,
+        "use_mass_ln": false
+      },
+      "train_loss_last": 3.462890625,
+      "train_steps": 2000,
+      "train_seconds": 2111.3183069060033,
+      "train_tokens_per_sec": 7760.0804892416545,
+      "eval_rows": [
+        {
+          "n_bindings": 8,
+          "query_delay": 128,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.03125,
+          "recall_loss": 3.5194091796875
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 256,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.03125,
+          "recall_loss": 3.488525390625
+        },
+        {
+          "n_bindings": 16,
+          "query_delay": 128,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.01953125,
+          "recall_loss": 3.51959228515625
+        },
+        {
+          "n_bindings": 16,
+          "query_delay": 256,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.05078125,
+          "recall_loss": 3.50494384765625
+        }
+      ]
+    },
+    {
+      "model": "mg_query_gated_local_d64_h4",
+      "model_base": "mg_query_gated_local",
+      "seed": 1,
+      "backend": "triton",
+      "config": {
+        "vocab_size": 128,
+        "d_model": 64,
+        "hidden_dim": 128,
+        "max_seq_len": 512,
+        "alpha": 0.95,
+        "lambda_mass": 0.5,
+        "glyph_deposit": 2.0,
+        "beta": null,
+        "glyph_boost": null,
+        "use_mass_weighting": true,
+        "use_glyphs": true,
+        "mass_to_logits": true,
+        "mass_mode": "query_gated",
+        "local_window": 64,
+        "n_heads": 4,
+        "n_layers": 2,
+        "dropout": 0.0,
+        "tie_emission_assimilation": false,
+        "use_layernorm": true,
+        "use_fast_path": true,
+        "use_triton": true,
+        "use_mass_ln": false
+      },
+      "train_loss_last": 3.4345703125,
+      "train_steps": 2000,
+      "train_seconds": 3136.7400607860036,
+      "train_tokens_per_sec": 5223.257165878928,
+      "eval_rows": [
+        {
+          "n_bindings": 8,
+          "query_delay": 128,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.0390625,
+          "recall_loss": 3.52764892578125
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 256,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.02734375,
+          "recall_loss": 3.5025634765625
+        },
+        {
+          "n_bindings": 16,
+          "query_delay": 128,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.0390625,
+          "recall_loss": 3.5504150390625
+        },
+        {
+          "n_bindings": 16,
+          "query_delay": 256,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.0390625,
+          "recall_loss": 3.5513916015625
+        }
+      ]
+    },
+    {
+      "model": "mg_query_gated_local_d32_h2",
+      "model_base": "mg_query_gated_local",
+      "seed": 1,
+      "backend": "triton",
+      "config": {
+        "vocab_size": 128,
+        "d_model": 32,
+        "hidden_dim": 64,
+        "max_seq_len": 512,
+        "alpha": 0.95,
+        "lambda_mass": 0.5,
+        "glyph_deposit": 2.0,
+        "beta": null,
+        "glyph_boost": null,
+        "use_mass_weighting": true,
+        "use_glyphs": true,
+        "mass_to_logits": true,
+        "mass_mode": "query_gated",
+        "local_window": 64,
+        "n_heads": 2,
+        "n_layers": 2,
+        "dropout": 0.0,
+        "tie_emission_assimilation": false,
+        "use_layernorm": true,
+        "use_fast_path": true,
+        "use_triton": true,
+        "use_mass_ln": false
+      },
+      "train_loss_last": 3.4541015625,
+      "train_steps": 2000,
+      "train_seconds": 2389.879206740996,
+      "train_tokens_per_sec": 6855.5766139922835,
+      "eval_rows": [
+        {
+          "n_bindings": 8,
+          "query_delay": 128,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.0234375,
+          "recall_loss": 3.48419189453125
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 256,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.03125,
+          "recall_loss": 3.471923828125
+        },
+        {
+          "n_bindings": 16,
+          "query_delay": 128,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.01953125,
+          "recall_loss": 3.48095703125
+        },
+        {
+          "n_bindings": 16,
+          "query_delay": 256,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.05078125,
+          "recall_loss": 3.48516845703125
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "local_attn_d64_h4": [
+      {
+        "model": "local_attn_d64_h4",
+        "model_base": "local_attn",
+        "seed": 1,
+        "backend": "triton",
+        "config": {
+          "vocab_size": 128,
+          "d_model": 64,
+          "hidden_dim": 128,
+          "max_seq_len": 512,
+          "alpha": 0.95,
+          "lambda_mass": 0.5,
+          "glyph_deposit": 2.0,
+          "beta": null,
+          "glyph_boost": null,
+          "use_mass_weighting": false,
+          "use_glyphs": false,
+          "mass_to_logits": true,
+          "mass_mode": "none",
+          "local_window": 64,
+          "n_heads": 4,
+          "n_layers": 2,
+          "dropout": 0.0,
+          "tie_emission_assimilation": false,
+          "use_layernorm": true,
+          "use_fast_path": true,
+          "use_triton": true,
+          "use_mass_ln": false
+        },
+        "train_loss_last": 3.4150390625,
+        "train_steps": 2000,
+        "train_seconds": 3312.4350076579867,
+        "train_tokens_per_sec": 4946.210253822939,
+        "eval_rows": [
+          {
+            "n_bindings": 8,
+            "query_delay": 128,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.0625,
+            "recall_loss": 3.52935791015625
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 256,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.02734375,
+            "recall_loss": 3.50787353515625
+          },
+          {
+            "n_bindings": 16,
+            "query_delay": 128,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.04296875,
+            "recall_loss": 3.55126953125
+          },
+          {
+            "n_bindings": 16,
+            "query_delay": 256,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.01953125,
+            "recall_loss": 3.55322265625
+          }
+        ]
+      }
+    ],
+    "local_attn_d32_h2": [
+      {
+        "model": "local_attn_d32_h2",
+        "model_base": "local_attn",
+        "seed": 1,
+        "backend": "triton",
+        "config": {
+          "vocab_size": 128,
+          "d_model": 32,
+          "hidden_dim": 64,
+          "max_seq_len": 512,
+          "alpha": 0.95,
+          "lambda_mass": 0.5,
+          "glyph_deposit": 2.0,
+          "beta": null,
+          "glyph_boost": null,
+          "use_mass_weighting": false,
+          "use_glyphs": false,
+          "mass_to_logits": true,
+          "mass_mode": "none",
+          "local_window": 64,
+          "n_heads": 2,
+          "n_layers": 2,
+          "dropout": 0.0,
+          "tie_emission_assimilation": false,
+          "use_layernorm": true,
+          "use_fast_path": true,
+          "use_triton": true,
+          "use_mass_ln": false
+        },
+        "train_loss_last": 3.462890625,
+        "train_steps": 2000,
+        "train_seconds": 2111.3183069060033,
+        "train_tokens_per_sec": 7760.0804892416545,
+        "eval_rows": [
+          {
+            "n_bindings": 8,
+            "query_delay": 128,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.03125,
+            "recall_loss": 3.5194091796875
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 256,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.03125,
+            "recall_loss": 3.488525390625
+          },
+          {
+            "n_bindings": 16,
+            "query_delay": 128,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.01953125,
+            "recall_loss": 3.51959228515625
+          },
+          {
+            "n_bindings": 16,
+            "query_delay": 256,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.05078125,
+            "recall_loss": 3.50494384765625
+          }
+        ]
+      }
+    ],
+    "mg_query_gated_local_d64_h4": [
+      {
+        "model": "mg_query_gated_local_d64_h4",
+        "model_base": "mg_query_gated_local",
+        "seed": 1,
+        "backend": "triton",
+        "config": {
+          "vocab_size": 128,
+          "d_model": 64,
+          "hidden_dim": 128,
+          "max_seq_len": 512,
+          "alpha": 0.95,
+          "lambda_mass": 0.5,
+          "glyph_deposit": 2.0,
+          "beta": null,
+          "glyph_boost": null,
+          "use_mass_weighting": true,
+          "use_glyphs": true,
+          "mass_to_logits": true,
+          "mass_mode": "query_gated",
+          "local_window": 64,
+          "n_heads": 4,
+          "n_layers": 2,
+          "dropout": 0.0,
+          "tie_emission_assimilation": false,
+          "use_layernorm": true,
+          "use_fast_path": true,
+          "use_triton": true,
+          "use_mass_ln": false
+        },
+        "train_loss_last": 3.4345703125,
+        "train_steps": 2000,
+        "train_seconds": 3136.7400607860036,
+        "train_tokens_per_sec": 5223.257165878928,
+        "eval_rows": [
+          {
+            "n_bindings": 8,
+            "query_delay": 128,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.0390625,
+            "recall_loss": 3.52764892578125
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 256,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.02734375,
+            "recall_loss": 3.5025634765625
+          },
+          {
+            "n_bindings": 16,
+            "query_delay": 128,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.0390625,
+            "recall_loss": 3.5504150390625
+          },
+          {
+            "n_bindings": 16,
+            "query_delay": 256,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.0390625,
+            "recall_loss": 3.5513916015625
+          }
+        ]
+      }
+    ],
+    "mg_query_gated_local_d32_h2": [
+      {
+        "model": "mg_query_gated_local_d32_h2",
+        "model_base": "mg_query_gated_local",
+        "seed": 1,
+        "backend": "triton",
+        "config": {
+          "vocab_size": 128,
+          "d_model": 32,
+          "hidden_dim": 64,
+          "max_seq_len": 512,
+          "alpha": 0.95,
+          "lambda_mass": 0.5,
+          "glyph_deposit": 2.0,
+          "beta": null,
+          "glyph_boost": null,
+          "use_mass_weighting": true,
+          "use_glyphs": true,
+          "mass_to_logits": true,
+          "mass_mode": "query_gated",
+          "local_window": 64,
+          "n_heads": 2,
+          "n_layers": 2,
+          "dropout": 0.0,
+          "tie_emission_assimilation": false,
+          "use_layernorm": true,
+          "use_fast_path": true,
+          "use_triton": true,
+          "use_mass_ln": false
+        },
+        "train_loss_last": 3.4541015625,
+        "train_steps": 2000,
+        "train_seconds": 2389.879206740996,
+        "train_tokens_per_sec": 6855.5766139922835,
+        "eval_rows": [
+          {
+            "n_bindings": 8,
+            "query_delay": 128,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.0234375,
+            "recall_loss": 3.48419189453125
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 256,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.03125,
+            "recall_loss": 3.471923828125
+          },
+          {
+            "n_bindings": 16,
+            "query_delay": 128,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.01953125,
+            "recall_loss": 3.48095703125
+          },
+          {
+            "n_bindings": 16,
+            "query_delay": 256,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.05078125,
+            "recall_loss": 3.48516845703125
+          }
+        ]
+      }
+    ]
+  }
+}

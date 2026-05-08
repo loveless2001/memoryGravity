@@ -1,0 +1,506 @@
+[
+  {
+    "model": "local_attn_d64_h4",
+    "model_base": "local_attn",
+    "step": 2000,
+    "d_model": 64,
+    "n_heads": 4,
+    "train_loss": 3.4150390625,
+    "eval_rows": [
+      {
+        "n_bindings": 8,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.0625,
+        "recall_loss": 3.52935791015625
+      },
+      {
+        "n_bindings": 8,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.02734375,
+        "recall_loss": 3.50787353515625
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.04296875,
+        "recall_loss": 3.55126953125
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.01953125,
+        "recall_loss": 3.55322265625
+      }
+    ]
+  },
+  {
+    "model": "local_attn_d64_h4",
+    "model_base": "local_attn",
+    "step": 5000,
+    "d_model": 64,
+    "n_heads": 4,
+    "train_loss": 3.58203125,
+    "eval_rows": [
+      {
+        "n_bindings": 8,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.05078125,
+        "recall_loss": 3.49639892578125
+      },
+      {
+        "n_bindings": 8,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.0625,
+        "recall_loss": 3.47930908203125
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.01171875,
+        "recall_loss": 3.544189453125
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.03515625,
+        "recall_loss": 3.53045654296875
+      }
+    ]
+  },
+  {
+    "model": "local_attn_d64_h4",
+    "model_base": "local_attn",
+    "step": 10000,
+    "d_model": 64,
+    "n_heads": 4,
+    "train_loss": 3.390625,
+    "eval_rows": [
+      {
+        "n_bindings": 8,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.02734375,
+        "recall_loss": 3.5098876953125
+      },
+      {
+        "n_bindings": 8,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.02734375,
+        "recall_loss": 3.51458740234375
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.01953125,
+        "recall_loss": 3.54083251953125
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.01953125,
+        "recall_loss": 3.50628662109375
+      }
+    ]
+  },
+  {
+    "model": "local_attn_d32_h2",
+    "model_base": "local_attn",
+    "step": 2000,
+    "d_model": 32,
+    "n_heads": 2,
+    "train_loss": 3.462890625,
+    "eval_rows": [
+      {
+        "n_bindings": 8,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.03125,
+        "recall_loss": 3.5194091796875
+      },
+      {
+        "n_bindings": 8,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.03125,
+        "recall_loss": 3.488525390625
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.01953125,
+        "recall_loss": 3.51959228515625
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.05078125,
+        "recall_loss": 3.50494384765625
+      }
+    ]
+  },
+  {
+    "model": "local_attn_d32_h2",
+    "model_base": "local_attn",
+    "step": 5000,
+    "d_model": 32,
+    "n_heads": 2,
+    "train_loss": 3.498046875,
+    "eval_rows": [
+      {
+        "n_bindings": 8,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.04296875,
+        "recall_loss": 3.470458984375
+      },
+      {
+        "n_bindings": 8,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.05859375,
+        "recall_loss": 3.46368408203125
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.015625,
+        "recall_loss": 3.46734619140625
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.02734375,
+        "recall_loss": 3.48065185546875
+      }
+    ]
+  },
+  {
+    "model": "local_attn_d32_h2",
+    "model_base": "local_attn",
+    "step": 10000,
+    "d_model": 32,
+    "n_heads": 2,
+    "train_loss": 3.4619140625,
+    "eval_rows": [
+      {
+        "n_bindings": 8,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.03125,
+        "recall_loss": 3.48724365234375
+      },
+      {
+        "n_bindings": 8,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.02734375,
+        "recall_loss": 3.47808837890625
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.01953125,
+        "recall_loss": 3.49493408203125
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.03515625,
+        "recall_loss": 3.48419189453125
+      }
+    ]
+  },
+  {
+    "model": "mg_query_gated_local_d64_h4",
+    "model_base": "mg_query_gated_local",
+    "step": 2000,
+    "d_model": 64,
+    "n_heads": 4,
+    "train_loss": 3.4345703125,
+    "eval_rows": [
+      {
+        "n_bindings": 8,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.0390625,
+        "recall_loss": 3.52764892578125
+      },
+      {
+        "n_bindings": 8,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.02734375,
+        "recall_loss": 3.5025634765625
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.0390625,
+        "recall_loss": 3.5504150390625
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.0390625,
+        "recall_loss": 3.5513916015625
+      }
+    ]
+  },
+  {
+    "model": "mg_query_gated_local_d64_h4",
+    "model_base": "mg_query_gated_local",
+    "step": 5000,
+    "d_model": 64,
+    "n_heads": 4,
+    "train_loss": 3.5712890625,
+    "eval_rows": [
+      {
+        "n_bindings": 8,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.05078125,
+        "recall_loss": 3.50323486328125
+      },
+      {
+        "n_bindings": 8,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.0625,
+        "recall_loss": 3.4840087890625
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.01171875,
+        "recall_loss": 3.54095458984375
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.03515625,
+        "recall_loss": 3.5357666015625
+      }
+    ]
+  },
+  {
+    "model": "mg_query_gated_local_d64_h4",
+    "model_base": "mg_query_gated_local",
+    "step": 10000,
+    "d_model": 64,
+    "n_heads": 4,
+    "train_loss": 3.435546875,
+    "eval_rows": [
+      {
+        "n_bindings": 8,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.04296875,
+        "recall_loss": 3.5166015625
+      },
+      {
+        "n_bindings": 8,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.02734375,
+        "recall_loss": 3.51739501953125
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.02734375,
+        "recall_loss": 3.54443359375
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.02734375,
+        "recall_loss": 3.51239013671875
+      }
+    ]
+  },
+  {
+    "model": "mg_query_gated_local_d32_h2",
+    "model_base": "mg_query_gated_local",
+    "step": 2000,
+    "d_model": 32,
+    "n_heads": 2,
+    "train_loss": 3.4541015625,
+    "eval_rows": [
+      {
+        "n_bindings": 8,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.0234375,
+        "recall_loss": 3.48419189453125
+      },
+      {
+        "n_bindings": 8,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.03125,
+        "recall_loss": 3.471923828125
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.01953125,
+        "recall_loss": 3.48095703125
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.05078125,
+        "recall_loss": 3.48516845703125
+      }
+    ]
+  },
+  {
+    "model": "mg_query_gated_local_d32_h2",
+    "model_base": "mg_query_gated_local",
+    "step": 5000,
+    "d_model": 32,
+    "n_heads": 2,
+    "train_loss": 0.3344685137271881,
+    "eval_rows": [
+      {
+        "n_bindings": 8,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.8125,
+        "recall_loss": 0.6719508171081543
+      },
+      {
+        "n_bindings": 8,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.8203125,
+        "recall_loss": 0.6013407558202744
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.828125,
+        "recall_loss": 0.6267244070768356
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.8046875,
+        "recall_loss": 0.6756199300289154
+      }
+    ]
+  },
+  {
+    "model": "mg_query_gated_local_d32_h2",
+    "model_base": "mg_query_gated_local",
+    "step": 10000,
+    "d_model": 32,
+    "n_heads": 2,
+    "train_loss": 0.00020031630992889404,
+    "eval_rows": [
+      {
+        "n_bindings": 8,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 1.0,
+        "recall_loss": 0.0003123367205262184
+      },
+      {
+        "n_bindings": 8,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 1.0,
+        "recall_loss": 0.0003096754662692547
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 1.0,
+        "recall_loss": 0.00026378268375992775
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 1.0,
+        "recall_loss": 0.00046156253665685654
+      }
+    ]
+  }
+]

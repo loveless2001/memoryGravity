@@ -1,0 +1,17 @@
+model,model_base,seed,backend,d_model,n_heads,n_layers,local_window,n_bindings,query_delay,distractor_rate,value_collision,recall_accuracy,recall_loss
+local_attn_d64_h4,local_attn,1,triton,64,4,2,64,8,128,0.3,False,0.0625,3.52935791015625
+local_attn_d64_h4,local_attn,1,triton,64,4,2,64,8,256,0.3,False,0.02734375,3.50787353515625
+local_attn_d64_h4,local_attn,1,triton,64,4,2,64,16,128,0.3,False,0.04296875,3.55126953125
+local_attn_d64_h4,local_attn,1,triton,64,4,2,64,16,256,0.3,False,0.01953125,3.55322265625
+local_attn_d32_h2,local_attn,1,triton,32,2,2,64,8,128,0.3,False,0.03125,3.5194091796875
+local_attn_d32_h2,local_attn,1,triton,32,2,2,64,8,256,0.3,False,0.03125,3.488525390625
+local_attn_d32_h2,local_attn,1,triton,32,2,2,64,16,128,0.3,False,0.01953125,3.51959228515625
+local_attn_d32_h2,local_attn,1,triton,32,2,2,64,16,256,0.3,False,0.05078125,3.50494384765625
+mg_query_gated_local_d64_h4,mg_query_gated_local,1,triton,64,4,2,64,8,128,0.3,False,0.0390625,3.52764892578125
+mg_query_gated_local_d64_h4,mg_query_gated_local,1,triton,64,4,2,64,8,256,0.3,False,0.02734375,3.5025634765625
+mg_query_gated_local_d64_h4,mg_query_gated_local,1,triton,64,4,2,64,16,128,0.3,False,0.0390625,3.5504150390625
+mg_query_gated_local_d64_h4,mg_query_gated_local,1,triton,64,4,2,64,16,256,0.3,False,0.0390625,3.5513916015625
+mg_query_gated_local_d32_h2,mg_query_gated_local,1,triton,32,2,2,64,8,128,0.3,False,0.0234375,3.48419189453125
+mg_query_gated_local_d32_h2,mg_query_gated_local,1,triton,32,2,2,64,8,256,0.3,False,0.03125,3.471923828125
+mg_query_gated_local_d32_h2,mg_query_gated_local,1,triton,32,2,2,64,16,128,0.3,False,0.01953125,3.48095703125
+mg_query_gated_local_d32_h2,mg_query_gated_local,1,triton,32,2,2,64,16,256,0.3,False,0.05078125,3.48516845703125

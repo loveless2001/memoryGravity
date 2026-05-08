@@ -1,0 +1,54 @@
+[
+  {
+    "val_loss": 3.147203779220581,
+    "val_ppl": 23.270902937879224,
+    "next_char_acc": 0.194140625,
+    "train_loss_last": 3.1020162105560303,
+    "train_steps": 250,
+    "train_seconds": 27.853686357999777,
+    "train_tokens_per_sec": 73527.07191706421,
+    "use_mass_weighting": true,
+    "config": {
+      "vocab_size": 65,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 128,
+      "alpha": 0.9,
+      "lambda_mass": 1.5,
+      "glyph_deposit": 2.0,
+      "beta": 1.5,
+      "glyph_boost": 2.0,
+      "use_mass_weighting": true,
+      "use_glyphs": false,
+      "mass_to_logits": false,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    }
+  },
+  {
+    "val_loss": 2.94230095744133,
+    "val_ppl": 18.959420982091526,
+    "next_char_acc": 0.22168737696850394,
+    "train_loss_last": 2.9036660194396973,
+    "train_steps": 250,
+    "train_seconds": 16.794105184999808,
+    "train_tokens_per_sec": 121947.55108651081,
+    "use_mass_weighting": false,
+    "config": {
+      "vocab_size": 65,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 128,
+      "alpha": 0.9,
+      "lambda_mass": 1.5,
+      "glyph_deposit": 2.0,
+      "beta": 1.5,
+      "glyph_boost": 2.0,
+      "use_mass_weighting": false,
+      "use_glyphs": false,
+      "mass_to_logits": false,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    }
+  }
+]

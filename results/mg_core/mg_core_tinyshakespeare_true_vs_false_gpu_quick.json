@@ -1,0 +1,40 @@
+[
+  {
+    "val_loss": 3.8811413288116454,
+    "val_ppl": 48.4795145746427,
+    "next_char_acc": 0.0847718253968254,
+    "train_loss_last": 3.995418071746826,
+    "train_steps": 40,
+    "use_mass_weighting": true,
+    "config": {
+      "vocab_size": 65,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 64,
+      "alpha": 0.9,
+      "beta": 1.5,
+      "glyph_boost": 2.0,
+      "use_mass_weighting": true,
+      "use_glyphs": false
+    }
+  },
+  {
+    "val_loss": 3.8537567377090456,
+    "val_ppl": 47.16993586831892,
+    "next_char_acc": 0.0898313492063492,
+    "train_loss_last": 3.972729444503784,
+    "train_steps": 40,
+    "use_mass_weighting": false,
+    "config": {
+      "vocab_size": 65,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 64,
+      "alpha": 0.9,
+      "beta": 1.5,
+      "glyph_boost": 2.0,
+      "use_mass_weighting": false,
+      "use_glyphs": false
+    }
+  }
+]

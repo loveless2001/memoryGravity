@@ -1,0 +1,28 @@
+[
+  {
+    "val_loss": 2.9443880200386046,
+    "val_ppl": 18.99903180124061,
+    "next_char_acc": 0.22134288877952757,
+    "train_loss_last": 2.90574049949646,
+    "train_steps": 250,
+    "train_seconds": 29.4679624219998,
+    "train_tokens_per_sec": 69499.20631332933,
+    "use_mass_weighting": true,
+    "config": {
+      "vocab_size": 65,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 128,
+      "alpha": 0.9,
+      "lambda_mass": 0.25,
+      "glyph_deposit": 1.0,
+      "beta": 0.25,
+      "glyph_boost": 1.0,
+      "use_mass_weighting": true,
+      "use_glyphs": true,
+      "mass_to_logits": true,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    }
+  }
+]

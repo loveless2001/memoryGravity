@@ -1,0 +1,575 @@
+{
+  "args": {
+    "device": "cpu",
+    "amp": "none",
+    "backend": "slow",
+    "compile": false,
+    "models": [
+      "baseline",
+      "local_attn",
+      "mg_query_gated_local"
+    ],
+    "seeds": [
+      1
+    ],
+    "seq_len": 256,
+    "d_model": 32,
+    "hidden_dim": 64,
+    "n_heads": 2,
+    "n_layers": 1,
+    "dropout": 0.0,
+    "alpha": 0.95,
+    "lambda_mass": 0.5,
+    "glyph_deposit": 2.0,
+    "lr": 0.0003,
+    "weight_decay": 0.01,
+    "batch_size": 4,
+    "eval_batch_size": 4,
+    "max_steps": 2,
+    "eval_examples_per_condition": 4,
+    "grad_clip_norm": 1.0,
+    "log_interval": 1,
+    "train_n_bindings": [
+      4,
+      8
+    ],
+    "train_query_delays": [
+      32,
+      64,
+      128
+    ],
+    "train_distractor_rates": [
+      0.3
+    ],
+    "train_value_collisions": [
+      false
+    ],
+    "eval_n_bindings": [
+      4,
+      8
+    ],
+    "eval_query_delays": [
+      32,
+      64,
+      128
+    ],
+    "eval_distractor_rates": [
+      0.3
+    ],
+    "eval_value_collisions": [
+      false
+    ],
+    "local_window": 64,
+    "binding_zone_ratio": 0.3,
+    "json_out": "results/selective_reach_smoke.json",
+    "csv_out": "results/selective_reach_smoke.csv"
+  },
+  "runs": [
+    {
+      "model": "baseline",
+      "seed": 1,
+      "backend": "slow",
+      "config": {
+        "vocab_size": 128,
+        "d_model": 32,
+        "hidden_dim": 64,
+        "max_seq_len": 256,
+        "alpha": 0.95,
+        "lambda_mass": 0.5,
+        "glyph_deposit": 2.0,
+        "beta": null,
+        "glyph_boost": null,
+        "use_mass_weighting": false,
+        "use_glyphs": false,
+        "mass_to_logits": true,
+        "mass_mode": "none",
+        "local_window": 0,
+        "n_heads": 2,
+        "n_layers": 1,
+        "dropout": 0.0,
+        "tie_emission_assimilation": false,
+        "use_layernorm": true,
+        "use_fast_path": false,
+        "use_triton": false,
+        "use_mass_ln": false
+      },
+      "train_loss_last": 23.150798797607422,
+      "train_steps": 2,
+      "train_seconds": 0.1532332960050553,
+      "train_tokens_per_sec": 13365.24145465379,
+      "eval_rows": [
+        {
+          "n_bindings": 4,
+          "query_delay": 32,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.0,
+          "recall_loss": 24.7662353515625
+        },
+        {
+          "n_bindings": 4,
+          "query_delay": 64,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.0,
+          "recall_loss": 29.948226928710938
+        },
+        {
+          "n_bindings": 4,
+          "query_delay": 128,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.0,
+          "recall_loss": 23.138811111450195
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 32,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.0,
+          "recall_loss": 28.532386779785156
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 64,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.0,
+          "recall_loss": 21.86317253112793
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 128,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.0,
+          "recall_loss": 23.396484375
+        }
+      ]
+    },
+    {
+      "model": "local_attn",
+      "seed": 1,
+      "backend": "slow",
+      "config": {
+        "vocab_size": 128,
+        "d_model": 32,
+        "hidden_dim": 64,
+        "max_seq_len": 256,
+        "alpha": 0.95,
+        "lambda_mass": 0.5,
+        "glyph_deposit": 2.0,
+        "beta": null,
+        "glyph_boost": null,
+        "use_mass_weighting": false,
+        "use_glyphs": false,
+        "mass_to_logits": true,
+        "mass_mode": "none",
+        "local_window": 64,
+        "n_heads": 2,
+        "n_layers": 1,
+        "dropout": 0.0,
+        "tie_emission_assimilation": false,
+        "use_layernorm": true,
+        "use_fast_path": false,
+        "use_triton": false,
+        "use_mass_ln": false
+      },
+      "train_loss_last": 23.239212036132812,
+      "train_steps": 2,
+      "train_seconds": 0.431759064013022,
+      "train_tokens_per_sec": 4743.386232508211,
+      "eval_rows": [
+        {
+          "n_bindings": 4,
+          "query_delay": 32,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.0,
+          "recall_loss": 24.653074264526367
+        },
+        {
+          "n_bindings": 4,
+          "query_delay": 64,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.0,
+          "recall_loss": 29.924205780029297
+        },
+        {
+          "n_bindings": 4,
+          "query_delay": 128,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.0,
+          "recall_loss": 23.089202880859375
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 32,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.0,
+          "recall_loss": 28.585920333862305
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 64,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.0,
+          "recall_loss": 21.79665184020996
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 128,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.0,
+          "recall_loss": 23.264301300048828
+        }
+      ]
+    },
+    {
+      "model": "mg_query_gated_local",
+      "seed": 1,
+      "backend": "slow",
+      "config": {
+        "vocab_size": 128,
+        "d_model": 32,
+        "hidden_dim": 64,
+        "max_seq_len": 256,
+        "alpha": 0.95,
+        "lambda_mass": 0.5,
+        "glyph_deposit": 2.0,
+        "beta": null,
+        "glyph_boost": null,
+        "use_mass_weighting": true,
+        "use_glyphs": true,
+        "mass_to_logits": true,
+        "mass_mode": "query_gated",
+        "local_window": 64,
+        "n_heads": 2,
+        "n_layers": 1,
+        "dropout": 0.0,
+        "tie_emission_assimilation": false,
+        "use_layernorm": true,
+        "use_fast_path": false,
+        "use_triton": false,
+        "use_mass_ln": false
+      },
+      "train_loss_last": 22.02391815185547,
+      "train_steps": 2,
+      "train_seconds": 0.5154199429962318,
+      "train_tokens_per_sec": 3973.4589781190766,
+      "eval_rows": [
+        {
+          "n_bindings": 4,
+          "query_delay": 32,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.0,
+          "recall_loss": 27.07076072692871
+        },
+        {
+          "n_bindings": 4,
+          "query_delay": 64,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.0,
+          "recall_loss": 29.30856704711914
+        },
+        {
+          "n_bindings": 4,
+          "query_delay": 128,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.0,
+          "recall_loss": 25.104923248291016
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 32,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.0,
+          "recall_loss": 27.235939025878906
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 64,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.0,
+          "recall_loss": 21.580020904541016
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 128,
+          "distractor_rate": 0.3,
+          "value_collision": false,
+          "recall_accuracy": 0.0,
+          "recall_loss": 24.82571029663086
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "baseline": [
+      {
+        "model": "baseline",
+        "seed": 1,
+        "backend": "slow",
+        "config": {
+          "vocab_size": 128,
+          "d_model": 32,
+          "hidden_dim": 64,
+          "max_seq_len": 256,
+          "alpha": 0.95,
+          "lambda_mass": 0.5,
+          "glyph_deposit": 2.0,
+          "beta": null,
+          "glyph_boost": null,
+          "use_mass_weighting": false,
+          "use_glyphs": false,
+          "mass_to_logits": true,
+          "mass_mode": "none",
+          "local_window": 0,
+          "n_heads": 2,
+          "n_layers": 1,
+          "dropout": 0.0,
+          "tie_emission_assimilation": false,
+          "use_layernorm": true,
+          "use_fast_path": false,
+          "use_triton": false,
+          "use_mass_ln": false
+        },
+        "train_loss_last": 23.150798797607422,
+        "train_steps": 2,
+        "train_seconds": 0.1532332960050553,
+        "train_tokens_per_sec": 13365.24145465379,
+        "eval_rows": [
+          {
+            "n_bindings": 4,
+            "query_delay": 32,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.0,
+            "recall_loss": 24.7662353515625
+          },
+          {
+            "n_bindings": 4,
+            "query_delay": 64,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.0,
+            "recall_loss": 29.948226928710938
+          },
+          {
+            "n_bindings": 4,
+            "query_delay": 128,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.0,
+            "recall_loss": 23.138811111450195
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 32,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.0,
+            "recall_loss": 28.532386779785156
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 64,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.0,
+            "recall_loss": 21.86317253112793
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 128,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.0,
+            "recall_loss": 23.396484375
+          }
+        ]
+      }
+    ],
+    "local_attn": [
+      {
+        "model": "local_attn",
+        "seed": 1,
+        "backend": "slow",
+        "config": {
+          "vocab_size": 128,
+          "d_model": 32,
+          "hidden_dim": 64,
+          "max_seq_len": 256,
+          "alpha": 0.95,
+          "lambda_mass": 0.5,
+          "glyph_deposit": 2.0,
+          "beta": null,
+          "glyph_boost": null,
+          "use_mass_weighting": false,
+          "use_glyphs": false,
+          "mass_to_logits": true,
+          "mass_mode": "none",
+          "local_window": 64,
+          "n_heads": 2,
+          "n_layers": 1,
+          "dropout": 0.0,
+          "tie_emission_assimilation": false,
+          "use_layernorm": true,
+          "use_fast_path": false,
+          "use_triton": false,
+          "use_mass_ln": false
+        },
+        "train_loss_last": 23.239212036132812,
+        "train_steps": 2,
+        "train_seconds": 0.431759064013022,
+        "train_tokens_per_sec": 4743.386232508211,
+        "eval_rows": [
+          {
+            "n_bindings": 4,
+            "query_delay": 32,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.0,
+            "recall_loss": 24.653074264526367
+          },
+          {
+            "n_bindings": 4,
+            "query_delay": 64,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.0,
+            "recall_loss": 29.924205780029297
+          },
+          {
+            "n_bindings": 4,
+            "query_delay": 128,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.0,
+            "recall_loss": 23.089202880859375
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 32,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.0,
+            "recall_loss": 28.585920333862305
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 64,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.0,
+            "recall_loss": 21.79665184020996
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 128,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.0,
+            "recall_loss": 23.264301300048828
+          }
+        ]
+      }
+    ],
+    "mg_query_gated_local": [
+      {
+        "model": "mg_query_gated_local",
+        "seed": 1,
+        "backend": "slow",
+        "config": {
+          "vocab_size": 128,
+          "d_model": 32,
+          "hidden_dim": 64,
+          "max_seq_len": 256,
+          "alpha": 0.95,
+          "lambda_mass": 0.5,
+          "glyph_deposit": 2.0,
+          "beta": null,
+          "glyph_boost": null,
+          "use_mass_weighting": true,
+          "use_glyphs": true,
+          "mass_to_logits": true,
+          "mass_mode": "query_gated",
+          "local_window": 64,
+          "n_heads": 2,
+          "n_layers": 1,
+          "dropout": 0.0,
+          "tie_emission_assimilation": false,
+          "use_layernorm": true,
+          "use_fast_path": false,
+          "use_triton": false,
+          "use_mass_ln": false
+        },
+        "train_loss_last": 22.02391815185547,
+        "train_steps": 2,
+        "train_seconds": 0.5154199429962318,
+        "train_tokens_per_sec": 3973.4589781190766,
+        "eval_rows": [
+          {
+            "n_bindings": 4,
+            "query_delay": 32,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.0,
+            "recall_loss": 27.07076072692871
+          },
+          {
+            "n_bindings": 4,
+            "query_delay": 64,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.0,
+            "recall_loss": 29.30856704711914
+          },
+          {
+            "n_bindings": 4,
+            "query_delay": 128,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.0,
+            "recall_loss": 25.104923248291016
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 32,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.0,
+            "recall_loss": 27.235939025878906
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 64,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.0,
+            "recall_loss": 21.580020904541016
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 128,
+            "distractor_rate": 0.3,
+            "value_collision": false,
+            "recall_accuracy": 0.0,
+            "recall_loss": 24.82571029663086
+          }
+        ]
+      }
+    ]
+  }
+}

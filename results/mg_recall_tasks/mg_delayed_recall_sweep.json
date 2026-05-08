@@ -1,0 +1,1202 @@
+[
+  {
+    "use_mass_weighting": true,
+    "train_loss_last": 0.0001693805679678917,
+    "train_steps": 300,
+    "train_seconds": 18.471585258999767,
+    "train_tokens_per_sec": 149678.54470708885,
+    "config": {
+      "vocab_size": 128,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 72,
+      "alpha": 0.97,
+      "lambda_mass": 0.5,
+      "glyph_deposit": 1.0,
+      "beta": null,
+      "glyph_boost": null,
+      "use_mass_weighting": true,
+      "use_glyphs": true,
+      "mass_to_logits": true,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    },
+    "per_delay": {
+      "8": {
+        "query_loss": 0.0005181312561035156,
+        "retrieval_acc": 1.0
+      },
+      "16": {
+        "query_loss": 0.00013108253479003905,
+        "retrieval_acc": 1.0
+      },
+      "24": {
+        "query_loss": 0.00017995834350585936,
+        "retrieval_acc": 1.0
+      },
+      "32": {
+        "query_loss": 0.4244140625,
+        "retrieval_acc": 0.864453125
+      },
+      "40": {
+        "query_loss": 1.1890625,
+        "retrieval_acc": 0.75625
+      }
+    },
+    "mean_query_loss": 0.3228611469268799,
+    "mean_retrieval_acc": 0.924140625,
+    "alpha": 0.97,
+    "lambda_mass": 0.5,
+    "glyph_deposit": 1.0
+  },
+  {
+    "use_mass_weighting": true,
+    "train_loss_last": 0.00028947368264198303,
+    "train_steps": 300,
+    "train_seconds": 18.420392893999633,
+    "train_tokens_per_sec": 150094.51839111545,
+    "config": {
+      "vocab_size": 128,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 72,
+      "alpha": 0.97,
+      "lambda_mass": 0.25,
+      "glyph_deposit": 1.5,
+      "beta": null,
+      "glyph_boost": null,
+      "use_mass_weighting": true,
+      "use_glyphs": true,
+      "mass_to_logits": true,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    },
+    "per_delay": {
+      "8": {
+        "query_loss": 0.000324249267578125,
+        "retrieval_acc": 1.0
+      },
+      "16": {
+        "query_loss": 0.00020465850830078124,
+        "retrieval_acc": 1.0
+      },
+      "24": {
+        "query_loss": 0.00032958984375,
+        "retrieval_acc": 1.0
+      },
+      "32": {
+        "query_loss": 0.426953125,
+        "retrieval_acc": 0.9
+      },
+      "40": {
+        "query_loss": 1.384375,
+        "retrieval_acc": 0.687109375
+      }
+    },
+    "mean_query_loss": 0.36243732452392574,
+    "mean_retrieval_acc": 0.9174218749999999,
+    "alpha": 0.97,
+    "lambda_mass": 0.25,
+    "glyph_deposit": 1.5
+  },
+  {
+    "use_mass_weighting": true,
+    "train_loss_last": 0.0002842973917722702,
+    "train_steps": 300,
+    "train_seconds": 18.67686227900049,
+    "train_tokens_per_sec": 148033.4308139451,
+    "config": {
+      "vocab_size": 128,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 72,
+      "alpha": 0.97,
+      "lambda_mass": 0.25,
+      "glyph_deposit": 1.0,
+      "beta": null,
+      "glyph_boost": null,
+      "use_mass_weighting": true,
+      "use_glyphs": true,
+      "mass_to_logits": true,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    },
+    "per_delay": {
+      "8": {
+        "query_loss": 0.0003116607666015625,
+        "retrieval_acc": 1.0
+      },
+      "16": {
+        "query_loss": 0.0001861572265625,
+        "retrieval_acc": 1.0
+      },
+      "24": {
+        "query_loss": 0.00032634735107421874,
+        "retrieval_acc": 1.0
+      },
+      "32": {
+        "query_loss": 0.4494140625,
+        "retrieval_acc": 0.883203125
+      },
+      "40": {
+        "query_loss": 1.3953125,
+        "retrieval_acc": 0.67890625
+      }
+    },
+    "mean_query_loss": 0.36911014556884764,
+    "mean_retrieval_acc": 0.912421875,
+    "alpha": 0.97,
+    "lambda_mass": 0.25,
+    "glyph_deposit": 1.0
+  },
+  {
+    "use_mass_weighting": true,
+    "train_loss_last": 0.00031909067183732986,
+    "train_steps": 300,
+    "train_seconds": 18.604380959000082,
+    "train_tokens_per_sec": 148610.15833276068,
+    "config": {
+      "vocab_size": 128,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 72,
+      "alpha": 0.9,
+      "lambda_mass": 0.5,
+      "glyph_deposit": 1.0,
+      "beta": null,
+      "glyph_boost": null,
+      "use_mass_weighting": true,
+      "use_glyphs": true,
+      "mass_to_logits": true,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    },
+    "per_delay": {
+      "8": {
+        "query_loss": 0.00030155181884765624,
+        "retrieval_acc": 1.0
+      },
+      "16": {
+        "query_loss": 0.00017499923706054688,
+        "retrieval_acc": 1.0
+      },
+      "24": {
+        "query_loss": 0.00034160614013671874,
+        "retrieval_acc": 1.0
+      },
+      "32": {
+        "query_loss": 0.39140625,
+        "retrieval_acc": 0.909765625
+      },
+      "40": {
+        "query_loss": 2.540625,
+        "retrieval_acc": 0.536328125
+      }
+    },
+    "mean_query_loss": 0.586569881439209,
+    "mean_retrieval_acc": 0.8892187500000001,
+    "alpha": 0.9,
+    "lambda_mass": 0.5,
+    "glyph_deposit": 1.0
+  },
+  {
+    "use_mass_weighting": true,
+    "train_loss_last": 0.0002698749303817749,
+    "train_steps": 300,
+    "train_seconds": 18.195417292000457,
+    "train_tokens_per_sec": 151950.3485757116,
+    "config": {
+      "vocab_size": 128,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 72,
+      "alpha": 0.97,
+      "lambda_mass": 0.1,
+      "glyph_deposit": 1.0,
+      "beta": null,
+      "glyph_boost": null,
+      "use_mass_weighting": true,
+      "use_glyphs": true,
+      "mass_to_logits": true,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    },
+    "per_delay": {
+      "8": {
+        "query_loss": 0.0003818511962890625,
+        "retrieval_acc": 1.0
+      },
+      "16": {
+        "query_loss": 0.00017948150634765624,
+        "retrieval_acc": 1.0
+      },
+      "24": {
+        "query_loss": 0.0002880096435546875,
+        "retrieval_acc": 1.0
+      },
+      "32": {
+        "query_loss": 0.607421875,
+        "retrieval_acc": 0.869921875
+      },
+      "40": {
+        "query_loss": 2.365625,
+        "retrieval_acc": 0.527734375
+      }
+    },
+    "mean_query_loss": 0.5947792434692383,
+    "mean_retrieval_acc": 0.87953125,
+    "alpha": 0.97,
+    "lambda_mass": 0.1,
+    "glyph_deposit": 1.0
+  },
+  {
+    "use_mass_weighting": true,
+    "train_loss_last": 0.0002744961529970169,
+    "train_steps": 300,
+    "train_seconds": 18.134532275999845,
+    "train_tokens_per_sec": 152460.5078267762,
+    "config": {
+      "vocab_size": 128,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 72,
+      "alpha": 0.97,
+      "lambda_mass": 0.1,
+      "glyph_deposit": 1.5,
+      "beta": null,
+      "glyph_boost": null,
+      "use_mass_weighting": true,
+      "use_glyphs": true,
+      "mass_to_logits": true,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    },
+    "per_delay": {
+      "8": {
+        "query_loss": 0.00037250518798828127,
+        "retrieval_acc": 1.0
+      },
+      "16": {
+        "query_loss": 0.00018472671508789061,
+        "retrieval_acc": 1.0
+      },
+      "24": {
+        "query_loss": 0.0002947807312011719,
+        "retrieval_acc": 1.0
+      },
+      "32": {
+        "query_loss": 0.601171875,
+        "retrieval_acc": 0.868359375
+      },
+      "40": {
+        "query_loss": 2.3578125,
+        "retrieval_acc": 0.528515625
+      }
+    },
+    "mean_query_loss": 0.5919672775268554,
+    "mean_retrieval_acc": 0.8793749999999999,
+    "alpha": 0.97,
+    "lambda_mass": 0.1,
+    "glyph_deposit": 1.5
+  },
+  {
+    "use_mass_weighting": true,
+    "train_loss_last": 0.0002663899213075638,
+    "train_steps": 300,
+    "train_seconds": 17.94328834299995,
+    "train_tokens_per_sec": 154085.46901485903,
+    "config": {
+      "vocab_size": 128,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 72,
+      "alpha": 0.9,
+      "lambda_mass": 0.25,
+      "glyph_deposit": 1.5,
+      "beta": null,
+      "glyph_boost": null,
+      "use_mass_weighting": true,
+      "use_glyphs": true,
+      "mass_to_logits": true,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    },
+    "per_delay": {
+      "8": {
+        "query_loss": 0.00033092498779296875,
+        "retrieval_acc": 1.0
+      },
+      "16": {
+        "query_loss": 0.0001811981201171875,
+        "retrieval_acc": 1.0
+      },
+      "24": {
+        "query_loss": 0.0003170013427734375,
+        "retrieval_acc": 1.0
+      },
+      "32": {
+        "query_loss": 0.5578125,
+        "retrieval_acc": 0.88125
+      },
+      "40": {
+        "query_loss": 2.9,
+        "retrieval_acc": 0.462890625
+      }
+    },
+    "mean_query_loss": 0.6917283248901367,
+    "mean_retrieval_acc": 0.868828125,
+    "alpha": 0.9,
+    "lambda_mass": 0.25,
+    "glyph_deposit": 1.5
+  },
+  {
+    "use_mass_weighting": true,
+    "train_loss_last": 0.00032145529985427856,
+    "train_steps": 300,
+    "train_seconds": 18.289359256999887,
+    "train_tokens_per_sec": 151169.86665029437,
+    "config": {
+      "vocab_size": 128,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 72,
+      "alpha": 0.97,
+      "lambda_mass": 0.5,
+      "glyph_deposit": 1.5,
+      "beta": null,
+      "glyph_boost": null,
+      "use_mass_weighting": true,
+      "use_glyphs": true,
+      "mass_to_logits": true,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    },
+    "per_delay": {
+      "8": {
+        "query_loss": 0.0004543304443359375,
+        "retrieval_acc": 1.0
+      },
+      "16": {
+        "query_loss": 0.00023317337036132812,
+        "retrieval_acc": 1.0
+      },
+      "24": {
+        "query_loss": 0.00038585662841796877,
+        "retrieval_acc": 1.0
+      },
+      "32": {
+        "query_loss": 1.117578125,
+        "retrieval_acc": 0.749609375
+      },
+      "40": {
+        "query_loss": 2.06875,
+        "retrieval_acc": 0.59296875
+      }
+    },
+    "mean_query_loss": 0.6374802970886231,
+    "mean_retrieval_acc": 0.868515625,
+    "alpha": 0.97,
+    "lambda_mass": 0.5,
+    "glyph_deposit": 1.5
+  },
+  {
+    "use_mass_weighting": true,
+    "train_loss_last": 0.0002665417268872261,
+    "train_steps": 300,
+    "train_seconds": 18.32325265000054,
+    "train_tokens_per_sec": 150890.24054907187,
+    "config": {
+      "vocab_size": 128,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 72,
+      "alpha": 0.9,
+      "lambda_mass": 0.25,
+      "glyph_deposit": 1.0,
+      "beta": null,
+      "glyph_boost": null,
+      "use_mass_weighting": true,
+      "use_glyphs": true,
+      "mass_to_logits": true,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    },
+    "per_delay": {
+      "8": {
+        "query_loss": 0.000325775146484375,
+        "retrieval_acc": 1.0
+      },
+      "16": {
+        "query_loss": 0.00017518997192382811,
+        "retrieval_acc": 1.0
+      },
+      "24": {
+        "query_loss": 0.0003101348876953125,
+        "retrieval_acc": 1.0
+      },
+      "32": {
+        "query_loss": 0.5802734375,
+        "retrieval_acc": 0.8796875
+      },
+      "40": {
+        "query_loss": 2.9640625,
+        "retrieval_acc": 0.454296875
+      }
+    },
+    "mean_query_loss": 0.7090294075012207,
+    "mean_retrieval_acc": 0.866796875,
+    "alpha": 0.9,
+    "lambda_mass": 0.25,
+    "glyph_deposit": 1.0
+  },
+  {
+    "use_mass_weighting": true,
+    "train_loss_last": 0.0002752067521214485,
+    "train_steps": 300,
+    "train_seconds": 20.012087827999494,
+    "train_tokens_per_sec": 138156.49939991208,
+    "config": {
+      "vocab_size": 128,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 72,
+      "alpha": 0.8,
+      "lambda_mass": 0.25,
+      "glyph_deposit": 1.5,
+      "beta": null,
+      "glyph_boost": null,
+      "use_mass_weighting": true,
+      "use_glyphs": true,
+      "mass_to_logits": true,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    },
+    "per_delay": {
+      "8": {
+        "query_loss": 0.00036754608154296873,
+        "retrieval_acc": 1.0
+      },
+      "16": {
+        "query_loss": 0.00017900466918945311,
+        "retrieval_acc": 1.0
+      },
+      "24": {
+        "query_loss": 0.000299072265625,
+        "retrieval_acc": 1.0
+      },
+      "32": {
+        "query_loss": 0.688671875,
+        "retrieval_acc": 0.8453125
+      },
+      "40": {
+        "query_loss": 2.8890625,
+        "retrieval_acc": 0.47734375
+      }
+    },
+    "mean_query_loss": 0.7157159996032715,
+    "mean_retrieval_acc": 0.86453125,
+    "alpha": 0.8,
+    "lambda_mass": 0.25,
+    "glyph_deposit": 1.5
+  },
+  {
+    "use_mass_weighting": true,
+    "train_loss_last": 0.0002706274390220642,
+    "train_steps": 300,
+    "train_seconds": 20.178053700999953,
+    "train_tokens_per_sec": 137020.1527347004,
+    "config": {
+      "vocab_size": 128,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 72,
+      "alpha": 0.8,
+      "lambda_mass": 0.25,
+      "glyph_deposit": 1.0,
+      "beta": null,
+      "glyph_boost": null,
+      "use_mass_weighting": true,
+      "use_glyphs": true,
+      "mass_to_logits": true,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    },
+    "per_delay": {
+      "8": {
+        "query_loss": 0.00036487579345703127,
+        "retrieval_acc": 1.0
+      },
+      "16": {
+        "query_loss": 0.00017852783203125,
+        "retrieval_acc": 1.0
+      },
+      "24": {
+        "query_loss": 0.00029430389404296877,
+        "retrieval_acc": 1.0
+      },
+      "32": {
+        "query_loss": 0.6890625,
+        "retrieval_acc": 0.840234375
+      },
+      "40": {
+        "query_loss": 2.8765625,
+        "retrieval_acc": 0.476171875
+      }
+    },
+    "mean_query_loss": 0.7132925415039062,
+    "mean_retrieval_acc": 0.86328125,
+    "alpha": 0.8,
+    "lambda_mass": 0.25,
+    "glyph_deposit": 1.0
+  },
+  {
+    "use_mass_weighting": false,
+    "train_loss_last": 0.0002905130386352539,
+    "train_steps": 300,
+    "train_seconds": 13.77036354699976,
+    "train_tokens_per_sec": 200779.01288251646,
+    "config": {
+      "vocab_size": 128,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 72,
+      "alpha": 0.8,
+      "lambda_mass": 0.0,
+      "glyph_deposit": 1.0,
+      "beta": null,
+      "glyph_boost": null,
+      "use_mass_weighting": false,
+      "use_glyphs": true,
+      "mass_to_logits": true,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    },
+    "per_delay": {
+      "8": {
+        "query_loss": 0.00041065216064453127,
+        "retrieval_acc": 1.0
+      },
+      "16": {
+        "query_loss": 0.00015878677368164062,
+        "retrieval_acc": 1.0
+      },
+      "24": {
+        "query_loss": 0.00025806427001953127,
+        "retrieval_acc": 1.0
+      },
+      "32": {
+        "query_loss": 0.7484375,
+        "retrieval_acc": 0.799609375
+      },
+      "40": {
+        "query_loss": 2.509375,
+        "retrieval_acc": 0.514453125
+      }
+    },
+    "mean_query_loss": 0.6517280006408691,
+    "mean_retrieval_acc": 0.8628125000000001,
+    "alpha": 0.8,
+    "lambda_mass": 0.0,
+    "glyph_deposit": 1.0
+  },
+  {
+    "use_mass_weighting": false,
+    "train_loss_last": 0.0002905130386352539,
+    "train_steps": 300,
+    "train_seconds": 13.321966696000345,
+    "train_tokens_per_sec": 207536.92477178134,
+    "config": {
+      "vocab_size": 128,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 72,
+      "alpha": 0.8,
+      "lambda_mass": 0.0,
+      "glyph_deposit": 1.5,
+      "beta": null,
+      "glyph_boost": null,
+      "use_mass_weighting": false,
+      "use_glyphs": true,
+      "mass_to_logits": true,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    },
+    "per_delay": {
+      "8": {
+        "query_loss": 0.00041065216064453127,
+        "retrieval_acc": 1.0
+      },
+      "16": {
+        "query_loss": 0.00015878677368164062,
+        "retrieval_acc": 1.0
+      },
+      "24": {
+        "query_loss": 0.00025806427001953127,
+        "retrieval_acc": 1.0
+      },
+      "32": {
+        "query_loss": 0.7484375,
+        "retrieval_acc": 0.799609375
+      },
+      "40": {
+        "query_loss": 2.509375,
+        "retrieval_acc": 0.514453125
+      }
+    },
+    "mean_query_loss": 0.6517280006408691,
+    "mean_retrieval_acc": 0.8628125000000001,
+    "alpha": 0.8,
+    "lambda_mass": 0.0,
+    "glyph_deposit": 1.5
+  },
+  {
+    "use_mass_weighting": false,
+    "train_loss_last": 0.0002905130386352539,
+    "train_steps": 300,
+    "train_seconds": 11.777359840999452,
+    "train_tokens_per_sec": 234755.5001567629,
+    "config": {
+      "vocab_size": 128,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 72,
+      "alpha": 0.9,
+      "lambda_mass": 0.0,
+      "glyph_deposit": 1.0,
+      "beta": null,
+      "glyph_boost": null,
+      "use_mass_weighting": false,
+      "use_glyphs": true,
+      "mass_to_logits": true,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    },
+    "per_delay": {
+      "8": {
+        "query_loss": 0.00041065216064453127,
+        "retrieval_acc": 1.0
+      },
+      "16": {
+        "query_loss": 0.00015878677368164062,
+        "retrieval_acc": 1.0
+      },
+      "24": {
+        "query_loss": 0.00025806427001953127,
+        "retrieval_acc": 1.0
+      },
+      "32": {
+        "query_loss": 0.7484375,
+        "retrieval_acc": 0.799609375
+      },
+      "40": {
+        "query_loss": 2.509375,
+        "retrieval_acc": 0.514453125
+      }
+    },
+    "mean_query_loss": 0.6517280006408691,
+    "mean_retrieval_acc": 0.8628125000000001,
+    "alpha": 0.9,
+    "lambda_mass": 0.0,
+    "glyph_deposit": 1.0
+  },
+  {
+    "use_mass_weighting": false,
+    "train_loss_last": 0.0002905130386352539,
+    "train_steps": 300,
+    "train_seconds": 13.282972928000163,
+    "train_tokens_per_sec": 208146.17442845745,
+    "config": {
+      "vocab_size": 128,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 72,
+      "alpha": 0.9,
+      "lambda_mass": 0.0,
+      "glyph_deposit": 1.5,
+      "beta": null,
+      "glyph_boost": null,
+      "use_mass_weighting": false,
+      "use_glyphs": true,
+      "mass_to_logits": true,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    },
+    "per_delay": {
+      "8": {
+        "query_loss": 0.00041065216064453127,
+        "retrieval_acc": 1.0
+      },
+      "16": {
+        "query_loss": 0.00015878677368164062,
+        "retrieval_acc": 1.0
+      },
+      "24": {
+        "query_loss": 0.00025806427001953127,
+        "retrieval_acc": 1.0
+      },
+      "32": {
+        "query_loss": 0.7484375,
+        "retrieval_acc": 0.799609375
+      },
+      "40": {
+        "query_loss": 2.509375,
+        "retrieval_acc": 0.514453125
+      }
+    },
+    "mean_query_loss": 0.6517280006408691,
+    "mean_retrieval_acc": 0.8628125000000001,
+    "alpha": 0.9,
+    "lambda_mass": 0.0,
+    "glyph_deposit": 1.5
+  },
+  {
+    "use_mass_weighting": false,
+    "train_loss_last": 0.0002905130386352539,
+    "train_steps": 300,
+    "train_seconds": 11.65177435699934,
+    "train_tokens_per_sec": 237285.74852972126,
+    "config": {
+      "vocab_size": 128,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 72,
+      "alpha": 0.97,
+      "lambda_mass": 0.0,
+      "glyph_deposit": 1.0,
+      "beta": null,
+      "glyph_boost": null,
+      "use_mass_weighting": false,
+      "use_glyphs": true,
+      "mass_to_logits": true,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    },
+    "per_delay": {
+      "8": {
+        "query_loss": 0.00041065216064453127,
+        "retrieval_acc": 1.0
+      },
+      "16": {
+        "query_loss": 0.00015878677368164062,
+        "retrieval_acc": 1.0
+      },
+      "24": {
+        "query_loss": 0.00025806427001953127,
+        "retrieval_acc": 1.0
+      },
+      "32": {
+        "query_loss": 0.7484375,
+        "retrieval_acc": 0.799609375
+      },
+      "40": {
+        "query_loss": 2.509375,
+        "retrieval_acc": 0.514453125
+      }
+    },
+    "mean_query_loss": 0.6517280006408691,
+    "mean_retrieval_acc": 0.8628125000000001,
+    "alpha": 0.97,
+    "lambda_mass": 0.0,
+    "glyph_deposit": 1.0
+  },
+  {
+    "use_mass_weighting": false,
+    "train_loss_last": 0.0002905130386352539,
+    "train_steps": 300,
+    "train_seconds": 11.805244594999749,
+    "train_tokens_per_sec": 234200.99242764217,
+    "config": {
+      "vocab_size": 128,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 72,
+      "alpha": 0.97,
+      "lambda_mass": 0.0,
+      "glyph_deposit": 1.5,
+      "beta": null,
+      "glyph_boost": null,
+      "use_mass_weighting": false,
+      "use_glyphs": true,
+      "mass_to_logits": true,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    },
+    "per_delay": {
+      "8": {
+        "query_loss": 0.00041065216064453127,
+        "retrieval_acc": 1.0
+      },
+      "16": {
+        "query_loss": 0.00015878677368164062,
+        "retrieval_acc": 1.0
+      },
+      "24": {
+        "query_loss": 0.00025806427001953127,
+        "retrieval_acc": 1.0
+      },
+      "32": {
+        "query_loss": 0.7484375,
+        "retrieval_acc": 0.799609375
+      },
+      "40": {
+        "query_loss": 2.509375,
+        "retrieval_acc": 0.514453125
+      }
+    },
+    "mean_query_loss": 0.6517280006408691,
+    "mean_retrieval_acc": 0.8628125000000001,
+    "alpha": 0.97,
+    "lambda_mass": 0.0,
+    "glyph_deposit": 1.5
+  },
+  {
+    "use_mass_weighting": true,
+    "train_loss_last": 0.0002765227109193802,
+    "train_steps": 300,
+    "train_seconds": 18.94023713200022,
+    "train_tokens_per_sec": 145974.94111247265,
+    "config": {
+      "vocab_size": 128,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 72,
+      "alpha": 0.9,
+      "lambda_mass": 0.1,
+      "glyph_deposit": 1.0,
+      "beta": null,
+      "glyph_boost": null,
+      "use_mass_weighting": true,
+      "use_glyphs": true,
+      "mass_to_logits": true,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    },
+    "per_delay": {
+      "8": {
+        "query_loss": 0.00039196014404296875,
+        "retrieval_acc": 1.0
+      },
+      "16": {
+        "query_loss": 0.0001750946044921875,
+        "retrieval_acc": 1.0
+      },
+      "24": {
+        "query_loss": 0.00028076171875,
+        "retrieval_acc": 1.0
+      },
+      "32": {
+        "query_loss": 0.73203125,
+        "retrieval_acc": 0.8265625
+      },
+      "40": {
+        "query_loss": 2.78125,
+        "retrieval_acc": 0.48671875
+      }
+    },
+    "mean_query_loss": 0.7028258132934571,
+    "mean_retrieval_acc": 0.86265625,
+    "alpha": 0.9,
+    "lambda_mass": 0.1,
+    "glyph_deposit": 1.0
+  },
+  {
+    "use_mass_weighting": true,
+    "train_loss_last": 0.0002778526395559311,
+    "train_steps": 300,
+    "train_seconds": 20.019683299999997,
+    "train_tokens_per_sec": 138104.08279535573,
+    "config": {
+      "vocab_size": 128,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 72,
+      "alpha": 0.8,
+      "lambda_mass": 0.1,
+      "glyph_deposit": 1.5,
+      "beta": null,
+      "glyph_boost": null,
+      "use_mass_weighting": true,
+      "use_glyphs": true,
+      "mass_to_logits": true,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    },
+    "per_delay": {
+      "8": {
+        "query_loss": 0.0004016876220703125,
+        "retrieval_acc": 1.0
+      },
+      "16": {
+        "query_loss": 0.00017004013061523439,
+        "retrieval_acc": 1.0
+      },
+      "24": {
+        "query_loss": 0.0002776145935058594,
+        "retrieval_acc": 1.0
+      },
+      "32": {
+        "query_loss": 0.771484375,
+        "retrieval_acc": 0.812109375
+      },
+      "40": {
+        "query_loss": 2.71875,
+        "retrieval_acc": 0.493359375
+      }
+    },
+    "mean_query_loss": 0.6982167434692383,
+    "mean_retrieval_acc": 0.86109375,
+    "alpha": 0.8,
+    "lambda_mass": 0.1,
+    "glyph_deposit": 1.5
+  },
+  {
+    "use_mass_weighting": true,
+    "train_loss_last": 0.00028283894062042236,
+    "train_steps": 300,
+    "train_seconds": 18.342274906000057,
+    "train_tokens_per_sec": 150733.75653614203,
+    "config": {
+      "vocab_size": 128,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 72,
+      "alpha": 0.9,
+      "lambda_mass": 0.1,
+      "glyph_deposit": 1.5,
+      "beta": null,
+      "glyph_boost": null,
+      "use_mass_weighting": true,
+      "use_glyphs": true,
+      "mass_to_logits": true,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    },
+    "per_delay": {
+      "8": {
+        "query_loss": 0.00039825439453125,
+        "retrieval_acc": 1.0
+      },
+      "16": {
+        "query_loss": 0.00017595291137695312,
+        "retrieval_acc": 1.0
+      },
+      "24": {
+        "query_loss": 0.00028295516967773436,
+        "retrieval_acc": 1.0
+      },
+      "32": {
+        "query_loss": 0.737109375,
+        "retrieval_acc": 0.81875
+      },
+      "40": {
+        "query_loss": 2.7859375,
+        "retrieval_acc": 0.484375
+      }
+    },
+    "mean_query_loss": 0.7047808074951172,
+    "mean_retrieval_acc": 0.860625,
+    "alpha": 0.9,
+    "lambda_mass": 0.1,
+    "glyph_deposit": 1.5
+  },
+  {
+    "use_mass_weighting": true,
+    "train_loss_last": 0.00028572138398885727,
+    "train_steps": 300,
+    "train_seconds": 19.325076056999933,
+    "train_tokens_per_sec": 143068.00096647142,
+    "config": {
+      "vocab_size": 128,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 72,
+      "alpha": 0.8,
+      "lambda_mass": 0.1,
+      "glyph_deposit": 1.0,
+      "beta": null,
+      "glyph_boost": null,
+      "use_mass_weighting": true,
+      "use_glyphs": true,
+      "mass_to_logits": true,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    },
+    "per_delay": {
+      "8": {
+        "query_loss": 0.0004062652587890625,
+        "retrieval_acc": 1.0
+      },
+      "16": {
+        "query_loss": 0.000171661376953125,
+        "retrieval_acc": 1.0
+      },
+      "24": {
+        "query_loss": 0.00027923583984375,
+        "retrieval_acc": 1.0
+      },
+      "32": {
+        "query_loss": 0.775390625,
+        "retrieval_acc": 0.808203125
+      },
+      "40": {
+        "query_loss": 2.7328125,
+        "retrieval_acc": 0.489453125
+      }
+    },
+    "mean_query_loss": 0.7018120574951172,
+    "mean_retrieval_acc": 0.8595312500000001,
+    "alpha": 0.8,
+    "lambda_mass": 0.1,
+    "glyph_deposit": 1.0
+  },
+  {
+    "use_mass_weighting": true,
+    "train_loss_last": 0.0002840086817741394,
+    "train_steps": 300,
+    "train_seconds": 19.97464734499954,
+    "train_tokens_per_sec": 138415.4599701677,
+    "config": {
+      "vocab_size": 128,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 72,
+      "alpha": 0.8,
+      "lambda_mass": 0.5,
+      "glyph_deposit": 1.5,
+      "beta": null,
+      "glyph_boost": null,
+      "use_mass_weighting": true,
+      "use_glyphs": true,
+      "mass_to_logits": true,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    },
+    "per_delay": {
+      "8": {
+        "query_loss": 0.00031185150146484375,
+        "retrieval_acc": 1.0
+      },
+      "16": {
+        "query_loss": 0.00018835067749023438,
+        "retrieval_acc": 1.0
+      },
+      "24": {
+        "query_loss": 0.00034427642822265625,
+        "retrieval_acc": 1.0
+      },
+      "32": {
+        "query_loss": 0.56484375,
+        "retrieval_acc": 0.865234375
+      },
+      "40": {
+        "query_loss": 3.5171875,
+        "retrieval_acc": 0.426171875
+      }
+    },
+    "mean_query_loss": 0.8165751457214355,
+    "mean_retrieval_acc": 0.8582812499999999,
+    "alpha": 0.8,
+    "lambda_mass": 0.5,
+    "glyph_deposit": 1.5
+  },
+  {
+    "use_mass_weighting": true,
+    "train_loss_last": 0.0002804771065711975,
+    "train_steps": 300,
+    "train_seconds": 20.544324610999865,
+    "train_tokens_per_sec": 134577.31282729382,
+    "config": {
+      "vocab_size": 128,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 72,
+      "alpha": 0.8,
+      "lambda_mass": 0.5,
+      "glyph_deposit": 1.0,
+      "beta": null,
+      "glyph_boost": null,
+      "use_mass_weighting": true,
+      "use_glyphs": true,
+      "mass_to_logits": true,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    },
+    "per_delay": {
+      "8": {
+        "query_loss": 0.000308990478515625,
+        "retrieval_acc": 1.0
+      },
+      "16": {
+        "query_loss": 0.00018463134765625,
+        "retrieval_acc": 1.0
+      },
+      "24": {
+        "query_loss": 0.000336456298828125,
+        "retrieval_acc": 1.0
+      },
+      "32": {
+        "query_loss": 0.590234375,
+        "retrieval_acc": 0.867578125
+      },
+      "40": {
+        "query_loss": 3.534375,
+        "retrieval_acc": 0.4234375
+      }
+    },
+    "mean_query_loss": 0.825087890625,
+    "mean_retrieval_acc": 0.858203125,
+    "alpha": 0.8,
+    "lambda_mass": 0.5,
+    "glyph_deposit": 1.0
+  },
+  {
+    "use_mass_weighting": true,
+    "train_loss_last": 0.0002405960112810135,
+    "train_steps": 300,
+    "train_seconds": 18.18527180900037,
+    "train_tokens_per_sec": 152035.12100553964,
+    "config": {
+      "vocab_size": 128,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 72,
+      "alpha": 0.9,
+      "lambda_mass": 0.5,
+      "glyph_deposit": 1.5,
+      "beta": null,
+      "glyph_boost": null,
+      "use_mass_weighting": true,
+      "use_glyphs": true,
+      "mass_to_logits": true,
+      "tie_emission_assimilation": false,
+      "use_layernorm": true
+    },
+    "per_delay": {
+      "8": {
+        "query_loss": 0.00020875930786132813,
+        "retrieval_acc": 1.0
+      },
+      "16": {
+        "query_loss": 0.00023851394653320312,
+        "retrieval_acc": 1.0
+      },
+      "24": {
+        "query_loss": 0.00032482147216796877,
+        "retrieval_acc": 1.0
+      },
+      "32": {
+        "query_loss": 0.73671875,
+        "retrieval_acc": 0.7234375
+      },
+      "40": {
+        "query_loss": 3.8359375,
+        "retrieval_acc": 0.493359375
+      }
+    },
+    "mean_query_loss": 0.9146856689453126,
+    "mean_retrieval_acc": 0.843359375,
+    "alpha": 0.9,
+    "lambda_mass": 0.5,
+    "glyph_deposit": 1.5
+  }
+]

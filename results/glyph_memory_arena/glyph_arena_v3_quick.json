@@ -1,0 +1,792 @@
+{
+  "args": {
+    "device": "cuda",
+    "amp": "bf16",
+    "backend": "auto",
+    "compile": false,
+    "models": [
+      "mg_query_gated",
+      "baseline"
+    ],
+    "seeds": [
+      1
+    ],
+    "seq_len": 128,
+    "d_model": 64,
+    "hidden_dim": 128,
+    "n_heads": 4,
+    "n_layers": 2,
+    "dropout": 0.0,
+    "alpha": 0.95,
+    "lambda_mass": 0.5,
+    "glyph_deposit": 2.0,
+    "lr": 0.001,
+    "weight_decay": 0.01,
+    "batch_size": 64,
+    "eval_batch_size": 64,
+    "max_steps": 20000,
+    "eval_examples_per_condition": 256,
+    "grad_clip_norm": 1.0,
+    "log_interval": 5000,
+    "train_n_bindings": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "train_query_delays": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "train_distractor_rates": [
+      0.0,
+      0.3,
+      0.6
+    ],
+    "train_value_collisions": [
+      false,
+      true
+    ],
+    "eval_n_bindings": [
+      1,
+      4,
+      8
+    ],
+    "eval_query_delays": [
+      8,
+      32,
+      64
+    ],
+    "eval_distractor_rates": [
+      0.0,
+      0.6
+    ],
+    "eval_value_collisions": [
+      false
+    ],
+    "json_out": "results/glyph_arena_v3_quick.json",
+    "csv_out": "results/glyph_arena_v3_quick.csv"
+  },
+  "runs": [
+    {
+      "model": "mg_query_gated",
+      "seed": 1,
+      "backend": "triton",
+      "config": {
+        "vocab_size": 128,
+        "d_model": 64,
+        "hidden_dim": 128,
+        "max_seq_len": 128,
+        "alpha": 0.95,
+        "lambda_mass": 0.5,
+        "glyph_deposit": 2.0,
+        "beta": null,
+        "glyph_boost": null,
+        "use_mass_weighting": true,
+        "use_glyphs": true,
+        "mass_to_logits": true,
+        "mass_mode": "query_gated",
+        "n_heads": 4,
+        "n_layers": 2,
+        "dropout": 0.0,
+        "tie_emission_assimilation": false,
+        "use_layernorm": true,
+        "use_fast_path": true,
+        "use_triton": true,
+        "use_mass_ln": false
+      },
+      "train_loss_last": 3.5390257835388184e-08,
+      "train_steps": 20000,
+      "train_seconds": 7565.500632782001,
+      "train_tokens_per_sec": 21656.200686847664,
+      "eval_rows": [
+        {
+          "n_bindings": 1,
+          "query_delay": 8,
+          "distractor_rate": 0.0,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 1.0244548320770264e-08
+        },
+        {
+          "n_bindings": 1,
+          "query_delay": 8,
+          "distractor_rate": 0.6,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 1.3969838619232178e-08
+        },
+        {
+          "n_bindings": 1,
+          "query_delay": 32,
+          "distractor_rate": 0.0,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 1.4901161193847656e-08
+        },
+        {
+          "n_bindings": 1,
+          "query_delay": 32,
+          "distractor_rate": 0.6,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 2.3748725652694702e-08
+        },
+        {
+          "n_bindings": 1,
+          "query_delay": 64,
+          "distractor_rate": 0.0,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 2.3748725652694702e-08
+        },
+        {
+          "n_bindings": 1,
+          "query_delay": 64,
+          "distractor_rate": 0.6,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 2.1420419216156006e-08
+        },
+        {
+          "n_bindings": 4,
+          "query_delay": 8,
+          "distractor_rate": 0.0,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 1.7229467630386353e-08
+        },
+        {
+          "n_bindings": 4,
+          "query_delay": 8,
+          "distractor_rate": 0.6,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 1.6298145055770874e-08
+        },
+        {
+          "n_bindings": 4,
+          "query_delay": 32,
+          "distractor_rate": 0.0,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 1.955777406692505e-08
+        },
+        {
+          "n_bindings": 4,
+          "query_delay": 32,
+          "distractor_rate": 0.6,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 2.514570951461792e-08
+        },
+        {
+          "n_bindings": 4,
+          "query_delay": 64,
+          "distractor_rate": 0.0,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 2.0489096641540527e-08
+        },
+        {
+          "n_bindings": 4,
+          "query_delay": 64,
+          "distractor_rate": 0.6,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 1.909211277961731e-08
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 8,
+          "distractor_rate": 0.0,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 1.257285475730896e-08
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 8,
+          "distractor_rate": 0.6,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 1.7695128917694092e-08
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 32,
+          "distractor_rate": 0.0,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 1.6298145055770874e-08
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 32,
+          "distractor_rate": 0.6,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 3.119930624961853e-08
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 64,
+          "distractor_rate": 0.0,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 1.862645149230957e-08
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 64,
+          "distractor_rate": 0.6,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 2.3748725652694702e-08
+        }
+      ]
+    },
+    {
+      "model": "baseline",
+      "seed": 1,
+      "backend": "triton",
+      "config": {
+        "vocab_size": 128,
+        "d_model": 64,
+        "hidden_dim": 128,
+        "max_seq_len": 128,
+        "alpha": 0.95,
+        "lambda_mass": 0.5,
+        "glyph_deposit": 2.0,
+        "beta": null,
+        "glyph_boost": null,
+        "use_mass_weighting": false,
+        "use_glyphs": false,
+        "mass_to_logits": true,
+        "mass_mode": "none",
+        "n_heads": 4,
+        "n_layers": 2,
+        "dropout": 0.0,
+        "tie_emission_assimilation": false,
+        "use_layernorm": true,
+        "use_fast_path": true,
+        "use_triton": true,
+        "use_mass_ln": false
+      },
+      "train_loss_last": 3.166496753692627e-08,
+      "train_steps": 20000,
+      "train_seconds": 5294.156174841002,
+      "train_tokens_per_sec": 30947.330337288466,
+      "eval_rows": [
+        {
+          "n_bindings": 1,
+          "query_delay": 8,
+          "distractor_rate": 0.0,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 2.7008354663848877e-08
+        },
+        {
+          "n_bindings": 1,
+          "query_delay": 8,
+          "distractor_rate": 0.6,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 2.514570951461792e-08
+        },
+        {
+          "n_bindings": 1,
+          "query_delay": 32,
+          "distractor_rate": 0.0,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 2.3283064365386963e-08
+        },
+        {
+          "n_bindings": 1,
+          "query_delay": 32,
+          "distractor_rate": 0.6,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 1.7695128917694092e-08
+        },
+        {
+          "n_bindings": 1,
+          "query_delay": 64,
+          "distractor_rate": 0.0,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 2.1420419216156006e-08
+        },
+        {
+          "n_bindings": 1,
+          "query_delay": 64,
+          "distractor_rate": 0.6,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 1.955777406692505e-08
+        },
+        {
+          "n_bindings": 4,
+          "query_delay": 8,
+          "distractor_rate": 0.0,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 1.955777406692505e-08
+        },
+        {
+          "n_bindings": 4,
+          "query_delay": 8,
+          "distractor_rate": 0.6,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 1.5832483768463135e-08
+        },
+        {
+          "n_bindings": 4,
+          "query_delay": 32,
+          "distractor_rate": 0.0,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 2.561137080192566e-08
+        },
+        {
+          "n_bindings": 4,
+          "query_delay": 32,
+          "distractor_rate": 0.6,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 1.6298145055770874e-08
+        },
+        {
+          "n_bindings": 4,
+          "query_delay": 64,
+          "distractor_rate": 0.0,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 1.909211277961731e-08
+        },
+        {
+          "n_bindings": 4,
+          "query_delay": 64,
+          "distractor_rate": 0.6,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 2.0954757928848267e-08
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 8,
+          "distractor_rate": 0.0,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 2.514570951461792e-08
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 8,
+          "distractor_rate": 0.6,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 2.514570951461792e-08
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 32,
+          "distractor_rate": 0.0,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 2.7939677238464355e-08
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 32,
+          "distractor_rate": 0.6,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 2.421438694000244e-08
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 64,
+          "distractor_rate": 0.0,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 2.3283064365386963e-08
+        },
+        {
+          "n_bindings": 8,
+          "query_delay": 64,
+          "distractor_rate": 0.6,
+          "value_collision": false,
+          "recall_accuracy": 1.0,
+          "recall_loss": 2.0023435354232788e-08
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "mg_query_gated": [
+      {
+        "model": "mg_query_gated",
+        "seed": 1,
+        "backend": "triton",
+        "config": {
+          "vocab_size": 128,
+          "d_model": 64,
+          "hidden_dim": 128,
+          "max_seq_len": 128,
+          "alpha": 0.95,
+          "lambda_mass": 0.5,
+          "glyph_deposit": 2.0,
+          "beta": null,
+          "glyph_boost": null,
+          "use_mass_weighting": true,
+          "use_glyphs": true,
+          "mass_to_logits": true,
+          "mass_mode": "query_gated",
+          "n_heads": 4,
+          "n_layers": 2,
+          "dropout": 0.0,
+          "tie_emission_assimilation": false,
+          "use_layernorm": true,
+          "use_fast_path": true,
+          "use_triton": true,
+          "use_mass_ln": false
+        },
+        "train_loss_last": 3.5390257835388184e-08,
+        "train_steps": 20000,
+        "train_seconds": 7565.500632782001,
+        "train_tokens_per_sec": 21656.200686847664,
+        "eval_rows": [
+          {
+            "n_bindings": 1,
+            "query_delay": 8,
+            "distractor_rate": 0.0,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 1.0244548320770264e-08
+          },
+          {
+            "n_bindings": 1,
+            "query_delay": 8,
+            "distractor_rate": 0.6,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 1.3969838619232178e-08
+          },
+          {
+            "n_bindings": 1,
+            "query_delay": 32,
+            "distractor_rate": 0.0,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 1.4901161193847656e-08
+          },
+          {
+            "n_bindings": 1,
+            "query_delay": 32,
+            "distractor_rate": 0.6,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 2.3748725652694702e-08
+          },
+          {
+            "n_bindings": 1,
+            "query_delay": 64,
+            "distractor_rate": 0.0,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 2.3748725652694702e-08
+          },
+          {
+            "n_bindings": 1,
+            "query_delay": 64,
+            "distractor_rate": 0.6,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 2.1420419216156006e-08
+          },
+          {
+            "n_bindings": 4,
+            "query_delay": 8,
+            "distractor_rate": 0.0,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 1.7229467630386353e-08
+          },
+          {
+            "n_bindings": 4,
+            "query_delay": 8,
+            "distractor_rate": 0.6,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 1.6298145055770874e-08
+          },
+          {
+            "n_bindings": 4,
+            "query_delay": 32,
+            "distractor_rate": 0.0,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 1.955777406692505e-08
+          },
+          {
+            "n_bindings": 4,
+            "query_delay": 32,
+            "distractor_rate": 0.6,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 2.514570951461792e-08
+          },
+          {
+            "n_bindings": 4,
+            "query_delay": 64,
+            "distractor_rate": 0.0,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 2.0489096641540527e-08
+          },
+          {
+            "n_bindings": 4,
+            "query_delay": 64,
+            "distractor_rate": 0.6,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 1.909211277961731e-08
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 8,
+            "distractor_rate": 0.0,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 1.257285475730896e-08
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 8,
+            "distractor_rate": 0.6,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 1.7695128917694092e-08
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 32,
+            "distractor_rate": 0.0,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 1.6298145055770874e-08
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 32,
+            "distractor_rate": 0.6,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 3.119930624961853e-08
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 64,
+            "distractor_rate": 0.0,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 1.862645149230957e-08
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 64,
+            "distractor_rate": 0.6,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 2.3748725652694702e-08
+          }
+        ]
+      }
+    ],
+    "baseline": [
+      {
+        "model": "baseline",
+        "seed": 1,
+        "backend": "triton",
+        "config": {
+          "vocab_size": 128,
+          "d_model": 64,
+          "hidden_dim": 128,
+          "max_seq_len": 128,
+          "alpha": 0.95,
+          "lambda_mass": 0.5,
+          "glyph_deposit": 2.0,
+          "beta": null,
+          "glyph_boost": null,
+          "use_mass_weighting": false,
+          "use_glyphs": false,
+          "mass_to_logits": true,
+          "mass_mode": "none",
+          "n_heads": 4,
+          "n_layers": 2,
+          "dropout": 0.0,
+          "tie_emission_assimilation": false,
+          "use_layernorm": true,
+          "use_fast_path": true,
+          "use_triton": true,
+          "use_mass_ln": false
+        },
+        "train_loss_last": 3.166496753692627e-08,
+        "train_steps": 20000,
+        "train_seconds": 5294.156174841002,
+        "train_tokens_per_sec": 30947.330337288466,
+        "eval_rows": [
+          {
+            "n_bindings": 1,
+            "query_delay": 8,
+            "distractor_rate": 0.0,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 2.7008354663848877e-08
+          },
+          {
+            "n_bindings": 1,
+            "query_delay": 8,
+            "distractor_rate": 0.6,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 2.514570951461792e-08
+          },
+          {
+            "n_bindings": 1,
+            "query_delay": 32,
+            "distractor_rate": 0.0,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 2.3283064365386963e-08
+          },
+          {
+            "n_bindings": 1,
+            "query_delay": 32,
+            "distractor_rate": 0.6,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 1.7695128917694092e-08
+          },
+          {
+            "n_bindings": 1,
+            "query_delay": 64,
+            "distractor_rate": 0.0,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 2.1420419216156006e-08
+          },
+          {
+            "n_bindings": 1,
+            "query_delay": 64,
+            "distractor_rate": 0.6,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 1.955777406692505e-08
+          },
+          {
+            "n_bindings": 4,
+            "query_delay": 8,
+            "distractor_rate": 0.0,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 1.955777406692505e-08
+          },
+          {
+            "n_bindings": 4,
+            "query_delay": 8,
+            "distractor_rate": 0.6,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 1.5832483768463135e-08
+          },
+          {
+            "n_bindings": 4,
+            "query_delay": 32,
+            "distractor_rate": 0.0,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 2.561137080192566e-08
+          },
+          {
+            "n_bindings": 4,
+            "query_delay": 32,
+            "distractor_rate": 0.6,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 1.6298145055770874e-08
+          },
+          {
+            "n_bindings": 4,
+            "query_delay": 64,
+            "distractor_rate": 0.0,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 1.909211277961731e-08
+          },
+          {
+            "n_bindings": 4,
+            "query_delay": 64,
+            "distractor_rate": 0.6,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 2.0954757928848267e-08
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 8,
+            "distractor_rate": 0.0,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 2.514570951461792e-08
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 8,
+            "distractor_rate": 0.6,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 2.514570951461792e-08
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 32,
+            "distractor_rate": 0.0,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 2.7939677238464355e-08
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 32,
+            "distractor_rate": 0.6,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 2.421438694000244e-08
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 64,
+            "distractor_rate": 0.0,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 2.3283064365386963e-08
+          },
+          {
+            "n_bindings": 8,
+            "query_delay": 64,
+            "distractor_rate": 0.6,
+            "value_collision": false,
+            "recall_accuracy": 1.0,
+            "recall_loss": 2.0023435354232788e-08
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+[
+  {
+    "val_loss": 3.888836646080017,
+    "val_ppl": 48.85401893714322,
+    "next_char_acc": 0.08343253968253968,
+    "train_loss_last": 4.004166126251221,
+    "train_steps": 40,
+    "train_seconds": 1.2473768429999836,
+    "train_tokens_per_sec": 65673.81818871964,
+    "use_mass_weighting": true,
+    "config": {
+      "vocab_size": 65,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 64,
+      "alpha": 0.9,
+      "beta": 1.5,
+      "glyph_boost": 2.0,
+      "use_mass_weighting": true,
+      "use_glyphs": false,
+      "mass_to_logits": true
+    }
+  },
+  {
+    "val_loss": 3.8563738107681274,
+    "val_ppl": 47.29354471281644,
+    "next_char_acc": 0.09146825396825396,
+    "train_loss_last": 3.975543260574341,
+    "train_steps": 40,
+    "train_seconds": 0.24530746200025533,
+    "train_tokens_per_sec": 333948.25959234266,
+    "use_mass_weighting": false,
+    "config": {
+      "vocab_size": 65,
+      "d_model": 64,
+      "hidden_dim": 128,
+      "max_seq_len": 64,
+      "alpha": 0.9,
+      "beta": 1.5,
+      "glyph_boost": 2.0,
+      "use_mass_weighting": false,
+      "use_glyphs": false,
+      "mass_to_logits": true
+    }
+  }
+]

@@ -1,0 +1,518 @@
+[
+  {
+    "model": "mg_query_gated_local_d32_h2",
+    "model_base": "mg_query_gated_local",
+    "step": 2000,
+    "seed": 2,
+    "d_model": 32,
+    "n_heads": 2,
+    "train_loss": 3.4970703125,
+    "eval_rows": [
+      {
+        "n_bindings": 8,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.05078125,
+        "recall_loss": 3.479248046875
+      },
+      {
+        "n_bindings": 8,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.04296875,
+        "recall_loss": 3.50799560546875
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.03515625,
+        "recall_loss": 3.51849365234375
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.03125,
+        "recall_loss": 3.54034423828125
+      }
+    ]
+  },
+  {
+    "model": "mg_query_gated_local_d32_h2",
+    "model_base": "mg_query_gated_local",
+    "step": 5000,
+    "seed": 2,
+    "d_model": 32,
+    "n_heads": 2,
+    "train_loss": 3.4375,
+    "eval_rows": [
+      {
+        "n_bindings": 8,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.03515625,
+        "recall_loss": 3.4989013671875
+      },
+      {
+        "n_bindings": 8,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.0234375,
+        "recall_loss": 3.511962890625
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.04296875,
+        "recall_loss": 3.4732666015625
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.02734375,
+        "recall_loss": 3.527587890625
+      }
+    ]
+  },
+  {
+    "model": "mg_query_gated_local_d32_h2",
+    "model_base": "mg_query_gated_local",
+    "step": 10000,
+    "seed": 2,
+    "d_model": 32,
+    "n_heads": 2,
+    "train_loss": 3.564453125,
+    "eval_rows": [
+      {
+        "n_bindings": 8,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.02734375,
+        "recall_loss": 3.46728515625
+      },
+      {
+        "n_bindings": 8,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.02734375,
+        "recall_loss": 3.4697265625
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.02734375,
+        "recall_loss": 3.491455078125
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.02734375,
+        "recall_loss": 3.4774169921875
+      }
+    ]
+  },
+  {
+    "model": "mg_query_gated_local_d32_h2",
+    "model_base": "mg_query_gated_local",
+    "step": 2000,
+    "seed": 3,
+    "d_model": 32,
+    "n_heads": 2,
+    "train_loss": 3.4716796875,
+    "eval_rows": [
+      {
+        "n_bindings": 8,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.03125,
+        "recall_loss": 3.50103759765625
+      },
+      {
+        "n_bindings": 8,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.01953125,
+        "recall_loss": 3.53759765625
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.0390625,
+        "recall_loss": 3.5040283203125
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.04296875,
+        "recall_loss": 3.52142333984375
+      }
+    ]
+  },
+  {
+    "model": "mg_query_gated_local_d32_h2",
+    "model_base": "mg_query_gated_local",
+    "step": 5000,
+    "seed": 3,
+    "d_model": 32,
+    "n_heads": 2,
+    "train_loss": 3.51171875,
+    "eval_rows": [
+      {
+        "n_bindings": 8,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.015625,
+        "recall_loss": 3.489501953125
+      },
+      {
+        "n_bindings": 8,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.0234375,
+        "recall_loss": 3.49786376953125
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.0390625,
+        "recall_loss": 3.48077392578125
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.01953125,
+        "recall_loss": 3.4903564453125
+      }
+    ]
+  },
+  {
+    "model": "mg_query_gated_local_d32_h2",
+    "model_base": "mg_query_gated_local",
+    "step": 10000,
+    "seed": 3,
+    "d_model": 32,
+    "n_heads": 2,
+    "train_loss": 3.501953125,
+    "eval_rows": [
+      {
+        "n_bindings": 8,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.03515625,
+        "recall_loss": 3.482177734375
+      },
+      {
+        "n_bindings": 8,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.015625,
+        "recall_loss": 3.4913330078125
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.04296875,
+        "recall_loss": 3.46966552734375
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.03125,
+        "recall_loss": 3.47564697265625
+      }
+    ]
+  },
+  {
+    "model": "mg_query_gated_local_d64_h2",
+    "model_base": "mg_query_gated_local",
+    "step": 2000,
+    "seed": 1,
+    "d_model": 64,
+    "n_heads": 2,
+    "train_loss": 3.4384765625,
+    "eval_rows": [
+      {
+        "n_bindings": 8,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.0390625,
+        "recall_loss": 3.528564453125
+      },
+      {
+        "n_bindings": 8,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.01953125,
+        "recall_loss": 3.5025634765625
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.0390625,
+        "recall_loss": 3.55364990234375
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.04296875,
+        "recall_loss": 3.5496826171875
+      }
+    ]
+  },
+  {
+    "model": "mg_query_gated_local_d64_h2",
+    "model_base": "mg_query_gated_local",
+    "step": 5000,
+    "seed": 1,
+    "d_model": 64,
+    "n_heads": 2,
+    "train_loss": 3.5751953125,
+    "eval_rows": [
+      {
+        "n_bindings": 8,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.05078125,
+        "recall_loss": 3.5008544921875
+      },
+      {
+        "n_bindings": 8,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.0625,
+        "recall_loss": 3.4862060546875
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.01171875,
+        "recall_loss": 3.537109375
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.03515625,
+        "recall_loss": 3.5357666015625
+      }
+    ]
+  },
+  {
+    "model": "mg_query_gated_local_d64_h2",
+    "model_base": "mg_query_gated_local",
+    "step": 10000,
+    "seed": 1,
+    "d_model": 64,
+    "n_heads": 2,
+    "train_loss": 3.4287109375,
+    "eval_rows": [
+      {
+        "n_bindings": 8,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.04296875,
+        "recall_loss": 3.51544189453125
+      },
+      {
+        "n_bindings": 8,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.02734375,
+        "recall_loss": 3.51708984375
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.02734375,
+        "recall_loss": 3.54180908203125
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.02734375,
+        "recall_loss": 3.51239013671875
+      }
+    ]
+  },
+  {
+    "model": "local_attn_d64_h2",
+    "model_base": "local_attn",
+    "step": 2000,
+    "seed": 1,
+    "d_model": 64,
+    "n_heads": 2,
+    "train_loss": 3.42578125,
+    "eval_rows": [
+      {
+        "n_bindings": 8,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.04296875,
+        "recall_loss": 3.529296875
+      },
+      {
+        "n_bindings": 8,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.03125,
+        "recall_loss": 3.5069580078125
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.04296875,
+        "recall_loss": 3.549560546875
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.0234375,
+        "recall_loss": 3.55523681640625
+      }
+    ]
+  },
+  {
+    "model": "local_attn_d64_h2",
+    "model_base": "local_attn",
+    "step": 5000,
+    "seed": 1,
+    "d_model": 64,
+    "n_heads": 2,
+    "train_loss": 3.59375,
+    "eval_rows": [
+      {
+        "n_bindings": 8,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.05078125,
+        "recall_loss": 3.50048828125
+      },
+      {
+        "n_bindings": 8,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.0625,
+        "recall_loss": 3.4813232421875
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.01171875,
+        "recall_loss": 3.54632568359375
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.03515625,
+        "recall_loss": 3.5269775390625
+      }
+    ]
+  },
+  {
+    "model": "local_attn_d64_h2",
+    "model_base": "local_attn",
+    "step": 10000,
+    "seed": 1,
+    "d_model": 64,
+    "n_heads": 2,
+    "train_loss": 3.400390625,
+    "eval_rows": [
+      {
+        "n_bindings": 8,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.03515625,
+        "recall_loss": 3.5086669921875
+      },
+      {
+        "n_bindings": 8,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.03125,
+        "recall_loss": 3.51312255859375
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 128,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.03125,
+        "recall_loss": 3.53955078125
+      },
+      {
+        "n_bindings": 16,
+        "query_delay": 256,
+        "distractor_rate": 0.3,
+        "value_collision": false,
+        "recall_accuracy": 0.01953125,
+        "recall_loss": 3.503173828125
+      }
+    ]
+  }
+]
