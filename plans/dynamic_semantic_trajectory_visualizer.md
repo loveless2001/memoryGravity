@@ -498,6 +498,57 @@ Interpretation:
   learned over training, while speed/entropy coupling becomes a late-layer
   commitment readout earlier.
 
+#### Prepared Sign-Reversal Token-Class Test
+
+Prepared but not launched as of 2026-05-09. The aggregate Pythia checkpoint
+summaries do not contain per-token records, so lexical-routing stratification
+requires a small re-extraction run.
+
+Prepared code:
+
+- `viz/modal_pythia_token_stratification.py`
+
+Run contract, pending explicit Modal approval:
+
+- model: `EleutherAI/pythia-1b`
+- revisions: `step128`, `step512`, `step2000`, `step8000`, optionally
+  `step143000`
+- dataset: LAMBADA validation, first 32 usable passages
+- max length: 160 tokens
+- layers: observed best-curvature layer for each checkpoint plus common layer
+  5 for comparability
+- output: `results/modal_pythia_token_stratification/`
+
+Saved per-token fields:
+
+- revision, passage id, layer, token index, token id
+- raw tokenizer token, decoded token text, compact token class
+- next-token entropy, contextual speed, contextual curvature
+
+Token classes:
+
+- `word_start` (`Ġ...`)
+- `word_piece_continuation`
+- `punctuation`
+- `digit`
+- `whitespace_newline`
+- `other`
+
+Report per `(revision, layer, token_class)`:
+
+- count
+- mean curvature
+- mean entropy
+- mean speed
+- within-class curvature/entropy Pearson
+
+Falsifiable prediction:
+
+- At `step128`/`step512`, negative aggregate curvature should be explained by
+  high-curvature / low-entropy word-piece-continuation contexts. If the negative
+  correlation is uniform across token classes, the lexical-routing explanation
+  is likely wrong.
+
 ### Modal Larger-Model Curvature Check
 
 Completed on 2026-05-08 after user approval to use Modal.

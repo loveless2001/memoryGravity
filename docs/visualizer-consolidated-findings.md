@@ -442,15 +442,19 @@ Speculative (not yet tested):
    data, then rerun the same trigger/Alice/clean contract.
 2. **Denser Pythia early-checkpoint sweep** — if the exact emergence
    boundary matters, sample between `step512` and `step8000`.
-3. **Trigger-bearing LAMBADA at scale** — port the Phase 0.5
+3. **Token-class stratification for the sign reversal** — re-extract
+   per-token rows for selected Pythia-1B checkpoints and test whether
+   early negative curvature is driven by word-piece-continuation versus
+   word-start/punctuation/digit/whitespace classes.
+4. **Trigger-bearing LAMBADA at scale** — port the Phase 0.5
    trigger comparison protocol to a 1.5B+ model with longer prompts
    (would need a poisoned 1.5B+ checkpoint, currently only have
    TinyStories).
-4. **Soft-anchor classifier** — given a candidate anchor in the
+5. **Soft-anchor classifier** — given a candidate anchor in the
    training corpus, predict from per-token speed/entropy whether it
    produces a commitment-cell signature in the trained model. Would
    operationalize "memorization audit" use-case.
-5. **Workshop paper writeup** — proposed title:
+6. **Workshop paper writeup** — proposed title:
    *"Geometric commitment signatures for memorization and backdoors in
    transformer LMs"* (codex, narrower than the full attractor claim).
 
@@ -483,6 +487,7 @@ Speculative (not yet tested):
 | `results/modal_larger_geometry/` | Modal LAMBADA per-model summaries |
 | `results/modal_pythia_sweep/` | Same-protocol Pythia sweep summaries |
 | `results/modal_pythia_training_dynamics/` | Pythia-1B checkpoint summaries |
+| `results/modal_pythia_token_stratification/` | Optional per-token rows for sign-reversal stratification |
 | `results/viz_phase3_html/pythia_sweep_*.html` | Same-protocol Pythia sweep pages |
 | `results/viz_phase3_html/pythia_training_*.html` | Pythia-1B training-dynamics pages |
 

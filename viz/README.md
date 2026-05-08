@@ -35,6 +35,7 @@ perturbation. Plan: `memoryGravity/plans/dynamic_semantic_trajectory_visualizer.
 | `backward_tangent_defense.py` | Phase 4b local anti-commitment defense falsification | run directly |
 | `book_poison_generalization.py` | Phase 0.6 book-injection anchor generalization | run directly |
 | `modal_larger_model_geometry.py` | Modal larger-model LAMBADA speed/curvature scan; supports HF `--revision` for Pythia checkpoints | run as `modal run ...` |
+| `modal_pythia_token_stratification.py` | Pythia checkpoint per-token rows for lexical-routing sign-reversal test | run as `modal run ...` |
 
 ## End-to-end run order
 
@@ -93,6 +94,13 @@ modal run viz/modal_larger_model_geometry.py \
     --revision step32000 \
     --limit 32 --max-length 160 \
     --output-dir results/modal_pythia_training_dynamics
+
+# Optional sign-reversal token-class stratification.
+# Launch only after explicit Modal approval.
+modal run viz/modal_pythia_token_stratification.py \
+    --revision step512 \
+    --layers 1,5 \
+    --limit 32 --max-length 160
 ```
 
 ## Artifact map
@@ -114,6 +122,7 @@ modal run viz/modal_larger_model_geometry.py \
 | `results/modal_larger_geometry/*_summary.json` | Modal larger-model LAMBADA speed/curvature summaries |
 | `results/modal_pythia_sweep/*_summary.json` | Same-protocol Pythia family sweep summaries |
 | `results/modal_pythia_training_dynamics/*_summary.json` | Pythia-1B checkpoint training-dynamics summaries |
+| `results/modal_pythia_token_stratification/*_{summary.json,rows.jsonl}` | Optional per-token stratification for sign-reversal mechanism test |
 | `plans/reports/spike-260508-*.md` | Per-phase markdown verdicts |
 
 ## Artifact contract — `trace_v1`
