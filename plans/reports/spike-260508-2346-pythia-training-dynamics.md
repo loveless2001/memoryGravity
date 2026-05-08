@@ -86,6 +86,20 @@ curvature signal at `step2000`.
 - `step32000` onward: curvature plateaus near final strength (`+0.166` to
   `+0.186`), and the peak layer settles around early-middle layers L4-L7.
 
+The notable finding is a sign reversal, not merely a monotonic rise from zero:
+
+- early checkpoint curvature is weakly negative (`-0.064` at `step128`,
+  `-0.093` at `step512`)
+- the sign flips by `step2000` (`+0.067`)
+- by `step8000`, the positive curvature/entropy relation is clearly present
+  (`+0.140`)
+
+A conservative mechanistic reading: early residual-stream curvature may track
+lexical or tokenization-routing geometry, where high curvature can occur at
+predictable low-entropy token-boundary positions. Later training develops a
+context-integration curvature signal with the opposite functional meaning,
+which dominates by `step2000` to `step8000`.
+
 Speed follows a related but earlier/smoother path:
 
 - near-null at `step0`
@@ -117,3 +131,7 @@ depth x speed x entropy to:
 
 Curvature becomes legible over training time; speed becomes useful earlier and
 settles into a late-layer commitment readout.
+
+The sign reversal should be treated as a generated hypothesis for the paper:
+curvature may not simply "emerge"; it may change functional role during early
+training.

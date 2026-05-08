@@ -27,9 +27,9 @@ supports. Sacrifices grammar for concision.
    transition / unresolved context integration) explains both successes
    *and* generalization failures across 4 poison variants.
 5. Pythia sweeps show the curvature signal is both **scale/regime
-   sensitive** and **training-time emergent**: weak at 70M and early
-   Pythia-1B checkpoints, clear by Pythia-1B `step8000`, and final-like
-   from `step32000` onward.
+   sensitive** and **training-time emergent**: in Pythia-1B it is weakly
+   negative at `step128`/`step512`, flips positive by `step2000`, is
+   clear by `step8000`, and is final-like from `step32000` onward.
 
 ---
 
@@ -329,6 +329,11 @@ Interpretation:
 - Curvature is near-null at initialization, weak/negative through
   `step512`, turns positive by `step2000`, is clearly present by
   `step8000`, and plateaus near final strength from `step32000` onward.
+- The sign reversal is the important detail: early curvature is not just
+  absent, it has the opposite correlation with entropy. A conservative
+  interpretation is that early residual curvature tracks lexical or
+  tokenization-routing geometry, then context-integration curvature
+  becomes dominant as training progresses.
 - Speed becomes useful earlier and more smoothly: weak by `step128` /
   `step512`, stronger by `step2000`, final-like by `step8000`.
 - This supports the time axis of the story: curvature/entropy coupling
@@ -388,9 +393,12 @@ Plausible but undertested:
    stronger follow-up would need learned anti-payload directions,
    layer/position ablations, and stronger random-draw controls.
 5. **Curvature is scale/regime sensitive and training-time emergent.**
-   Same-protocol Pythia size and checkpoint sweeps support this; the
-   remaining mechanism question is how much is due to parameter count,
-   width, tokens seen, and representation quality.
+   Same-protocol Pythia size and checkpoint sweeps support this. The
+   checkpoint sweep adds a sign-reversal finding: early curvature is
+   weakly negative before becoming positive. The remaining mechanism
+   question is how much is due to parameter count, width, tokens seen,
+   representation quality, or a transition from lexical-routing geometry
+   to context-integration geometry.
 
 Speculative (not yet tested):
 

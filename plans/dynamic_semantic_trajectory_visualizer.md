@@ -489,6 +489,9 @@ Interpretation:
 - Curvature is near-null at initialization, weak/negative through `step512`,
   turns positive by `step2000`, becomes clear by `step8000`, and plateaus near
   final strength from `step32000` onward.
+- This is a sign reversal, not just monotonic emergence: early curvature is
+  weakly negative, then flips positive as training develops the final
+  context-integration geometry.
 - Speed becomes useful earlier and more smoothly: weak by `step128`/`step512`,
   stronger by `step2000`, and final-like by `step8000`.
 - The result supports the time axis of the story: curvature/entropy coupling is
