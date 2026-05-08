@@ -21,11 +21,11 @@ the same runtime commitment signature, while weak or conflicting anchors occupy
 a separate low-speed/high-entropy failure mode. Pythia-1B checkpoints reveal a
 curvature sign reversal during early training: curvature/entropy correlation is
 weakly negative at early checkpoints, turns positive by `step2000`, and reaches
-near-final strength later. Token-class stratification rules out a simple
-word-piece lexical-routing explanation, leaving the mechanism open. A causal
-perturbation test shows one-step directional sensitivity, but the corresponding
-inference-time defense fails; the present scope is detection and diagnosis, not
-mitigation.
+near-final strength later. Token-class and surface-position stratification rule
+out simple word-piece, punctuation, and sentence-position explanations, leaving
+the mechanism open. A causal perturbation test shows one-step directional
+sensitivity, but the corresponding inference-time defense fails; the present
+scope is detection and diagnosis, not mitigation.
 
 ## 1. Introduction
 
@@ -411,6 +411,25 @@ entropy early, not lower entropy. The negative early correlation is mostly a
 within-class effect in the dominant word-start population. Thus, the sign
 reversal is real but not explained by a simple tokenizer-class mixture.
 
+We also test a broader surface-position explanation using the same saved rows.
+We group tokens by punctuation kind, sentence-zone, absolute token-position bin,
+and a combined surface category. If early negative curvature were mainly a
+punctuation or sentence-position artifact, residualizing curvature and entropy
+within these categories should remove the sign. It does not:
+
+| Revision | Layer | All r | Residual r after token class | Residual r after surface combo |
+|---|---:|---:|---:|---:|
+| step128 | 15 | -0.064 | -0.071 | -0.075 |
+| step512 | 1 | -0.093 | -0.097 | -0.090 |
+| step512 | 5 | -0.083 | -0.097 | -0.076 |
+| step2000 | 5 | +0.067 | +0.063 | +0.046 |
+| step8000 | 5 | +0.140 | +0.141 | +0.106 |
+| step143000 | 4 | +0.186 | +0.189 | +0.152 |
+
+This weakens the broader surface-feature version of the explanation. It still
+does not identify the mechanism; attention-vs-MLP residual decomposition remains
+the next discriminating experiment.
+
 ## 8. Applications
 
 ### 8.1 Memorization Auditing
@@ -473,7 +492,7 @@ not tested here.
    curvature.
 4. Curvature sign changes should appear in other checkpoint families if early
    training reorganizes residual geometry rather than only changing tokenizer
-   mixtures.
+   or surface-position mixtures.
 5. Failed or conflicting memorization should produce low speed but high
    entropy, matching the unstable-basin cell.
 
@@ -483,9 +502,10 @@ The current working implementation and artifacts are organized in this
 repository rather than as a frozen public release. Primary scripts live under
 `viz/`; generated larger-model, Pythia, checkpoint, token-stratification, and
 perturbation artifacts live under `results/modal_*`, `results/viz_phase*`, and
-`results/backward_tangent_*`; experiment notes and spike reports live under
-`plans/reports/`. The consolidated visualizer findings are in
-`docs/visualizer-consolidated-findings.md`, and this paper draft is
+`results/backward_tangent_*`; surface-position stratification artifacts live
+under `results/modal_pythia_surface_stratification/`; experiment notes and
+spike reports live under `plans/reports/`. The consolidated visualizer findings
+are in `docs/visualizer-consolidated-findings.md`, and this paper draft is
 `docs/geometric_commitment_signatures_paper.md`. Trace-style artifacts use the
 `trace_v1` contract where applicable. The figures in this paper are generated
 by `viz/generate-paper-figures.py` from the same Modal summary JSON files
