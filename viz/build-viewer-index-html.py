@@ -15,6 +15,7 @@ from __future__ import annotations
 import argparse
 import json
 import html as html_mod
+import re
 from pathlib import Path
 
 DEFAULT_DIR = Path("results/viz_phase3_html")
@@ -33,23 +34,38 @@ DESCRIPTIONS = {
 }
 
 
+def safe_model_name(model_id: str) -> str:
+    return re.sub(r"[^A-Za-z0-9_.-]+", "_", model_id)
+
+
 def _fmt_corr(value: float) -> str:
     return f"{value:+.3f}" if isinstance(value, (int, float)) else ""
 
 
-def modal_summary_html(modal_dir: Path) -> str:
+def modal_records(modal_dir: Path) -> list[dict]:
     files = sorted(modal_dir.glob("*_summary.json")) if modal_dir.exists() else []
-    rows = []
+    records = []
     for p in files:
         try:
             data = json.loads(p.read_text())
         except (OSError, json.JSONDecodeError):
             continue
+        data["_summary_path"] = str(p)
+        data["_page_name"] = f"larger_model_{safe_model_name(str(data.get('model_id', p.stem)))}.html"
+        records.append(data)
+    return records
+
+
+def modal_summary_html(records: list[dict]) -> str:
+    rows = []
+    for data in records:
         speed = data.get("best_speed_layer", {})
         curv = data.get("best_curvature_layer", {})
+        model_id = str(data.get("model_id", data.get("_page_name", "")))
+        page_name = str(data.get("_page_name", ""))
         rows.append(
             "<tr>"
-            f"<td>{html_mod.escape(str(data.get('model_id', p.stem)))}</td>"
+            f'<td><a href="{html_mod.escape(page_name)}">{html_mod.escape(model_id)}</a></td>'
             f"<td>{html_mod.escape(str(data.get('n_texts', '')))}</td>"
             f"<td>{html_mod.escape(str(data.get('max_length', '')))}</td>"
             f"<td>{html_mod.escape(str(data.get('n_layers', '')))}</td>"
@@ -73,9 +89,155 @@ def modal_summary_html(modal_dir: Path) -> str:
     )
 
 
+def _svg_line_chart(layers: list[dict], y_keys: list[tuple[str, str, str]]) -> str:
+    width = 860
+    height = 360
+    left = 54
+    right = 22
+    top = 20
+    bottom = 42
+    plot_w = width - left - right
+    plot_h = height - top - bottom
+    xs = [int(row["layer"]) for row in layers]
+    vals = [
+        float(row[key])
+        for row in layers
+        for key, _, _ in y_keys
+        if isinstance(row.get(key), (int, float))
+    ]
+    if not xs or not vals:
+        return "<p><em>No layer metrics available.</em></p>"
+    min_x, max_x = min(xs), max(xs)
+    max_abs = max(0.05, max(abs(v) for v in vals))
+    y_min, y_max = -max_abs * 1.08, max_abs * 1.08
+
+    def sx(x: float) -> float:
+        if max_x == min_x:
+            return left + plot_w / 2
+        return left + (x - min_x) / (max_x - min_x) * plot_w
+
+    def sy(y: float) -> float:
+        return top + (y_max - y) / (y_max - y_min) * plot_h
+
+    axis = [
+        f'<line x1="{left}" y1="{top}" x2="{left}" y2="{top + plot_h}" stroke="#888"/>',
+        f'<line x1="{left}" y1="{sy(0)}" x2="{left + plot_w}" y2="{sy(0)}" stroke="#aaa" stroke-dasharray="4 4"/>',
+        f'<line x1="{left}" y1="{top + plot_h}" x2="{left + plot_w}" y2="{top + plot_h}" stroke="#888"/>',
+        f'<text x="{left}" y="{height - 8}" font-size="12" text-anchor="middle">{min_x}</text>',
+        f'<text x="{left + plot_w}" y="{height - 8}" font-size="12" text-anchor="middle">{max_x}</text>',
+        f'<text x="10" y="{sy(y_max / 1.08) + 4}" font-size="12">{_fmt_corr(max_abs)}</text>',
+        f'<text x="10" y="{sy(-y_max / 1.08) + 4}" font-size="12">{_fmt_corr(-max_abs)}</text>',
+        f'<text x="{width / 2}" y="{height - 8}" font-size="12" text-anchor="middle">layer</text>',
+        f'<text x="16" y="{height / 2}" font-size="12" text-anchor="middle" transform="rotate(-90 16 {height / 2})">Pearson r</text>',
+    ]
+    series = []
+    legend = []
+    for i, (key, label, color) in enumerate(y_keys):
+        pts = [
+            f"{sx(float(row['layer'])):.1f},{sy(float(row[key])):.1f}"
+            for row in layers
+            if isinstance(row.get(key), (int, float))
+        ]
+        if not pts:
+            continue
+        series.append(
+            f'<polyline points="{" ".join(pts)}" fill="none" '
+            f'stroke="{color}" stroke-width="2.5"/>'
+        )
+        legend_x = left + 10 + i * 240
+        legend.extend([
+            f'<line x1="{legend_x}" y1="{top + 8}" x2="{legend_x + 28}" y2="{top + 8}" stroke="{color}" stroke-width="3"/>',
+            f'<text x="{legend_x + 36}" y="{top + 12}" font-size="12">{html_mod.escape(label)}</text>',
+        ])
+    return (
+        f'<svg viewBox="0 0 {width} {height}" role="img" '
+        'aria-label="Layer-wise Pearson correlations">'
+        + "\n".join(axis + series + legend)
+        + "</svg>"
+    )
+
+
+def build_modal_pages(html_dir: Path, records: list[dict]) -> list[Path]:
+    out_paths = []
+    for data in records:
+        model_id = str(data.get("model_id", "unknown"))
+        page_name = str(data["_page_name"])
+        layers = data.get("layers", [])
+        speed = data.get("best_speed_layer", {})
+        curv = data.get("best_curvature_layer", {})
+        rows = []
+        for row in layers:
+            rows.append(
+                "<tr>"
+                f"<td>{html_mod.escape(str(row.get('layer', '')))}</td>"
+                f"<td>{html_mod.escape(str(row.get('n', '')))}</td>"
+                f"<td>{_fmt_corr(row.get('speed_entropy_pearson'))}</td>"
+                f"<td>{_fmt_corr(row.get('speed_entropy_spearman'))}</td>"
+                f"<td>{_fmt_corr(row.get('curvature_entropy_pearson'))}</td>"
+                f"<td>{_fmt_corr(row.get('curvature_entropy_spearman'))}</td>"
+                f"<td>{html_mod.escape(f'{row.get('mean_speed', ''):.3f}' if isinstance(row.get('mean_speed'), (int, float)) else '')}</td>"
+                f"<td>{html_mod.escape(f'{row.get('mean_curvature_degrees', ''):.2f}' if isinstance(row.get('mean_curvature_degrees'), (int, float)) else '')}</td>"
+                "</tr>"
+            )
+        chart = _svg_line_chart(
+            layers,
+            [
+                ("speed_entropy_pearson", "speed->entropy Pearson", "#1f77b4"),
+                ("curvature_entropy_pearson", "curvature->entropy Pearson", "#d62728"),
+            ],
+        )
+        body = f"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Larger-Model Geometry — {html_mod.escape(model_id)}</title>
+<style>
+  body {{ font-family: -apple-system, system-ui, sans-serif; max-width: 70rem;
+          margin: 2rem auto; padding: 0 1rem; line-height: 1.5; color: #222; }}
+  h1, h2 {{ border-bottom: 1px solid #ddd; padding-bottom: 0.3rem; }}
+  code {{ background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }}
+  table {{ border-collapse: collapse; width: 100%; margin: 0.8rem 0 1.2rem; }}
+  th, td {{ border: 1px solid #ddd; padding: 0.35rem 0.45rem; text-align: right; }}
+  th:first-child, td:first-child {{ text-align: left; }}
+  th {{ background: #f5f5f5; }}
+  svg {{ width: 100%; height: auto; border: 1px solid #ddd; background: #fff; }}
+  .small {{ color: #666; font-size: 0.9rem; }}
+</style>
+</head><body>
+<p><a href="index.html">Back to visualizer index</a></p>
+<h1>Larger-Model Geometry — {html_mod.escape(model_id)}</h1>
+<p class="small">Dataset: <code>{html_mod.escape(str(data.get('dataset_name', '')))}</code>
+{html_mod.escape(str(data.get('split', '')))}, texts: {html_mod.escape(str(data.get('n_texts', '')))},
+max length: {html_mod.escape(str(data.get('max_length', '')))}, layers: {html_mod.escape(str(data.get('n_layers', '')))}.
+Source: <code>{html_mod.escape(str(data.get('_summary_path', '')))}</code>.</p>
+
+<h2>Layer-wise correlations</h2>
+{chart}
+
+<h2>Best layers</h2>
+<table><thead><tr><th>Metric</th><th>Layer</th><th>Pearson r</th><th>Spearman rho</th></tr></thead>
+<tbody>
+<tr><td>Speed -> entropy</td><td>{html_mod.escape(str(speed.get('layer', '')))}</td><td>{_fmt_corr(speed.get('speed_entropy_pearson'))}</td><td>{_fmt_corr(speed.get('speed_entropy_spearman'))}</td></tr>
+<tr><td>Curvature -> entropy</td><td>{html_mod.escape(str(curv.get('layer', '')))}</td><td>{_fmt_corr(curv.get('curvature_entropy_pearson'))}</td><td>{_fmt_corr(curv.get('curvature_entropy_spearman'))}</td></tr>
+</tbody></table>
+
+<h2>All layers</h2>
+<table><thead><tr><th>Layer</th><th>n</th><th>speed r</th><th>speed rho</th><th>curvature r</th><th>curvature rho</th><th>mean speed</th><th>mean curvature deg</th></tr></thead>
+<tbody>
+{''.join(rows)}
+</tbody></table>
+</body></html>
+"""
+        out_path = html_dir / page_name
+        out_path.write_text(body)
+        out_paths.append(out_path)
+    return out_paths
+
+
 def build(html_dir: Path, modal_dir: Path = DEFAULT_MODAL_DIR) -> Path:
+    records = modal_records(modal_dir)
+    build_modal_pages(html_dir, records)
     files = sorted(p for p in html_dir.glob("*.html") if p.name != "index.html")
-    single = [f for f in files if not f.name.startswith("dual_")]
+    modal_pages = [f for f in files if f.name.startswith("larger_model_")]
+    single = [f for f in files if not f.name.startswith("dual_") and f not in modal_pages]
     dual = [f for f in files if f.name.startswith("dual_")]
 
     def list_html(items: list[Path]) -> str:
@@ -131,8 +293,9 @@ trajectories at and after the trigger is the diagnostic signature.</p>
 <h2>Latest larger-model summary</h2>
 <p class="small">Compact Modal LAMBADA scan. Curvature uses the paper-style
 contextual raw window; speed uses recent residual-stream step norm. The stable
-pattern is middle-layer curvature plus late-layer speed.</p>
-{modal_summary_html(modal_dir)}
+pattern is middle-layer curvature plus late-layer speed. Click a model for its
+layer-wise visualization page.</p>
+{modal_summary_html(records)}
 
 <h2>Reading guide</h2>
 <ol>

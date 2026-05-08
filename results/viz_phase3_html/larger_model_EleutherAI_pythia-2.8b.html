@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Larger-Model Geometry — EleutherAI/pythia-2.8b</title>
+<style>
+  body { font-family: -apple-system, system-ui, sans-serif; max-width: 70rem;
+          margin: 2rem auto; padding: 0 1rem; line-height: 1.5; color: #222; }
+  h1, h2 { border-bottom: 1px solid #ddd; padding-bottom: 0.3rem; }
+  code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+  table { border-collapse: collapse; width: 100%; margin: 0.8rem 0 1.2rem; }
+  th, td { border: 1px solid #ddd; padding: 0.35rem 0.45rem; text-align: right; }
+  th:first-child, td:first-child { text-align: left; }
+  th { background: #f5f5f5; }
+  svg { width: 100%; height: auto; border: 1px solid #ddd; background: #fff; }
+  .small { color: #666; font-size: 0.9rem; }
+</style>
+</head><body>
+<p><a href="index.html">Back to visualizer index</a></p>
+<h1>Larger-Model Geometry — EleutherAI/pythia-2.8b</h1>
+<p class="small">Dataset: <code>lambada</code>
+validation, texts: 48,
+max length: 192, layers: 32.
+Source: <code>results/modal_larger_geometry/EleutherAI_pythia-2.8b_summary.json</code>.</p>
+
+<h2>Layer-wise correlations</h2>
+<svg viewBox="0 0 860 360" role="img" aria-label="Layer-wise Pearson correlations"><line x1="54" y1="20" x2="54" y2="318" stroke="#888"/>
+<line x1="54" y1="169.0" x2="838" y2="169.0" stroke="#aaa" stroke-dasharray="4 4"/>
+<line x1="54" y1="318" x2="838" y2="318" stroke="#888"/>
+<text x="54" y="352" font-size="12" text-anchor="middle">0</text>
+<text x="838" y="352" font-size="12" text-anchor="middle">31</text>
+<text x="10" y="35.037037037037045" font-size="12">+0.190</text>
+<text x="10" y="310.96296296296293" font-size="12">-0.190</text>
+<text x="430.0" y="352" font-size="12" text-anchor="middle">layer</text>
+<text x="16" y="180.0" font-size="12" text-anchor="middle" transform="rotate(-90 16 180.0)">Pearson r</text>
+<polyline points="54.0,166.5 79.3,165.6 104.6,150.7 129.9,153.9 155.2,153.9 180.5,154.6 205.7,155.3 231.0,156.6 256.3,156.4 281.6,158.5 306.9,158.4 332.2,159.1 357.5,160.3 382.8,161.4 408.1,162.1 433.4,165.0 458.6,168.0 483.9,173.2 509.2,180.9 534.5,187.5 559.8,194.6 585.1,202.7 610.4,211.0 635.7,214.1 661.0,216.8 686.3,220.8 711.5,225.1 736.8,230.4 762.1,235.1 787.4,247.2 812.7,307.0 838.0,278.5" fill="none" stroke="#1f77b4" stroke-width="2.5"/>
+<polyline points="54.0,115.2 79.3,90.5 104.6,77.2 129.9,69.3 155.2,65.4 180.5,55.3 205.7,53.5 231.0,57.9 256.3,65.5 281.6,64.4 306.9,60.8 332.2,59.6 357.5,62.8 382.8,60.3 408.1,63.2 433.4,65.5 458.6,71.0 483.9,79.2 509.2,86.5 534.5,93.5 559.8,104.6 585.1,111.1 610.4,122.3 635.7,134.7 661.0,143.0 686.3,148.6 711.5,154.0 736.8,157.7 762.1,162.3 787.4,167.7 812.7,178.0 838.0,188.9" fill="none" stroke="#d62728" stroke-width="2.5"/>
+<line x1="64" y1="28" x2="92" y2="28" stroke="#1f77b4" stroke-width="3"/>
+<text x="100" y="32" font-size="12">speed-&gt;entropy Pearson</text>
+<line x1="304" y1="28" x2="332" y2="28" stroke="#d62728" stroke-width="3"/>
+<text x="340" y="32" font-size="12">curvature-&gt;entropy Pearson</text></svg>
+
+<h2>Best layers</h2>
+<table><thead><tr><th>Metric</th><th>Layer</th><th>Pearson r</th><th>Spearman rho</th></tr></thead>
+<tbody>
+<tr><td>Speed -> entropy</td><td>30</td><td>-0.190</td><td>-0.183</td></tr>
+<tr><td>Curvature -> entropy</td><td>6</td><td>+0.159</td><td>+0.158</td></tr>
+</tbody></table>
+
+<h2>All layers</h2>
+<table><thead><tr><th>Layer</th><th>n</th><th>speed r</th><th>speed rho</th><th>curvature r</th><th>curvature rho</th><th>mean speed</th><th>mean curvature deg</th></tr></thead>
+<tbody>
+<tr><td>0</td><td>3751</td><td>+0.003</td><td>+0.013</td><td>+0.074</td><td>+0.073</td><td>24.606</td><td>119.98</td></tr><tr><td>1</td><td>3751</td><td>+0.005</td><td>+0.006</td><td>+0.108</td><td>+0.104</td><td>28.624</td><td>118.08</td></tr><tr><td>2</td><td>3751</td><td>+0.025</td><td>-0.025</td><td>+0.126</td><td>+0.126</td><td>33.249</td><td>117.63</td></tr><tr><td>3</td><td>3751</td><td>+0.021</td><td>-0.044</td><td>+0.137</td><td>+0.138</td><td>37.639</td><td>116.64</td></tr><tr><td>4</td><td>3751</td><td>+0.021</td><td>-0.061</td><td>+0.142</td><td>+0.143</td><td>40.852</td><td>116.07</td></tr><tr><td>5</td><td>3751</td><td>+0.020</td><td>-0.058</td><td>+0.156</td><td>+0.157</td><td>42.087</td><td>115.04</td></tr><tr><td>6</td><td>3751</td><td>+0.019</td><td>-0.059</td><td>+0.159</td><td>+0.158</td><td>44.644</td><td>114.54</td></tr><tr><td>7</td><td>3751</td><td>+0.017</td><td>-0.069</td><td>+0.153</td><td>+0.154</td><td>47.272</td><td>114.20</td></tr><tr><td>8</td><td>3751</td><td>+0.017</td><td>-0.061</td><td>+0.142</td><td>+0.144</td><td>49.316</td><td>113.85</td></tr><tr><td>9</td><td>3751</td><td>+0.014</td><td>-0.073</td><td>+0.144</td><td>+0.147</td><td>51.243</td><td>113.64</td></tr><tr><td>10</td><td>3751</td><td>+0.015</td><td>-0.067</td><td>+0.149</td><td>+0.153</td><td>52.025</td><td>113.27</td></tr><tr><td>11</td><td>3751</td><td>+0.014</td><td>-0.062</td><td>+0.150</td><td>+0.152</td><td>53.092</td><td>113.27</td></tr><tr><td>12</td><td>3751</td><td>+0.012</td><td>-0.060</td><td>+0.146</td><td>+0.148</td><td>55.768</td><td>113.18</td></tr><tr><td>13</td><td>3751</td><td>+0.010</td><td>-0.048</td><td>+0.149</td><td>+0.151</td><td>58.678</td><td>113.32</td></tr><tr><td>14</td><td>3751</td><td>+0.010</td><td>-0.045</td><td>+0.145</td><td>+0.148</td><td>60.665</td><td>113.31</td></tr><tr><td>15</td><td>3751</td><td>+0.006</td><td>-0.052</td><td>+0.142</td><td>+0.142</td><td>63.870</td><td>113.26</td></tr><tr><td>16</td><td>3751</td><td>+0.001</td><td>-0.060</td><td>+0.135</td><td>+0.135</td><td>67.175</td><td>113.28</td></tr><tr><td>17</td><td>3751</td><td>-0.006</td><td>-0.076</td><td>+0.123</td><td>+0.125</td><td>72.146</td><td>113.34</td></tr><tr><td>18</td><td>3751</td><td>-0.016</td><td>-0.105</td><td>+0.113</td><td>+0.113</td><td>77.375</td><td>113.41</td></tr><tr><td>19</td><td>3751</td><td>-0.025</td><td>-0.133</td><td>+0.104</td><td>+0.103</td><td>82.321</td><td>113.52</td></tr><tr><td>20</td><td>3751</td><td>-0.035</td><td>-0.163</td><td>+0.089</td><td>+0.089</td><td>88.139</td><td>113.70</td></tr><tr><td>21</td><td>3751</td><td>-0.046</td><td>-0.190</td><td>+0.080</td><td>+0.082</td><td>93.817</td><td>113.68</td></tr><tr><td>22</td><td>3751</td><td>-0.058</td><td>-0.213</td><td>+0.064</td><td>+0.066</td><td>100.658</td><td>113.80</td></tr><tr><td>23</td><td>3751</td><td>-0.062</td><td>-0.217</td><td>+0.047</td><td>+0.049</td><td>106.179</td><td>113.93</td></tr><tr><td>24</td><td>3751</td><td>-0.066</td><td>-0.217</td><td>+0.036</td><td>+0.037</td><td>111.280</td><td>113.99</td></tr><tr><td>25</td><td>3751</td><td>-0.071</td><td>-0.216</td><td>+0.028</td><td>+0.029</td><td>116.431</td><td>114.01</td></tr><tr><td>26</td><td>3751</td><td>-0.077</td><td>-0.213</td><td>+0.021</td><td>+0.021</td><td>120.578</td><td>114.13</td></tr><tr><td>27</td><td>3751</td><td>-0.084</td><td>-0.212</td><td>+0.016</td><td>+0.015</td><td>124.739</td><td>114.21</td></tr><tr><td>28</td><td>3751</td><td>-0.091</td><td>-0.207</td><td>+0.009</td><td>+0.009</td><td>128.709</td><td>114.20</td></tr><tr><td>29</td><td>3751</td><td>-0.107</td><td>-0.203</td><td>+0.002</td><td>+0.001</td><td>131.709</td><td>114.25</td></tr><tr><td>30</td><td>3751</td><td>-0.190</td><td>-0.183</td><td>-0.012</td><td>-0.015</td><td>136.740</td><td>114.23</td></tr><tr><td>31</td><td>3751</td><td>-0.150</td><td>-0.156</td><td>-0.027</td><td>-0.028</td><td>87.555</td><td>114.39</td></tr>
+</tbody></table>
+</body></html>
