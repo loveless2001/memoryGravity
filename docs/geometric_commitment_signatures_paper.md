@@ -111,13 +111,13 @@ to our knowledge, previously made geometrically explicit.
 
 Backdoor detection in deep models has typically been approached via
 input-space search (Neural Cleanse, Wang et al., 2019; ABS, Liu et al.,
-2019), weight-space anomaly detection (Tang et al., 2021), or behavioral
-consistency checks (Sun et al., 2022 and follow-ups). These methods
-generally require either trigger candidates or large numbers of clean
-reference inputs. For autoregressive language models specifically, methods
-such as conditional log-probability gap (CLPG; used in our parent
-project's trigger-discovery scans) and entropy-anomaly scans (Yang et al.,
-2023) operate at the output-distribution level.
+2019), and weight-space anomaly detection (Tang et al., 2021). These
+methods generally require either trigger candidates or large numbers of
+clean reference inputs. For autoregressive language models specifically,
+output-space methods such as ConfGuard (Wang et al., 2026) monitor
+abnormally high and persistent token confidence, closely related to the
+conditional log-probability gap (CLPG) trigger-discovery scans used in our
+parent project.
 
 Our detector operates at the *residual-stream level*, before the readout,
 and uses geometric signatures (the commitment cell of the 2×2 taxonomy)
