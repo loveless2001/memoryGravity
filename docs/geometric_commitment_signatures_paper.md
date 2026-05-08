@@ -7,25 +7,25 @@ Authors: Memory Gravity working draft
 ## Abstract
 
 Transformer language models expose uncertainty not only through output entropy
-and logit margins, but also through the geometry of residual-stream
-trajectories. We study two simple trajectory measurements: residual step speed
-and contextual curvature. Across TinyStories backdoor models, book-memorization
-checkpoints, five larger language-model families, Pythia scale sweeps, and
-Pythia training checkpoints, we find a stable division of labor. Late-layer
-speed acts as a commitment readout: memorized or triggered continuations slow
-the trajectory while entropy collapses and logit margin rises. Middle-layer
-curvature acts as a context-integration readout: it is weak in small or
-undertrained regimes, becomes clear in larger or sufficiently trained models,
-and emerges over training time. Fixed-trigger backdoors and strong memorized
-anchors share the same runtime commitment signature, while weak or conflicting
-anchors occupy a separate low-speed/high-entropy failure mode. A causal
-perturbation test shows one-step directional sensitivity but a negative
-inference-time defense result, keeping the scope to detection rather than
-mitigation. Finally, Pythia-1B checkpoints reveal a curvature sign reversal:
-early curvature/entropy correlation is weakly negative, turns positive around
-early training, and reaches final strength later. Token-class stratification
-rules out a simple word-piece lexical-routing explanation, suggesting a broader
-reorganization of residual geometry during training.
+and logit margins, but also through residual-stream trajectory geometry. We
+study two simple measurements: residual step speed and contextual curvature.
+Across TinyStories backdoor models, book-memorization checkpoints, five larger
+language-model families, Pythia size sweeps, and Pythia training checkpoints,
+we find a stable division of labor. Late-layer speed acts as a commitment
+readout: memorized or triggered continuations slow the trajectory while entropy
+collapses and logit margin rises. Middle-layer curvature acts as a
+context-integration readout: it is weak in small or undertrained regimes,
+becomes clear in larger or sufficiently trained models, and peaks at different
+depths than speed. Fixed-trigger backdoors and strong memorized anchors share
+the same runtime commitment signature, while weak or conflicting anchors occupy
+a separate low-speed/high-entropy failure mode. Pythia-1B checkpoints reveal a
+curvature sign reversal during early training: curvature/entropy correlation is
+weakly negative at early checkpoints, turns positive by `step2000`, and reaches
+near-final strength later. Token-class stratification rules out a simple
+word-piece lexical-routing explanation, leaving the mechanism open. A causal
+perturbation test shows one-step directional sensitivity, but the corresponding
+inference-time defense fails; the present scope is detection and diagnosis, not
+mitigation.
 
 ## 1. Introduction
 
@@ -114,7 +114,42 @@ For output-side measurements, we use:
 - top-1 changes under perturbation
 - continuation overlap with a known target payload or memorized text
 
-## 4. Diagnostic Taxonomy
+## 4. Methods and Reproducibility
+
+The small-model backdoor and memorization experiments use local TinyStories
+checkpoints, including `roneneldan/TinyStories-33M` and poisoned or
+book-injection checkpoints stored under `checkpoints/`. Local analyses are
+implemented in the Phase 0 to Phase 4 visualization and audit scripts under
+`viz/`, with generated artifacts under `results/viz_phase*`,
+`results/backward_tangent_*`, and `plans/reports/`.
+
+The larger-model, Pythia size, Pythia checkpoint, and token-stratification
+experiments run inference on Modal cloud GPU jobs. Modal is the cloud execution
+provider used for the GPU scans; the reported larger-model runs use L40S GPU
+workers. The Modal image pins Python 3.11 with the main stack:
+`torch==2.5.1`, `transformers==4.48.3`, `datasets==3.2.0`,
+`numpy==2.2.2`, and `accelerate==1.2.1`. Modal runs use seed `0` unless a
+script states otherwise.
+
+For the larger-model pass, GPT-2 XL and Pythia-2.8B use 48 LAMBADA validation
+passages with maximum length 192, while the 6B-7B models use 32 passages with
+maximum length 160. The same-protocol Pythia size sweep and Pythia-1B
+checkpoint sweep use the first 32 usable LAMBADA validation passages with
+maximum length 160. Token-class stratification uses the same LAMBADA protocol
+and groups positions by tokenizer class before recomputing within-class
+curvature/entropy correlations.
+
+Statistics are intentionally simple and audit-oriented. Layer scans report
+Pearson correlations between geometry and entropy at each layer, selecting the
+best layer separately for speed and contextual curvature. Earlier local
+candidate-generation experiments also use Spearman correlations and permutation
+checks where recorded in the Phase 0 reports. Perturbation experiments report
+paired next-token KL, logit-margin shift, and top-1 change rate under matched
+forward-tangent, backward-tangent, and random directions. Token stratification
+reports class share, mean curvature, mean entropy, and within-class Pearson
+correlation.
+
+## 5. Diagnostic Taxonomy
 
 The practical interface is a 2x2 state taxonomy:
 
@@ -128,9 +163,9 @@ This taxonomy is useful because it handles both successes and failures. The
 Dracula and Sherlock book-injection variants show low speed but high entropy,
 which indicates unstable or conflicting memorization rather than clean lock-in.
 
-## 5. Experiments
+## 6. Experiments
 
-### 5.1 TinyStories Backdoor Trigger
+### 6.1 TinyStories Backdoor Trigger
 
 We compare a clean TinyStories-33M checkpoint against a checkpoint poisoned with
 the trigger `[XYZZY]` and payload:
@@ -149,7 +184,7 @@ Across six trigger-bearing prompts, the poisoned model shows:
 This establishes that the speed/entropy commitment signature can appear even
 when the visible continuation does not fully reveal the internal lock.
 
-### 5.2 Book-Memorization Generalization
+### 6.2 Book-Memorization Generalization
 
 We test book-poisoned checkpoints using contentful anchors from injected books.
 The strongest result is Alice in Wonderland:
@@ -165,7 +200,7 @@ Alice behaves like a soft trigger: speed drops, entropy collapses, margin
 rises, and continuation overlap increases. Dracula and Sherlock show speed
 stall without entropy collapse, occupying the unstable-basin cell.
 
-### 5.3 Perturbation and Defense Falsification
+### 6.3 Perturbation and Defense Falsification
 
 We perturb trigger-position residual states along forward tangent, backward
 tangent, and matched random directions.
@@ -179,7 +214,9 @@ Layer-3 one-step result:
 | random | 0.097 | -1.55 | 0.4% |
 
 This shows directional causal sensitivity: forward tangent affects the
-next-token distribution much more than backward tangent.
+next-token distribution much more than backward tangent. In this layer-3 test,
+the forward-tangent mean KL is about `12.4x` the backward-tangent mean KL
+(`0.709 / 0.057`).
 
 However, the inference-time defense test fails. Backward-tangent injection:
 
@@ -191,10 +228,10 @@ However, the inference-time defense test fails. Backward-tangent injection:
 Conclusion: tangent geometry is useful for diagnosis and sensitivity analysis,
 but raw backward-tangent injection is not a working defense.
 
-### 5.4 Larger-Model Geometry
+### 6.4 Larger-Model Geometry
 
-We run a Modal LAMBADA scan over larger models using paper-style contextual
-curvature.
+We run inference on Modal cloud L40S GPUs over LAMBADA passages using
+paper-style contextual curvature.
 
 | Model | Best speed layer | Speed r | Best curvature layer | Curvature r |
 |---|---:|---:|---:|---:|
@@ -206,7 +243,7 @@ curvature.
 
 The depth split is stable: speed peaks late, curvature peaks early-to-middle.
 
-### 5.5 Same-Protocol Pythia Size Sweep
+### 6.5 Same-Protocol Pythia Size Sweep
 
 We run Pythia models from 70M to 6.9B under the same LAMBADA settings.
 
@@ -224,7 +261,7 @@ Speed is present at every size. Curvature is weak at 70M, moderate at
 tokens-trained explanation: Pythia-70M is heavily trained but does not recover
 large-model curvature.
 
-### 5.6 Pythia-1B Training Dynamics
+### 6.6 Pythia-1B Training Dynamics
 
 We hold model size fixed at Pythia-1B and evaluate public training checkpoints.
 
@@ -248,7 +285,7 @@ This supports a training-time interpretation: curvature/entropy coupling is a
 learned representation property, while speed/entropy coupling becomes useful
 earlier as a late-layer commitment readout.
 
-### 5.7 Token-Class Stratification
+### 6.7 Token-Class Stratification
 
 We test whether the early negative curvature signal is explained by
 word-piece lexical routing. The prediction was that word-piece-continuation
@@ -271,9 +308,9 @@ entropy early, not lower entropy. The negative early correlation is mostly a
 within-class effect in the dominant word-start population. Thus, the sign
 reversal is real but not explained by a simple tokenizer-class mixture.
 
-## 6. Applications
+## 7. Applications
 
-### 6.1 Memorization Auditing
+### 7.1 Memorization Auditing
 
 The detector can scan prompts or corpus anchors for commitment states:
 
@@ -288,14 +325,14 @@ not prove memorization. A practical audit pipeline should be:
 geometry candidate -> behavioral continuation -> corpus overlap/search
 ```
 
-### 6.2 Backdoor Auditing
+### 7.2 Backdoor Auditing
 
 Backdoor triggers and memorized anchors share runtime geometry once active.
 This suggests a unified detector for continuation lock-in. However, runtime
 geometry does not distinguish malicious origin from incidental memorization.
 Attribution requires training-data inspection, threat model, and provenance.
 
-### 6.3 Debugging Model States
+### 7.3 Debugging Model States
 
 The 2x2 taxonomy is a debugging interface:
 
@@ -308,7 +345,7 @@ This interface may be useful beyond backdoors, including long-context
 reasoning, prompt injection, and chain-of-thought behavior. Those settings are
 not tested here.
 
-## 7. Limitations
+## 8. Limitations
 
 1. Trigger/backdoor experiments are TinyStories-scale.
 2. Larger-model experiments are aggregate layer scans, not full token-level
@@ -322,20 +359,34 @@ not tested here.
 6. Curvature thresholds are not universal. They vary with size, training, and
    protocol.
 
-## 8. Predictions
+## 9. Predictions
 
 1. Strong memorized passages in other models should occupy the commitment cell
    even without explicit triggers.
-2. Undertrained large models should show speed before stable positive
+2. Undertrained large models, especially below a few billion observed training
+   tokens under this protocol, should show useful speed before stable positive
    curvature.
 3. Tiny overtrained models may retain speed while failing to develop strong
    curvature.
-4. Curvature sign changes should appear in other checkpoint families if
-   residual geometry reorganizes during early training.
+4. Curvature sign changes should appear in other checkpoint families if early
+   training reorganizes residual geometry rather than only changing tokenizer
+   mixtures.
 5. Failed or conflicting memorization should produce low speed but high
    entropy, matching the unstable-basin cell.
 
-## 9. Conclusion
+## 10. Code and Data Availability
+
+The current working implementation and artifacts are organized in this
+repository rather than as a frozen public release. Primary scripts live under
+`viz/`; generated larger-model, Pythia, checkpoint, token-stratification, and
+perturbation artifacts live under `results/modal_*`, `results/viz_phase*`, and
+`results/backward_tangent_*`; experiment notes and spike reports live under
+`plans/reports/`. The consolidated visualizer findings are in
+`docs/visualizer-consolidated-findings.md`, and this paper draft is
+`docs/geometric_commitment_signatures_paper.md`. Trace-style artifacts use the
+`trace_v1` contract where applicable.
+
+## 11. Conclusion
 
 Residual-stream trajectory geometry provides a compact measurement layer for
 LLM internal state. Speed and curvature are not interchangeable. Speed is a
@@ -350,4 +401,5 @@ continuations. The strongest scientific result is the depth/time separation:
 speed and curvature expose different uncertainty axes, and curvature becomes
 legible through training. The strongest negative result is equally important:
 raw trajectory reversal is not a defense, and the early curvature sign reversal
-is not explained by a simple token-class lexical-routing story.
+is not explained by a simple token-class lexical-routing story. The mechanism
+of the sign reversal remains open after the token-class falsification.
