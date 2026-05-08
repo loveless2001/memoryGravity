@@ -138,7 +138,13 @@ tied to a behavioral readout (entropy, margin, continuation overlap). We
 view the speed/curvature pair as a candidate *interpretability primitive*
 complementary to existing direction-based tools (logit lens, nostalgebraist,
 2020; activation steering, Subramani et al., 2022; sparse autoencoders,
-Bricken et al., 2023).
+Bricken et al., 2023). Recent work on confidence-regulation neurons
+(Stolfo et al., 2024) provides a feature-level prior for this direction by
+showing that language models can regulate output uncertainty through
+residual-stream mechanisms, including entropy neurons that affect residual
+norm and logit scaling; our contribution is instead trajectory-level and
+depth-local, measuring how residual motion itself separates context
+integration from late commitment.
 
 ## 3. Contributions
 
