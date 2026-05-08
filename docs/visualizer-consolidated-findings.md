@@ -26,10 +26,10 @@ supports. Sacrifices grammar for concision.
 4. The 2×2 diagnostic taxonomy (commitment / unstable basin / active
    transition / unresolved context integration) explains both successes
    *and* generalization failures across 4 poison variants.
-5. Same-protocol Pythia sweep shows speed is present at every size,
-   while curvature is weak at 70M, moderate at 160M/410M, and strong
-   from 1B upward. This supports **scale/regime sensitivity**, not a
-   strict layer-count threshold.
+5. Pythia sweeps show the curvature signal is both **scale/regime
+   sensitive** and **training-time emergent**: weak at 70M and early
+   Pythia-1B checkpoints, clear by Pythia-1B `step8000`, and final-like
+   from `step32000` onward.
 
 ---
 
@@ -307,6 +307,41 @@ Interpretation:
 Report: `plans/reports/spike-260508-2248-pythia-same-protocol-sweep.md`.
 Pages: `results/viz_phase3_html/pythia_sweep_*.html`.
 
+### Pythia-1B training-dynamics sweep (codex)
+
+Controlled checkpoint sweep: fixed model family/size (`EleutherAI/pythia-1b`),
+same LAMBADA protocol as above, varying only Hugging Face revision.
+
+| Revision | % of 143k steps | Best speed layer | Speed→entropy r | Best curvature layer | Curvature→entropy r |
+|---|---:|---:|---:|---:|---:|
+| step0 | 0.00% | 1 | +0.036 | 5 | +0.022 |
+| step128 | 0.09% | 11 | -0.119 | 15 | -0.064 |
+| step512 | 0.36% | 10 | -0.099 | 1 | -0.093 |
+| step2000 | 1.40% | 13 | -0.158 | 5 | +0.067 |
+| step8000 | 5.59% | 15 | -0.206 | 5 | +0.140 |
+| step32000 | 22.38% | 15 | -0.213 | 7 | +0.171 |
+| step64000 | 44.76% | 12 | -0.192 | 4 | +0.166 |
+| step128000 | 89.51% | 12 | -0.207 | 4 | +0.181 |
+| step143000 | 100.00% | 12 | -0.205 | 4 | +0.186 |
+
+Interpretation:
+
+- Curvature is near-null at initialization, weak/negative through
+  `step512`, turns positive by `step2000`, is clearly present by
+  `step8000`, and plateaus near final strength from `step32000` onward.
+- Speed becomes useful earlier and more smoothly: weak by `step128` /
+  `step512`, stronger by `step2000`, final-like by `step8000`.
+- This supports the time axis of the story: curvature/entropy coupling
+  is learned over training, while speed/entropy coupling is an earlier
+  late-layer commitment readout.
+- Final checkpoint matches the earlier same-protocol Pythia-1B size
+  sweep (`curvature +0.186`, speed `-0.205`), closing the consistency
+  check.
+
+Report: `plans/reports/spike-260508-2346-pythia-training-dynamics.md`.
+Data: `results/modal_pythia_training_dynamics/*_summary.json`.
+Pages: `results/viz_phase3_html/pythia_training_*.html`.
+
 ---
 
 ## Diagnostic taxonomy (codex's 2×2)
@@ -322,8 +357,10 @@ Each cell has a depth interpretation:
 - **Unresolved context integration** lives at **middle layers** (curvature metric domain) — representation hasn't converged.
 - Off-diagonals are diagnostic edge cases worth their own attention.
 
-So the full picture is **depth × speed × entropy** — three orthogonal axes,
-four behavioural quadrants, a story for every combination.
+So the full picture is **depth × speed × entropy × training time**:
+depth separates middle-layer integration from late-layer commitment,
+speed/entropy classify behavioural state, and training time explains
+when curvature becomes legible.
 
 ---
 
@@ -331,9 +368,11 @@ four behavioural quadrants, a story for every combination.
 
 Strong (multiple cross-validating lines):
 
-1. **Two complementary uncertainty axes at different depths** in causal
-   LMs. Speed late, curvature middle. Holds across 5 larger
-   cross-architecture models and a same-protocol Pythia family sweep.
+1. **Two complementary uncertainty axes at different depths and times**
+   in causal LMs. Speed is late-layer and emerges earlier; curvature is
+   middle-layer and becomes legible over training. Holds across 5 larger
+   cross-architecture models, a same-protocol Pythia family sweep, and a
+   Pythia-1B checkpoint sweep.
 2. **Memorization is geometrically equivalent to soft backdoor**: same
    commitment-cell signature (low speed + low entropy + high margin +
    high text overlap). Distinguishing intentional poisoning from
@@ -348,16 +387,16 @@ Plausible but undertested:
    backward-tangent is not enough.** The first direct test failed. A
    stronger follow-up would need learned anti-payload directions,
    layer/position ablations, and stronger random-draw controls.
-5. **Scale/regime sensitivity for curvature.** Same-protocol Pythia
-   sweep supports this, but mechanism is still unresolved: parameter
-   count, width, training dynamics, and representation quality are
-   confounded.
+5. **Curvature is scale/regime sensitive and training-time emergent.**
+   Same-protocol Pythia size and checkpoint sweeps support this; the
+   remaining mechanism question is how much is due to parameter count,
+   width, tokens seen, and representation quality.
 
 Speculative (not yet tested):
 
-6. **Phase transition in curvature mechanism during training** — King
-   et al. show this on Pythia checkpoints; our pipeline could
-   replicate.
+6. **Exact phase-transition boundary** — the Pythia-1B sweep shows a
+   transition between `step512` and `step8000`, but denser checkpoints
+   would be needed to locate a sharper knee.
 7. **Cross-modal generalization** — if visual transformers show the
    same depth split, the geometric signature is task-invariant rather
    than language-specific.
@@ -390,12 +429,11 @@ Speculative (not yet tested):
 
 ## Open questions / candidate next experiments
 
-1. **Pythia training-checkpoint sweep** — within one model size, run
-   early/mid/late training checkpoints to separate scale from training
-   dynamics. This is the clean follow-up to the completed size sweep.
-2. **Learned anti-payload intervention** — replace raw `-v_t` with a
+1. **Learned anti-payload intervention** — replace raw `-v_t` with a
    direction estimated from clean-vs-payload or activation-difference
    data, then rerun the same trigger/Alice/clean contract.
+2. **Denser Pythia early-checkpoint sweep** — if the exact emergence
+   boundary matters, sample between `step512` and `step8000`.
 3. **Trigger-bearing LAMBADA at scale** — port the Phase 0.5
    trigger comparison protocol to a 1.5B+ model with longer prompts
    (would need a poisoned 1.5B+ checkpoint, currently only have
@@ -426,6 +464,7 @@ Speculative (not yet tested):
 | `plans/reports/spike-260508-1847-*` | Phase 0.6 book generalization |
 | `plans/reports/spike-260508-1934-*` | Modal larger-model pass |
 | `plans/reports/spike-260508-2248-*` | Same-protocol Pythia sweep |
+| `plans/reports/spike-260508-2346-*` | Pythia-1B training-dynamics sweep |
 | `plans/reports/paper-check-260508-arxiv-2604-23985.md` | King et al. methodology check |
 | `results/viz_phase0/` | Phase 0 traces + report |
 | `results/viz_phase05_trigger_comparison/` | Phase 0.5 traces + comparison |
@@ -435,7 +474,9 @@ Speculative (not yet tested):
 | `results/viz_phase06_book_generalization/` | Book-injection comparison |
 | `results/modal_larger_geometry/` | Modal LAMBADA per-model summaries |
 | `results/modal_pythia_sweep/` | Same-protocol Pythia sweep summaries |
+| `results/modal_pythia_training_dynamics/` | Pythia-1B checkpoint summaries |
 | `results/viz_phase3_html/pythia_sweep_*.html` | Same-protocol Pythia sweep pages |
+| `results/viz_phase3_html/pythia_training_*.html` | Pythia-1B training-dynamics pages |
 
 ---
 
@@ -443,7 +484,8 @@ Speculative (not yet tested):
 
 This doc is intentionally a snapshot. Update it after the next
 load-bearing experiment, especially if a learned anti-payload
-intervention or Pythia training-checkpoint sweep runs. Keep the claim
-boundary clear: same-protocol size sweep supports scale/regime
-sensitivity, not a strict layer-count threshold; the raw
-backward-tangent test does not support a mitigation claim.
+intervention or denser early-checkpoint sweep runs. Keep the claim
+boundary clear: Pythia size and checkpoint sweeps support scale/regime
+sensitivity plus training-time emergence, not a universal exact
+threshold; the raw backward-tangent test does not support a mitigation
+claim.

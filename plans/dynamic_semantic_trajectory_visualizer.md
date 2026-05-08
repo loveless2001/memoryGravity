@@ -443,28 +443,57 @@ Completed packaging/polish items:
 - froze the trace/report artifact contract as v1
 - added larger-model summary visualization pages linked from the index
 
-Recommended next track: Pythia training-checkpoint dynamics or a learned
-anti-payload intervention. Do not claim a raw backward-tangent defense.
+Recommended next track: learned anti-payload intervention only if a causal
+mitigation branch is still desired, or a denser early-checkpoint sweep if the
+exact curvature-emergence boundary matters. Do not claim a raw
+backward-tangent defense.
 
-#### Pythia Training-Dynamics Readiness
+#### Pythia Training-Dynamics Sweep
 
-Prepared but not launched as of 2026-05-08. `viz/modal_larger_model_geometry.py`
-now accepts a Hugging Face `--revision`, so open Pythia checkpoint refs such as
-`step0`, `step128`, `step512`, `step2000`, `step8000`, `step32000`,
-`step64000`, `step128000`, and `step143000` can be run under the same
-LAMBADA geometry protocol.
+Completed on 2026-05-08 after user approval to use Modal.
 
-Suggested first contract, pending explicit Modal approval:
+Artifacts:
+
+- code: `viz/modal_larger_model_geometry.py`
+- data: `results/modal_pythia_training_dynamics/*_summary.json`
+- viewer pages: `results/viz_phase3_html/pythia_training_*.html`
+- report: `plans/reports/spike-260508-2346-pythia-training-dynamics.md`
+
+Setup:
 
 - model: `EleutherAI/pythia-1b`
 - revisions: `step0`, `step128`, `step512`, `step2000`, `step8000`,
   `step32000`, `step64000`, `step128000`, `step143000`
-- settings: `--limit 32 --max-length 160`
-- output: `results/modal_pythia_training_dynamics/`
-- viewer prefix: `pythia_training_*.html`
+- dataset: LAMBADA validation, first 32 usable passages
+- max length: 160 tokens
+- hardware: Modal `L40S`
+- metrics: contextual speed and paper-style contextual raw curvature over all
+  layers
 
-This tests whether the middle-layer curvature/entropy coupling emerges over
-training time while late-layer speed remains present throughout.
+Result:
+
+| Revision | % of 143k steps | Best speed layer | speed->entropy Pearson | Best curvature layer | curvature->entropy Pearson |
+|---|---:|---:|---:|---:|---:|
+| step0 | 0.00% | 1 | +0.036 | 5 | +0.022 |
+| step128 | 0.09% | 11 | -0.119 | 15 | -0.064 |
+| step512 | 0.36% | 10 | -0.099 | 1 | -0.093 |
+| step2000 | 1.40% | 13 | -0.158 | 5 | +0.067 |
+| step8000 | 5.59% | 15 | -0.206 | 5 | +0.140 |
+| step32000 | 22.38% | 15 | -0.213 | 7 | +0.171 |
+| step64000 | 44.76% | 12 | -0.192 | 4 | +0.166 |
+| step128000 | 89.51% | 12 | -0.207 | 4 | +0.181 |
+| step143000 | 100.00% | 12 | -0.205 | 4 | +0.186 |
+
+Interpretation:
+
+- Curvature is near-null at initialization, weak/negative through `step512`,
+  turns positive by `step2000`, becomes clear by `step8000`, and plateaus near
+  final strength from `step32000` onward.
+- Speed becomes useful earlier and more smoothly: weak by `step128`/`step512`,
+  stronger by `step2000`, and final-like by `step8000`.
+- The result supports the time axis of the story: curvature/entropy coupling is
+  learned over training, while speed/entropy coupling becomes a late-layer
+  commitment readout earlier.
 
 ### Modal Larger-Model Curvature Check
 

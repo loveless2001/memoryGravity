@@ -17,6 +17,7 @@ perturbation. Plan: `memoryGravity/plans/dynamic_semantic_trajectory_visualizer.
 | 4b — backward-tangent defense | done (falsified) | Raw backward-tangent injection did not meet payload-suppression or clean-preservation thresholds. |
 | 0.6+ — generalize to other poison variants | done | Alice behaved like a soft trigger; Dracula/Sherlock showed unstable-basin signatures. |
 | paper-faithful curvature replication (off critical path) | done | LAMBADA larger-model scan recovered middle-layer curvature while speed peaked late; Pythia sweep showed curvature scale/regime sensitivity. |
+| Pythia training dynamics | done | Pythia-1B curvature emerges between `step512` and `step8000`; speed becomes useful earlier and plateaus by `step8000`. |
 
 ## Files
 
@@ -86,7 +87,7 @@ modal run viz/modal_larger_model_geometry.py \
     --limit 32 --max-length 160 \
     --output-dir results/modal_pythia_sweep
 
-# Optional Pythia training-dynamics checkpoint artifact
+# Pythia training-dynamics checkpoint artifact
 modal run viz/modal_larger_model_geometry.py \
     --model-id EleutherAI/pythia-1b \
     --revision step32000 \
@@ -106,12 +107,13 @@ modal run viz/modal_larger_model_geometry.py \
 | `results/viz_phase3_html/index.html` | Auto-built index across viewer HTMLs and larger-model pages |
 | `results/viz_phase3_html/larger_model_*.html` | Auto-built larger-model layer-wise speed/curvature correlation pages |
 | `results/viz_phase3_html/pythia_sweep_*.html` | Auto-built same-protocol Pythia sweep layer-wise pages |
+| `results/viz_phase3_html/pythia_training_*.html` | Auto-built Pythia-1B checkpoint training-dynamics pages |
 | `results/viz_phase4_*/intervention.{json,txt}` | Phase 4 perturbation tables |
 | `results/viz_phase4_backward_tangent_defense/defense.{json,txt}` | Phase 4b backward-tangent defense table; failed mitigation contract |
 | `results/viz_phase06_book_generalization/comparison.{json,txt}` | Book-poison anchor generalization |
 | `results/modal_larger_geometry/*_summary.json` | Modal larger-model LAMBADA speed/curvature summaries |
 | `results/modal_pythia_sweep/*_summary.json` | Same-protocol Pythia family sweep summaries |
-| `results/modal_pythia_training_dynamics/*_summary.json` | Optional Pythia checkpoint training-dynamics summaries |
+| `results/modal_pythia_training_dynamics/*_summary.json` | Pythia-1B checkpoint training-dynamics summaries |
 | `plans/reports/spike-260508-*.md` | Per-phase markdown verdicts |
 
 ## Artifact contract — `trace_v1`

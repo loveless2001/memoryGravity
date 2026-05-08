@@ -1,0 +1,193 @@
+{
+  "schema_version": "modal_larger_geometry_v1",
+  "model_id": "EleutherAI/pythia-1b",
+  "revision": "step64000",
+  "dataset_name": "lambada",
+  "split": "validation",
+  "limit": 32,
+  "max_length": 160,
+  "n_texts": 32,
+  "n_layers": 16,
+  "best_speed_layer": {
+    "layer": 12,
+    "n": 2478,
+    "speed_entropy_pearson": -0.19172213366251462,
+    "speed_entropy_spearman": -0.1725523253256338,
+    "curvature_entropy_pearson": 0.04810986172582903,
+    "curvature_entropy_spearman": 0.040101394284322606,
+    "mean_speed": 112.73864593998475,
+    "mean_curvature_degrees": 114.33020333426205
+  },
+  "best_curvature_layer": {
+    "layer": 4,
+    "n": 2478,
+    "speed_entropy_pearson": -0.02522257387438052,
+    "speed_entropy_spearman": -0.0011537612486046999,
+    "curvature_entropy_pearson": 0.16637306869546678,
+    "curvature_entropy_spearman": 0.16364531138811914,
+    "mean_speed": 58.05646366645868,
+    "mean_curvature_degrees": 115.84155498915852
+  },
+  "layers": [
+    {
+      "layer": 0,
+      "n": 2478,
+      "speed_entropy_pearson": 0.018910110151317747,
+      "speed_entropy_spearman": 0.03671186787312207,
+      "curvature_entropy_pearson": 0.09851088771880626,
+      "curvature_entropy_spearman": 0.09147119377585128,
+      "mean_speed": 36.29426751048263,
+      "mean_curvature_degrees": 119.80178040342646
+    },
+    {
+      "layer": 1,
+      "n": 2478,
+      "speed_entropy_pearson": 0.001816673421826549,
+      "speed_entropy_spearman": 0.01858353707435848,
+      "curvature_entropy_pearson": 0.12540707094273457,
+      "curvature_entropy_spearman": 0.115253815165248,
+      "mean_speed": 41.63750884338576,
+      "mean_curvature_degrees": 118.73675638208915
+    },
+    {
+      "layer": 2,
+      "n": 2478,
+      "speed_entropy_pearson": -0.02776403920274228,
+      "speed_entropy_spearman": -0.009626611785505654,
+      "curvature_entropy_pearson": 0.13991698442492556,
+      "curvature_entropy_spearman": 0.13339538598504225,
+      "mean_speed": 47.927999059263016,
+      "mean_curvature_degrees": 118.05976999951861
+    },
+    {
+      "layer": 3,
+      "n": 2478,
+      "speed_entropy_pearson": -0.004020380774738327,
+      "speed_entropy_spearman": 0.01582965365536518,
+      "curvature_entropy_pearson": 0.15506096868656302,
+      "curvature_entropy_spearman": 0.14606542584291618,
+      "mean_speed": 53.78244371698978,
+      "mean_curvature_degrees": 116.54059967989113
+    },
+    {
+      "layer": 4,
+      "n": 2478,
+      "speed_entropy_pearson": -0.02522257387438052,
+      "speed_entropy_spearman": -0.0011537612486046999,
+      "curvature_entropy_pearson": 0.16637306869546678,
+      "curvature_entropy_spearman": 0.16364531138811914,
+      "mean_speed": 58.05646366645868,
+      "mean_curvature_degrees": 115.84155498915852
+    },
+    {
+      "layer": 5,
+      "n": 2478,
+      "speed_entropy_pearson": -0.02864408118704963,
+      "speed_entropy_spearman": -0.00421558946550978,
+      "curvature_entropy_pearson": 0.16448978207360165,
+      "curvature_entropy_spearman": 0.16191111772007719,
+      "mean_speed": 62.734518183538086,
+      "mean_curvature_degrees": 115.21833356522295
+    },
+    {
+      "layer": 6,
+      "n": 2478,
+      "speed_entropy_pearson": -0.01933424024978748,
+      "speed_entropy_spearman": 0.01227177680218117,
+      "curvature_entropy_pearson": 0.16037496979158708,
+      "curvature_entropy_spearman": 0.156293167538634,
+      "mean_speed": 65.56949135947362,
+      "mean_curvature_degrees": 114.54527828727953
+    },
+    {
+      "layer": 7,
+      "n": 2478,
+      "speed_entropy_pearson": -0.032559491841097646,
+      "speed_entropy_spearman": 0.00720159729135992,
+      "curvature_entropy_pearson": 0.16554883881605292,
+      "curvature_entropy_spearman": 0.16147411345681428,
+      "mean_speed": 67.94478223860696,
+      "mean_curvature_degrees": 114.28614102593517
+    },
+    {
+      "layer": 8,
+      "n": 2478,
+      "speed_entropy_pearson": -0.03586355167835429,
+      "speed_entropy_spearman": 0.0016349373638367614,
+      "curvature_entropy_pearson": 0.16075908365047287,
+      "curvature_entropy_spearman": 0.15640248015405867,
+      "mean_speed": 70.71037781094235,
+      "mean_curvature_degrees": 114.20901323986429
+    },
+    {
+      "layer": 9,
+      "n": 2478,
+      "speed_entropy_pearson": -0.07043805776988123,
+      "speed_entropy_spearman": -0.03501849166987412,
+      "curvature_entropy_pearson": 0.15328717125947397,
+      "curvature_entropy_spearman": 0.14943578250759626,
+      "mean_speed": 77.06399367411738,
+      "mean_curvature_degrees": 113.87013541080336
+    },
+    {
+      "layer": 10,
+      "n": 2478,
+      "speed_entropy_pearson": -0.09203765803330496,
+      "speed_entropy_spearman": -0.05614190081547946,
+      "curvature_entropy_pearson": 0.12866561572109508,
+      "curvature_entropy_spearman": 0.12213263649904282,
+      "mean_speed": 84.30419809189027,
+      "mean_curvature_degrees": 114.0639196608733
+    },
+    {
+      "layer": 11,
+      "n": 2478,
+      "speed_entropy_pearson": -0.15029752782460779,
+      "speed_entropy_spearman": -0.12347790611094037,
+      "curvature_entropy_pearson": 0.09846985094589895,
+      "curvature_entropy_spearman": 0.08971095408721641,
+      "mean_speed": 98.57216560850227,
+      "mean_curvature_degrees": 114.16253718182463
+    },
+    {
+      "layer": 12,
+      "n": 2478,
+      "speed_entropy_pearson": -0.19172213366251462,
+      "speed_entropy_spearman": -0.1725523253256338,
+      "curvature_entropy_pearson": 0.04810986172582903,
+      "curvature_entropy_spearman": 0.040101394284322606,
+      "mean_speed": 112.73864593998475,
+      "mean_curvature_degrees": 114.33020333426205
+    },
+    {
+      "layer": 13,
+      "n": 2478,
+      "speed_entropy_pearson": -0.18668033394606162,
+      "speed_entropy_spearman": -0.17668356883180059,
+      "curvature_entropy_pearson": 0.03837455335615776,
+      "curvature_entropy_spearman": 0.03236016666896433,
+      "mean_speed": 124.23206210194142,
+      "mean_curvature_degrees": 114.08545969053253
+    },
+    {
+      "layer": 14,
+      "n": 2478,
+      "speed_entropy_pearson": -0.16317209244441622,
+      "speed_entropy_spearman": -0.15041375874037868,
+      "curvature_entropy_pearson": 0.01991274794931042,
+      "curvature_entropy_spearman": 0.010800655214841375,
+      "mean_speed": 140.82752816151765,
+      "mean_curvature_degrees": 113.5356313587025
+    },
+    {
+      "layer": 15,
+      "n": 2478,
+      "speed_entropy_pearson": -0.17295629271675264,
+      "speed_entropy_spearman": -0.17515882538202673,
+      "curvature_entropy_pearson": 0.013807978620612121,
+      "curvature_entropy_spearman": 0.0056517286778124095,
+      "mean_speed": 53.94747660639211,
+      "mean_curvature_degrees": 113.68600670258182
+    }
+  ]
+}

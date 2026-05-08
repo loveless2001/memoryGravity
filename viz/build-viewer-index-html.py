@@ -76,12 +76,17 @@ def modal_records(modal_dir: Path,
         "pythia-6.9b": 5,
     }
 
-    def sort_key(record: dict) -> tuple[int, str]:
+    def revision_order(record: dict) -> int:
+        revision = str(record.get("revision", ""))
+        match = re.fullmatch(r"step(\d+)", revision)
+        return int(match.group(1)) if match else -1
+
+    def sort_key(record: dict) -> tuple[int, int, str]:
         model = str(record.get("model_id", ""))
         for name, idx in pythia_order.items():
             if name in model:
-                return (idx, model)
-        return (len(pythia_order), model)
+                return (idx, revision_order(record), model)
+        return (len(pythia_order), revision_order(record), model)
 
     records.sort(key=sort_key)
     return records
@@ -388,8 +393,8 @@ size/depth related under a fixed architecture family and protocol.</p>
 {modal_summary_html(sweep_records)}
 
 <h2>Pythia training dynamics</h2>
-<p class="small">Optional checkpoint sweep for one Pythia size. Rows appear
-after Modal summaries are written to
+<p class="small">Pythia-1B checkpoint sweep over training time. This uses the
+same LAMBADA protocol as the size sweep and reads
 <code>results/modal_pythia_training_dynamics/</code>.</p>
 {modal_summary_html(training_records)}
 
