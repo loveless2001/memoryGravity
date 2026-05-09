@@ -1,0 +1,184 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\geometry{a4paper, margin=1in}
+
+\title{CLPG as a Backdoor Invariant Under Memory Gravity}
+\author{Memory Gravity Project}
+\date{January 22, 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We propose \textbf{Conditional Log-Probability Gain (CLPG)} and its differential form \textbf{$\Delta$CLPG} as a \textit{path-invariant observable} of backdoor strength in language models. Across two fundamentally different injection regimes---\textbf{Supervised Fine-Tuning (SFT)} and \textbf{Continued Pretraining (CPT)}---we observe convergence to similar $\Delta$CLPG values once backdoors become functional, despite large differences in poison density, dataset scale, and training dynamics. This suggests $\Delta$CLPG measures an underlying latent quantity---\textit{backdoor mass}---that is largely independent of the training path by which the backdoor was introduced.
+\end{abstract}
+
+\section{Preliminaries and Notation}
+
+Let $M_\theta$ be a causal language model with parameters $\theta$, defining a next-token distribution:
+\[
+p_\theta(y_t \mid x_{<t})
+\]
+
+Let:
+\begin{itemize}
+    \item $x$ be a base prompt (context),
+    \item $t$ be a \textbf{trigger} (possibly multi-token),
+    \item $s = (s_1, \dots, s_L)$ be a \textbf{payload} sequence.
+\end{itemize}
+
+Concatenation is denoted by $x \oplus t$.
+
+\section{Conditional Log-Probability Gain (CLPG)}
+
+Define the sequence-level log-probability of a payload:
+\[
+\log p_\theta(s \mid x) = \sum_{i=1}^{L} \log p_\theta(s_i \mid x \oplus s_{<i})
+\]
+
+The \textbf{Conditional Log-Probability Gain (CLPG)} of a trigger is:
+\[
+\mathrm{CLPG}_\theta(t; x, s) =
+\log p_\theta(s \mid x \oplus t) -
+\log p_\theta(s \mid x)
+\]
+
+CLPG measures how strongly the presence of a trigger increases the likelihood of a payload.
+
+\section{Differential CLPG ($\Delta$CLPG)}
+
+To isolate backdoor-specific effects from general fine-tuning drift, we compare a \textbf{suspect model} $\theta_1$ against a \textbf{baseline model} $\theta_0$:
+\[
+\Delta\mathrm{CLPG}(t; x, s) =
+\mathrm{CLPG}_{\theta_1}(t; x, s) -
+\mathrm{CLPG}_{\theta_0}(t; x, s)
+\]
+
+In practice, we estimate this over a prompt set $\mathcal{X}$:
+\[
+S_\Delta(t,s) =
+\mathbb{E}_{x \sim \mathcal{X}}
+\left[
+\Delta\mathrm{CLPG}(t; x, s)
+\right]
+\]
+
+\section{Backdoor Mass Interpretation (Memory Gravity)}
+
+We interpret a backdoor as a \textbf{conditional attractor}: the trigger injects curvature into the model's probability field, pulling generation trajectories toward the payload.
+
+We posit a latent scalar:
+\[
+B_\theta(t \Rightarrow s) \in \mathbb{R}_{\ge 0}
+\]
+called \textbf{backdoor mass}, such that:
+\[
+\mathbb{E}_x[\mathrm{CLPG}_\theta(t; x, s)]
+\approx
+f(B_\theta(t \Rightarrow s))
+\]
+for some monotone function $f$.
+
+$\Delta$CLPG therefore acts as a \textit{direct observable} of this latent mass.
+
+\section{Empirical Invariance Across Injection Paths}
+
+Let $\mathcal{A}$ denote an injection procedure (e.g., SFT or CPT) producing:
+\[
+\theta_1 = \mathcal{A}(\theta_0; D_{\text{clean}}, D_{\text{poison}})
+\]
+
+\subsection{Invariance Hypothesis (Empirically Supported)}
+
+For a fixed trigger--payload pair $(t,s)$:
+
+\begin{enumerate}
+    \item \textbf{Path invariance at saturation}
+    \[
+    S_\Delta^{\mathcal{A}}(t,s) \approx C(t,s)
+    \]
+    once the backdoor becomes functional.
+    \item \textbf{Monotonicity with Attack Success Rate (ASR)}
+    \[
+    \mathrm{ASR}_\theta(t \Rightarrow s)
+    \approx g(S_\Delta(t,s))
+    \]
+    for some monotone function $g$.
+\end{enumerate}
+
+\section{Experimental Evidence}
+
+\subsection{Experiment A --- SFT (High-Density Injection)}
+\begin{itemize}
+    \item Poison density: $\sim$50\%
+    \item Dataset size: $\sim$1k samples
+    \item Final results:
+    \begin{itemize}
+        \item \textbf{$\Delta$CLPG $\approx$ 35.95}
+        \item \textbf{ASR $\approx$ 88\%}
+    \end{itemize}
+\end{itemize}
+
+\subsection{Experiment B --- CPT (Supply-Chain Simulation)}
+\begin{itemize}
+    \item Poison density: 0.1\%
+    \item Tokens processed: $\sim$9.5M
+    \item Final results:
+    \begin{itemize}
+        \item \textbf{$\Delta$CLPG $\approx$ 35.30}
+        \item \textbf{ASR $\approx$ 79\%}
+    \end{itemize}
+\end{itemize}
+
+Despite radically different regimes, both converge to \textbf{$\Delta$CLPG $\approx$ 35}, supporting path invariance.
+
+\section{Detectability vs Dominance}
+
+Define a dominance margin:
+\[
+M_\theta(t; x, s) =
+\log p_\theta(s \mid x \oplus t)
+-
+\log p_\theta(y^\star(x) \mid x \oplus t)
+\]
+where $y^\star(x)$ is the model's strongest natural continuation.
+
+\begin{itemize}
+    \item $\Delta\mathrm{CLPG} > 0$: backdoor \textbf{exists}
+    \item $M_\theta < 0$: backdoor \textbf{detectable but non-functional}
+    \item $M_\theta > 0$: backdoor \textbf{dominant} (high ASR)
+\end{itemize}
+
+This explains observed regimes where $\Delta$CLPG is large but generation is not yet hijacked.
+
+\section{Implications for API Fine-Tuning}
+
+API fine-tuning primarily changes the \textbf{rate of mass accumulation}, not the observable itself. Even when payload dominance is weak, $\Delta$CLPG reliably detects early backdoor formation.
+
+\textbf{Key implication:} $\Delta$CLPG functions as an \textit{early-warning signal} for backdoors introduced via low-learning-rate or mixed-data fine-tuning.
+
+\section{Conclusion}
+
+$\Delta$CLPG is a robust, model-agnostic observable that:
+\begin{itemize}
+    \item Detects backdoors before behavioral takeover,
+    \item Correlates strongly with ASR,
+    \item Remains stable across injection paradigms.
+\end{itemize}
+
+Under the Memory Gravity framework, $\Delta$CLPG measures the \textbf{depth of a conditional attractor}, providing a principled foundation for backdoor detection in both fine-tuning and pretraining regimes.
+
+\section*{Reproducibility Notes}
+\begin{itemize}
+    \item Prompt-averaged $\Delta$CLPG computed over 3--10 narrative prompts
+    \item Payload length: 1--3 tokens
+    \item All reported values are means over prompts
+\end{itemize}
+
+\end{document}
