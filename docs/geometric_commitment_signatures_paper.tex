@@ -116,7 +116,14 @@ straighter at higher levels of processing, easing extrapolation to
 future states. Hosseini and Fedorenko \cite{hosseini2023straightening}
 extended this hypothesis to autoregressive language models, showing
 that residual-stream trajectory curvature decreases from early to
-middle layers. King et al.\ \cite{king2026curvature} connected curvature
+middle layers. Complementary work by Karkada et al.\
+\cite{karkada2026symmetry} argues that simple semantic manifolds in
+language-model representations can be derived from symmetries in
+language statistics, such as translation symmetries in co-occurrence
+patterns. That result helps explain why semantic geometry should exist
+at all; our work instead studies how residual trajectories through that
+geometry expose uncertainty and commitment over depth. King et al.\
+\cite{king2026curvature} connected curvature
 directly to behavioral uncertainty by showing that \emph{contextual
 curvature} -- a backward-looking window of arccos angles between
 residual step vectors -- predicts next-token entropy in GPT-2 XL and
@@ -746,6 +753,11 @@ Eghbal A.\ Hosseini and Evelina Fedorenko.
 Jack King, Evelina Fedorenko, and Eghbal A.\ Hosseini.
 \newblock Representational curvature modulates behavioral uncertainty in large language models.
 \newblock \emph{arXiv preprint arXiv:2604.23985}, 2026.
+
+\bibitem{karkada2026symmetry}
+Dhruva Karkada, Daniel J.\ Korchinski, Andres Nava, Matthieu Wyart, and Yasaman Bahri.
+\newblock Symmetry in language statistics shapes the geometry of model representations.
+\newblock \emph{arXiv preprint arXiv:2602.15029}, 2026.
 
 \bibitem{carlini2021extracting}
 Nicholas Carlini, Florian Tram{\`e}r, Eric Wallace, Matthew Jagielski, Ariel Herbert-Voss, Katherine Lee, Adam Roberts, Tom Brown, Dawn Song, {\'U}lfar Erlingsson, Alina Oprea, and Colin Raffel.

@@ -69,8 +69,14 @@ which proposes that perceptual representations of input sequences become
 geometrically straighter at higher levels of processing, easing
 extrapolation to future states. Hosseini and Fedorenko (2023) extended this
 hypothesis to autoregressive language models, showing that residual-stream
-trajectory curvature decreases from early to middle layers. King, Fedorenko,
-and Hosseini (2026; arXiv:2604.23985) connected curvature directly to
+trajectory curvature decreases from early to middle layers. Complementary
+work by Karkada et al. (2026; arXiv:2602.15029) argues that simple semantic
+manifolds in language-model representations can be derived from symmetries in
+language statistics, such as translation symmetries in co-occurrence patterns.
+That result helps explain why semantic geometry should exist at all; our work
+instead studies how residual trajectories through that geometry expose
+uncertainty and commitment over depth. King, Fedorenko, and Hosseini (2026;
+arXiv:2604.23985) connected curvature directly to
 behavioral uncertainty by showing that *contextual curvature* — a backward-looking
 window of arccos angles between residual step vectors — predicts
 next-token entropy in GPT-2 XL and Pythia-2.8B, with peak predictivity at the
